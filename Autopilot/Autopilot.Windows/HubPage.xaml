@@ -46,18 +46,9 @@
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        Margin="0,0,39,0" 
-                        VerticalAlignment="Top"
-                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
-                    <TextBlock x:Name="pageTitle" x:Uid="Header" Text="application name" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        VerticalAlignment="Top" IsHitTestVisible="false" TextWrapping="NoWrap" />
                 </Grid>
             </Hub.Header>
-            <HubSection Width="780" Margin="0,0,80,0">
+            <HubSection Width="93" Margin="0,0,80,0">
                 <HubSection.Background>
                     <ImageBrush ImageSource="Assets/MediumGray.png" Stretch="UniformToFill" />
                 </HubSection.Background>
@@ -149,5 +140,35 @@
                 </DataTemplate>
             </HubSection>
         </Hub>
+        <Button x:Name="button" Content="Neuer Auftrag" HorizontalAlignment="Left" Margin="-18.409,78.781,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="button1" Content="Konversationen" HorizontalAlignment="Left" Margin="-22.264,226.96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="button2" Content="Kalender" HorizontalAlignment="Left" Margin="0.068,361.648,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="button3" Content="Rechnungen" HorizontalAlignment="Left" Margin="-11.917,486.185,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="button4" Content="Einstellungen" HorizontalAlignment="Left" Margin="-15.137,621.304,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
+        <Button x:Name="button5" Content="Hilfe" HorizontalAlignment="Left" Margin="13.496,745.872,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Button.RenderTransform>
+                <CompositeTransform Rotation="270"/>
+            </Button.RenderTransform>
+        </Button>
     </Grid>
 </Page>
