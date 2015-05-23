@@ -16,6 +16,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 using Autopilot.Common;
+using SQLite;
+using Autopilot.DataModel;
 
 // The Universal Hub Application project template is documented at http://go.microsoft.com/fwlink/?LinkID=391955
 
@@ -26,6 +28,21 @@ namespace Autopilot
     /// </summary>
     public sealed partial class App : Application
     {
+        private static string _dbPath = string.Empty;
+        /// <summary>
+        /// Enthält den absoluten Pfad zur SQLite Datenbank der Anwendung.
+        /// </summary>
+        public static string DBPATH
+        {
+            get { return _dbPath; }
+            set
+            {
+                if (value != _dbPath)
+                    _dbPath = value;
+            }
+        }
+
+
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
@@ -86,6 +103,15 @@ namespace Autopilot
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                //Pfad zur Datenbank setzen
+                _dbPath = System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "AutopilotDB.db");
+
+                //Zur Datenbank verbinden und Tabellen anlegen, falls nötig
+                using (var db = new SQLite.SQLiteConnection(_dbPath))
+                {
+                    db.CreateTable<Flugzeuge>();
+                }
             }
 
             if (rootFrame.Content == null)
