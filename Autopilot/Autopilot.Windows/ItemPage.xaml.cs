@@ -17,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Autopilot.DataModel;
+
 // The Universal Hub Application project template is documented at http://go.microsoft.com/fwlink/?LinkID=391955
 
 namespace Autopilot
@@ -81,9 +83,9 @@ namespace Autopilot
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
         /// </summary>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedTo(e);
+            this.navigationHelper.OnNavigatedTo(e);            
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -92,5 +94,34 @@ namespace Autopilot
         }
 
         #endregion
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = new SQLite.SQLiteConnection(App.DBPATH))
+            {
+                Flugzeuge neuesFlugzeug = new Flugzeuge()
+                {
+                    sta_id = Convert.ToInt32(sta_id.Text),
+                    her_id = Convert.ToInt32(her_id.Text)
+                };
+
+                int insert = db.Insert(neuesFlugzeug);
+            }                    
+        }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+            using (var db = new SQLite.SQLiteConnection(App.DBPATH))
+            {
+                //var gesuchtesFlugzeug = db.Table<Flugzeuge>().Where(flugzeuge => (flugzeuge.sta_id.Equals(Convert.ToInt32(sta_id.Text)) || flugzeuge.her_id.Equals(Convert.ToInt32(her_id.Text))));
+                var gesuchtesFlugzeug = db.Table<Flugzeuge>();
+
+                foreach (var flugzeuge in gesuchtesFlugzeug)
+                {
+                    Ergebnisse.Items.Add(flugzeuge);
+                }
+            }
+        }
+                       
     }
 }

@@ -32,7 +32,17 @@
             TODO: Content should be placed within the following grid 
                   to show details for the current item
         -->
-        <Grid Grid.Row="1" x:Name="contentRegion"/>
+        <Grid x:Name="contentRegion" Height="623" VerticalAlignment="Bottom" Grid.Row="1">
+            <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                    <TextBox Name="sta_id" InputScope="Default" Width="100" Height="50" Margin="0,0,0,20"/>
+                    <TextBox Name="her_id" InputScope="Default" Width="100" Height="50" Margin="0,0,0,20"/>
+                    <Button Content="Speichern!" Width="100" Height="50" Click="Save_Click"/>
+                    <Button Content="Suchen!" Width="100" Height="50" Click="Search_Click"/>
+               </StackPanel>
+                <ListView HorizontalAlignment="Stretch" Name="Ergebnisse" Width="800"/>
+            </Grid>
+        </Grid>
 
         <!-- Back button and page title -->
         <Grid>
@@ -49,5 +59,6 @@
             <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+
     </Grid>
 </Page>
