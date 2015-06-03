@@ -23,6 +23,12 @@ namespace Autopilot
         public MainWindow()
         {
             InitializeComponent();
+            Utilities utilities = new Utilities();
+
+            /// <summary>
+            /// Beispiel für das Ausführen einer SQL-Anweisung
+            /// utilities.SQLCmd("SQL-Anweisung");
+            /// </summary>
         }
     }
 }
