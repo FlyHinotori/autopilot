@@ -29,12 +29,19 @@ namespace Autopilot
             /// Beispiel für das Ausführen einer SQL-Anweisung
             /// utilities.SQLCmd("SQL-Anweisung");
             /// </summary>
-
+            
             /// <summary>
             /// Beispiele für das Aufrufen von Messageboxen
             /// utilities.HinweisMsgBox("Hier kommt der Hinweistext rein", "Titel der Box");
             /// utilities.FehlerMsgBox("Hier kommt der Fehlertext rein", "Titel der Box");
             /// </summary>
         }
+
+        private void button_TestArea_Click(object sender, RoutedEventArgs e)
+        {
+            TestArea ShowForm = new TestArea();
+            ShowForm.ShowDialog();
+        }
     }
 }
+ 
