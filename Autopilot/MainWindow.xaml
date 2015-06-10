@@ -12,11 +12,20 @@
         <StackPanel DockPanel.Dock="Left">
             <Button Content="+"/>
             <Button Content="Posteingang"/>
-            <Button Content="Rechnungen"/>
+            <Button Content="Rechnungen" Click="Rechnungen_anzeigen"/>
             <Button Content="Kalender"/>
         </StackPanel>
-        <Grid DockPanel.Dock="Left">
-            
+        <Grid DockPanel.Dock="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="100"/> <!-- beide sollten die volle Breite zu gleichen Teilen ausfüllen -->
+                <ColumnDefinition Width="Auto" MinWidth="100"/>
+            </Grid.ColumnDefinitions>
+            <Frame Name="Inhaltsanzeige"  Grid.Column="0">
+
+            </Frame>
+            <Grid Name="Hilfebereich"  Grid.Column="1">
+
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

@@ -16,10 +16,13 @@ using System.Windows.Shapes;
 namespace Autopilot.GUI
 {
     /// <summary>
-    /// Interaktionslogik für Window1.xaml
+    /// Interaktionslogik für Rechnungen.xaml
     /// </summary>
-    public partial class Navigation: NavigationWindow
+    public partial class Rechnungen : Page
     {
-
+        public Rechnungen()
+        {
+            InitializeComponent();
+        }
     }
 }
