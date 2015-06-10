@@ -68,6 +68,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GUI\Aufträge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Kalender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUI\Rechnungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +92,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Aufträge.xaml.cs">
+      <DependentUpon>Aufträge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Kalender.xaml.cs">
+      <DependentUpon>Kalender.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Rechnungen.xaml.cs">
       <DependentUpon>Rechnungen.xaml</DependentUpon>
