@@ -6,11 +6,11 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Content="Suche"/>
             <TextBox/>
-            <Button Content="Einstellungen"/>
-            <Button Content="Hilfe"/>
+            <Button Content="Einstellungen" Click="Einstellungen_anzeigen"/>
+            <Button Content="Hilfe" Click="Hilfe_anzeigen"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
-            <Button Content="+"/>
+            <Button Content="+" Click="Neu_anzeigen"/>
             <Button Content="Aufträge" Click="Aufträge_anzeigen"/>
             <Button Content="Rechnungen" Click="Rechnungen_anzeigen"/>
             <Button Content="Kalender" Click="Kalender_anzeigen"/>

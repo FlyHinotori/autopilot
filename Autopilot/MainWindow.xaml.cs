@@ -27,5 +27,20 @@ namespace Autopilot
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Kalender.xaml", UriKind.Relative));
         }
+
+        private void Einstellungen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Einstellungen.xaml", UriKind.Relative));
+        }
+
+        private void Hilfe_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Hilfe.xaml", UriKind.Relative));
+        }
+
+        private void Neu_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Neu.xaml", UriKind.Relative));
+        }
     }
 }
