@@ -68,10 +68,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+<<<<<<< HEAD
     <Compile Include="TestArea.xaml.cs">
       <DependentUpon>TestArea.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
+=======
+    <Page Include="GUI\Aufträge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Einstellungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Hilfe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Kalender.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Neu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Rechnungen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+>>>>>>> 84fb8b805261cd9c7ba22ed464cb87030ccd7368
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -84,6 +111,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Aufträge.xaml.cs">
+      <DependentUpon>Aufträge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Einstellungen.xaml.cs">
+      <DependentUpon>Einstellungen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Hilfe.xaml.cs">
+      <DependentUpon>Hilfe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Kalender.xaml.cs">
+      <DependentUpon>Kalender.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Neu.xaml.cs">
+      <DependentUpon>Neu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Rechnungen.xaml.cs">
+      <DependentUpon>Rechnungen.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -140,6 +185,7 @@
       <DependentUpon>Autopilot.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
