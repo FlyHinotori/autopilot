@@ -19,7 +19,7 @@ namespace Autopilot
         
         public MainWindow()
         {
-            InitializeComponent();                        
+            InitializeComponent();  
         }
 
         private void Rechnungen_anzeigen(object sender, RoutedEventArgs e)
