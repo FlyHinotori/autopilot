@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Windows;
 
 namespace Autopilot
 {
@@ -26,9 +27,19 @@ namespace Autopilot
             }
             catch (System.Exception err)
             {
-                //MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             conn.Close();
+        }
+
+        public void FehlerMsgBox(string FehlerMsgBoxText, string FehlerMsgBoxTitel)
+        {
+            MessageBox.Show(FehlerMsgBoxText, FehlerMsgBoxTitel, MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+        public void HinweisMsgBox(string HinweisMsgBoxText, string HinweisMsgBoxTitel)
+        {
+            MessageBox.Show(HinweisMsgBoxText, HinweisMsgBoxTitel, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
