@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+<<<<<<< HEAD
 using System.Windows.Input;
+=======
+>>>>>>> origin/Utilities
 using System.Windows;
 
 namespace Autopilot
@@ -12,7 +15,11 @@ namespace Autopilot
     class Utilities
     {
         public string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString; //zentraler DB-ConnectionStrg
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> origin/Utilities
         public void SQLCmd(string SQLCmd_txt)
         {
             SqlConnection conn = new SqlConnection(DBconnStrg);

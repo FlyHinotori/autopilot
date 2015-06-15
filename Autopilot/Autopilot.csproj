@@ -69,11 +69,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="TestArea.xaml.cs">
       <DependentUpon>TestArea.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities.cs" />
 =======
+=======
+    <Compile Include="Utilities.cs" />
+>>>>>>> origin/Utilities
     <Page Include="GUI\Aufträge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

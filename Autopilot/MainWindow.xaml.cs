@@ -8,8 +8,22 @@ namespace Autopilot
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Einbinden der Utilities-Klasse
+        /// </summary>
+        Utilities utilities = new Utilities();
+        /// <summary>
+        /// Beispiel für das Ausführen einer SQL-Anweisung
+        /// utilities.SQLCmd("SQL-Anweisung");
+        /// 
+        /// Beispiele für das Aufrufen von Messageboxen  
+        /// utilities.HinweisMsgBox("Hier kommt der Hinweistext rein", "Titel der Box");  
+        /// utilities.FehlerMsgBox("Hier kommt der Fehlertext rein", "Titel der Box");  
+        /// </summary>
+        
         public MainWindow()
         {
+<<<<<<< HEAD
             InitializeComponent();
             Utilities utilities = new Utilities();
 
@@ -29,11 +43,14 @@ namespace Autopilot
         {
             TestArea ShowForm = new TestArea();
             ShowForm.ShowDialog();
+=======
+            InitializeComponent();  
+>>>>>>> origin/Utilities
         }
 
         private void Rechnungen_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen.xaml", UriKind.Relative));             
         }
 
         private void Aufträge_anzeigen(object sender, RoutedEventArgs e)
