@@ -1,17 +1,31 @@
-﻿<Page x:Class="Autopilot.GUI.Stammdaten"
+﻿<Page
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Stammdaten">
 
-    <ListBox> <!-- Für diese Liste sollten die Daten direkt aus der Datenbank kommen, folglich fehlt hier eine DataSource -->
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <!-- Hier muss noch das Aussehen der Daten festgelegt werden -->
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-    </ListBox>
+    <Page.Resources>
+        <CollectionViewSource x:Key="autopilotEntitiesViewSource" d:DesignSource="{d:DesignInstance {x:Type Autopilot:AutopilotEntities}, CreateList=True}"/>
+        <CollectionViewSource x:Key="autopilotEntitiesflugzeugtypViewSource" Source="{Binding flugzeugtyp, Source={StaticResource autopilotEntitiesViewSource}}"/>
+    </Page.Resources>
+    <DataGrid x:Name="flugzeugtypDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource autopilotEntitiesflugzeugtypViewSource}}" Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid.Columns>
+            <DataGridTextColumn x:Name="ftyp_anz_ccrewColumn" Binding="{Binding ftyp_anz_ccrew}" Header="ftyp anz ccrew" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_anz_fcrewColumn" Binding="{Binding ftyp_anz_fcrew}" Header="ftyp anz fcrew" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_anz_passColumn" Binding="{Binding ftyp_anz_pass}" Header="ftyp anz pass" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_anz_triebwerkeColumn" Binding="{Binding ftyp_anz_triebwerke}" Header="ftyp anz triebwerke" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez}" Header="ftyp bez" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_fkosten_paColumn" Binding="{Binding ftyp_fkosten_pa}" Header="ftyp fkosten pa" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_idColumn" Binding="{Binding ftyp_id}" Header="ftyp id" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_reichweite_kmColumn" Binding="{Binding ftyp_reichweite_km}" Header="ftyp reichweite km" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_speedColumn" Binding="{Binding ftyp_speed}" Header="ftyp speed" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="ftyp_vkosten_phColumn" Binding="{Binding ftyp_vkosten_ph}" Header="ftyp vkosten ph" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="her_idColumn" Binding="{Binding her_id}" Header="her id" Width="SizeToHeader"/>
+            <DataGridTextColumn x:Name="twa_idColumn" Binding="{Binding twa_id}" Header="twa id" Width="SizeToHeader"/>
+        </DataGrid.Columns>
+    </DataGrid>
 </Page>
