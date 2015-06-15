@@ -100,11 +100,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AutopilotDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="GUI\Aufträge.xaml.cs">
       <DependentUpon>Aufträge.xaml</DependentUpon>
     </Compile>
@@ -146,17 +141,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AutopilotDataSet.xsc">
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="AutopilotDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AutopilotDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="AutopilotDataSet.xss">
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
