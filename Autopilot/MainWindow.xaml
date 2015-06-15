@@ -14,6 +14,7 @@
             <Button Content="Aufträge" Click="Aufträge_anzeigen"/>
             <Button Content="Rechnungen" Click="Rechnungen_anzeigen"/>
             <Button Content="Kalender" Click="Kalender_anzeigen"/>
+            <Button Content="Stammdaten" Click="Stammdaten_anzeigen"/>
         </StackPanel>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Right" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>

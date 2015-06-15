@@ -42,5 +42,10 @@ namespace Autopilot
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Neu.xaml", UriKind.Relative));
         }
+
+        private void Stammdaten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten.xaml", UriKind.Relative));
+        }
     }
 }

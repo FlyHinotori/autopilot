@@ -88,6 +88,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Stammdaten.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GUI\Rechnungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -114,6 +118,9 @@
     </Compile>
     <Compile Include="GUI\Neu.xaml.cs">
       <DependentUpon>Neu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten.xaml.cs">
+      <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Rechnungen.xaml.cs">
       <DependentUpon>Rechnungen.xaml</DependentUpon>
