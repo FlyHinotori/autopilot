@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace Autopilot.GUI
 {
@@ -20,9 +21,18 @@ namespace Autopilot.GUI
     /// </summary>
     public partial class Stammdaten : Page
     {
+        private AutopilotEntities content = new AutopilotEntities();
+        
         public Stammdaten()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Data.CollectionViewSource autopilotEntitiesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("autopilotEntitiesViewSource")));
+            content.flugzeugtyp.Load();
+            autopilotEntitiesViewSource.Source = content.flugzeugtyp.Local;
         }
     }
 }
