@@ -1,27 +1,10 @@
-version: 0.1.{build}-{branch}
+version: 1.0.{build}-{branch}
  
-os: 
-  - Windows Server 2012 R2
-  - Visual Studio 2015 RC
- 
-# build cache to preserve files/folders between builds
-cache:
-  - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
- 
+configuration: Release
+
 before_build:
   - nuget.exe restore
 
-test:
-  assemblies:
-    - Autopilot.exe
- 
-  categories:
-    - UI
-    - E2E
- 
-artifacts:
-   - path: Autopilot\bin\$(configuration)
- 
 notifications:
   - provider: Slack
     incoming_webhook: https://hooks.slack.com/services/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
