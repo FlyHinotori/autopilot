@@ -111,6 +111,9 @@
     <Compile Include="flugzeugtyp.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Stammdaten_flugzeugtyp.xaml.cs">
+      <DependentUpon>Stammdaten_flugzeugtyp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="hersteller.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -191,7 +194,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Stammdaten.xaml">
+    <Page Include="GUI\Stammdaten_flugzeugtyp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -231,9 +234,6 @@
     </Compile>
     <Compile Include="GUI\Neu.xaml.cs">
       <DependentUpon>Neu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Stammdaten.xaml.cs">
-      <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Rechnungen.xaml.cs">
       <DependentUpon>Rechnungen.xaml</DependentUpon>
@@ -291,11 +291,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Autopilot.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Autopilot_log.ldf">
       <DependentUpon>Autopilot.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>

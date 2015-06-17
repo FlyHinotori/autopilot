@@ -10,7 +10,7 @@ namespace Autopilot
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void Rechnungen_anzeigen(object sender, RoutedEventArgs e)
@@ -45,7 +45,7 @@ namespace Autopilot
 
         private void Stammdaten_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten.xaml", UriKind.Relative));
-        }
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
+        }     
     }
 }
