@@ -6,22 +6,22 @@
       xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten_flugzeugtyp" 
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	  Title="Stammdaten_flugzeugtyp" Loaded="Page_Loaded">    
+	  Title="Stammdaten_flugzeugtyp" Loaded="Page_Loaded">
     <Grid>
-        <DataGrid x:Name="flugzeugtypDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowEditEnding="flugzeugtypDataGrid_RowEditEnding" Margin="10,10,10,45" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="flugzeugtypDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowEditEnding="flugzeugtypDataGrid_RowEditEnding" PreviewKeyDown="flugzeugtypDataGrid_PreviewKeyDown" AddingNewItem="flugzeugtypDataGrid_AddingNewItem" BeginningEdit="flugzeugtypDataGrid_BeginningEdit"  Margin="10,10,10,45" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="ftyp_anz_ccrewColumn" Binding="{Binding ftyp_anz_ccrew, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp anz ccrew" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_anz_fcrewColumn" Binding="{Binding ftyp_anz_fcrew, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp anz fcrew" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_anz_passColumn" Binding="{Binding ftyp_anz_pass, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp anz pass" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_anz_triebwerkeColumn" Binding="{Binding ftyp_anz_triebwerke, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp anz triebwerke" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp bez" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_fkosten_paColumn" Binding="{Binding ftyp_fkosten_pa, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp fkosten pa" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_idColumn" Binding="{Binding ftyp_id, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_reichweite_kmColumn" Binding="{Binding ftyp_reichweite_km, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp reichweite km" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_speedColumn" Binding="{Binding ftyp_speed, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp speed" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_vkosten_phColumn" Binding="{Binding ftyp_vkosten_ph, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="ftyp vkosten ph" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="her_idColumn" Binding="{Binding her_id, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="her id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="twa_idColumn" Binding="{Binding twa_id, NotifyOnTargetUpdated=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="twa id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_idColumn" Binding="{Binding ftyp_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="her_idColumn" Binding="{Binding her_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="HerstellerID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="twa_idColumn" Binding="{Binding twa_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="TriebwerksartID" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Bezeichnung" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_anz_ccrewColumn" Binding="{Binding ftyp_anz_ccrew, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl CabinCrew" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_anz_fcrewColumn" Binding="{Binding ftyp_anz_fcrew, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl FlightCrew" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_anz_passColumn" Binding="{Binding ftyp_anz_pass, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl Passagiere" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_anz_triebwerkeColumn" Binding="{Binding ftyp_anz_triebwerke, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl Triebwerke" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_fkosten_paColumn" Binding="{Binding ftyp_fkosten_pa, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Fixkosten pro Jahr" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_vkosten_phColumn" Binding="{Binding ftyp_vkosten_ph, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="variable Kosten pro h" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_reichweite_kmColumn" Binding="{Binding ftyp_reichweite_km, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Reichweite in km" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_speedColumn" Binding="{Binding ftyp_speed, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Geschwindigkeit" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
