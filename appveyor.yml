@@ -1,10 +1,1 @@
-version: 1.0.{build}-{branch}
- 
-configuration: Release
 
-before_build:
-  - nuget.exe restore
-
-notifications:
-  - provider: Slack
-    incoming_webhook: https://hooks.slack.com/services/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
