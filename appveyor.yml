@@ -1,4 +1,14 @@
 version: 1.0.0-alpha+{branch}+{build}
 
+configuration: Release
+
+platform:
+  - x86
+  - x64
+
+build:
+  parallel: true
+  project: Autopilot.sln
+
 before_build:
   - nuget restore
