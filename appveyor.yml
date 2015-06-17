@@ -1,41 +1,13 @@
 version: 0.1.{build}-{branch}
  
-branches:
-  except:
-    - gh-pages
- 
 os: 
   - Windows Server 2012 R2
   - Visual Studio 2015 RC
- 
-matrix:
-  allow_failures:
-    - os: Visual Studio 2015 RC
  
 # build cache to preserve files/folders between builds
 cache:
   - packages -> **\packages.config  # preserve "packages" directory in the root of build folder but will reset it if packages.config is modified
  
-assembly_info:
-  patch: true
-  file: AssemblyInfo.*
-  assembly_version: "{version}"
-  assembly_file_version: "{version}"
-  assembly_informational_version: "{version}"
- 
- 
-nuget:
-  project_feed: true
-  disable_publish_on_pr: true     # disable publishing of .nupkg artifacts to
-                                  # account/project feeds for pull request builds
- 
-build:
-  parallel: true
-  publish_nuget: true
-  publish_nuget_symbols: true
-  include_nuget_references: true
- 
-# scripts to run before build
 before_build:
   - nuget.exe restore
 
