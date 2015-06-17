@@ -2,13 +2,16 @@ version: 1.0.0-alpha+{branch}+{build}
 
 configuration: Release
 
-platform:
-  - x86
-  - x64
-
 build:
   parallel: true
   project: Autopilot.sln
+  
+cache:
+  - packages -> **\packages.config
 
 before_build:
   - nuget restore
+
+notifications:
+  - provider: Slack
+    incoming_webhook: https://hooks.slack.com/services/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
