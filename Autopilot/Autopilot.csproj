@@ -114,6 +114,9 @@
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Stammdaten_flugzeug.xaml.cs">
+      <DependentUpon>Stammdaten_flugzeug.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Stammdaten_firmendaten.xaml.cs">
       <DependentUpon>Stammdaten_firmendaten.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
     <Page Include="GUI\Neu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Stammdaten_flugzeug.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Stammdaten_firmendaten.xaml">
       <Generator>MSBuild:Compile</Generator>

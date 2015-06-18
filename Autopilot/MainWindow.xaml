@@ -10,11 +10,12 @@
             <Button Content="Hilfe" Click="Hilfe_anzeigen"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
-            <Button Content="+" Click="Neu_anzeigen"/>
-            <Button Content="Aufträge" Click="Aufträge_anzeigen"/>
-            <Button Content="Rechnungen" Click="Rechnungen_anzeigen"/>
-            <Button Content="Kalender" Click="Kalender_anzeigen"/>
-            <Button Content="Stammdaten" Click="Stammdaten_anzeigen"/>
+            <Button Content="+" Click="Neu_anzeigen" Margin="2"/>
+            <Button Content="Aufträge" Click="Aufträge_anzeigen" Margin="2"/>
+            <Button Content="Rechnungen" Click="Rechnungen_anzeigen" Margin="2"/>
+            <Button Content="Kalender" Click="Kalender_anzeigen" Margin="2"/>
+            <Button Content="Kunden" Click="Kunden_anzeigen" Margin="2"/>
+            <Button Content="Stammdaten" Click="Stammdaten_anzeigen" Margin="2"/>
         </StackPanel>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Right" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>

@@ -1,0 +1,22 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten_flugzeug" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Stammdaten_flugzeug" Loaded="Page_Loaded">
+    <Grid>
+        <Label Content="Firmenname" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_Firmenname" HorizontalAlignment="Left" Height="23" Margin="91,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="tb_Strasse" HorizontalAlignment="Left" Height="23" Margin="91,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="tb_Ort" HorizontalAlignment="Left" Height="23" Margin="91,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="199"/>
+        <TextBox x:Name="tb_Land" HorizontalAlignment="Left" Height="23" Margin="91,97,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="199"/>
+        <Label Content="Straße" HorizontalAlignment="Left" Margin="42,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,2.295"/>
+        <Label Content="Ort" HorizontalAlignment="Left" Margin="57,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,2.295"/>
+        <Label Content="Land" HorizontalAlignment="Left" Margin="48,93,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.514,2.295"/>
+        <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="215,125,0,0" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click"/>
+    </Grid>
+
+</Page>

@@ -24,5 +24,97 @@ namespace Autopilot.GUI
         {
             InitializeComponent();
         }
+
+        private void Ablehnungsgruende_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_ablehnungsgrund.xaml", UriKind.Relative));
+        }
+
+        private void Anreden_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_anrede.xaml", UriKind.Relative));
+        }
+
+        private void Auftragsarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_auftragsart.xaml", UriKind.Relative));
+        }
+
+        private void Firmendaten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_firmendaten.xaml", UriKind.Relative));
+        }
+
+        private void Flughaefen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flughafen.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+        }
+
+        private void Flugzeuge_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeug.xaml", UriKind.Relative));
+        }
+
+        private void Flugzeugtypen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
+        }
+
+        private void Hersteller_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_hersteller.xaml", UriKind.Relative));
+        }
+
+        private void Kundengruppen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kundengruppe.xaml", UriKind.Relative));
+        }
+
+        private void Mahnstufen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_mahnstufe.xaml", UriKind.Relative));
+        }
+
+        private void Personal_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_personal.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+        }
+
+        private void Positionen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_position.xaml", UriKind.Relative));
+        }
+
+        private void Positionsarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_positionsart.xaml", UriKind.Relative));
+        }
+
+        private void Status_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_status.xaml", UriKind.Relative));
+        }
+
+        private void Statusgruppen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_statusgruppe.xaml", UriKind.Relative));
+        }
+
+        private void Terminarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_terminart.xaml", UriKind.Relative));
+        }
+
+        private void Titel_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_titel.xaml", UriKind.Relative));
+        }
+
+        private void Triebwerksarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_triebwerksart.xaml", UriKind.Relative));
+        }
     }
 }

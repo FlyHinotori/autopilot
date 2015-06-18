@@ -46,6 +46,12 @@ namespace Autopilot
         private void Stammdaten_anzeigen(object sender, RoutedEventArgs e)
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten.xaml", UriKind.Relative));
-        }     
+        }
+
+        private void Kunden_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kunde.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+        }
     }
 }
