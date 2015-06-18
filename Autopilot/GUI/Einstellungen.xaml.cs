@@ -91,5 +91,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_statusgruppe.xaml", UriKind.Relative));
         }
+
+        private void Terminarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_terminart.xaml", UriKind.Relative));
+        }
     }
 }

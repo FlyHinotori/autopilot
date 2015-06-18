@@ -22,6 +22,7 @@
                 <Button Content="Positionsarten" Click="Positionsarten_anzeigen" Margin="2"/>
                 <Button Content="Status" Click="Status_anzeigen" Margin="2"/>
                 <Button Content="Statusgruppen" Click="Statusgruppen_anzeigen" Margin="2"/>
+                <Button Content="Terminarten" Click="Terminarten_anzeigen" Margin="2"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />

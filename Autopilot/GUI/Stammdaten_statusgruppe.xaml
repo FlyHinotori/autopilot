@@ -11,7 +11,7 @@
         <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowEditEnding="DataGrid_RowEditEnding" PreviewKeyDown="DataGrid_PreviewKeyDown" AddingNewItem="DataGrid_AddingNewItem" BeginningEdit="DataGrid_BeginningEdit"  Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="stg_idColumn" Binding="{Binding stg_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="SizeToHeader" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="stg_bezColumn" Binding="{Binding stg_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Statusgruppe" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="stg_bezColumn" Binding="{Binding stg_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Statusgruppe" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
