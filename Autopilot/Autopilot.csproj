@@ -114,6 +114,9 @@
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Stammdaten_positionsart.xaml.cs">
+      <DependentUpon>Stammdaten_positionsart.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Stammdaten_position.xaml.cs">
       <DependentUpon>Stammdaten_position.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
     <Page Include="GUI\Neu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Stammdaten_positionsart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Stammdaten_position.xaml">
       <Generator>MSBuild:Compile</Generator>

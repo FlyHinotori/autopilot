@@ -19,6 +19,7 @@
                 <Button Content="Kundengruppen" Click="Kundengruppen_anzeigen" Margin="2"/>
                 <Button Content="Mahnstufen" Click="Mahnstufen_anzeigen" Margin="2"/>
                 <Button Content="Positionen" Click="Positionen_anzeigen" Margin="2"/>
+                <Button Content="Positionsarten" Click="Positionsarten_anzeigen" Margin="2"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
