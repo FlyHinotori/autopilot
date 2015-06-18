@@ -101,5 +101,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_titel.xaml", UriKind.Relative));
         }
+
+        private void Triebwerksarten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_triebwerksart.xaml", UriKind.Relative));
+        }
     }
 }
