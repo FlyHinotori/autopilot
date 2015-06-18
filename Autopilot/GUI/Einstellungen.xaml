@@ -16,6 +16,7 @@
                 <Button Content="Flughäfen" Click="Flughaefen_anzeigen" Margin="2"/>
                 <Button Content="Flugzeugtypen" Click="Flugzeugtypen_anzeigen" Margin="2"/>
                 <Button Content="Hersteller" Click="Hersteller_anzeigen" Margin="2"/>
+                <Button Content="Kundengruppen" Click="Kundengruppen_anzeigen" Margin="2"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />

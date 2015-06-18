@@ -61,5 +61,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_hersteller.xaml", UriKind.Relative));
         }
+
+        private void Kundengruppen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kundengruppe.xaml", UriKind.Relative));
+        }
     }
 }
