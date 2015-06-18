@@ -9,11 +9,11 @@
     <DockPanel>
         <ScrollViewer DockPanel.Dock="Right" HorizontalAlignment="Right">
         <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
-            <Button Content="Flugzeugtypen" Click="Flugzeugtypen_anzeigen" Margin="2"/>
-            <Button Content="noch was" Margin="2"/>
-            <Button Content="und noch was" Margin="2"/>
-        </StackPanel>
+                <Button Content="Ablehnungsgründe" Click="Ablehnungsgruende_anzeigen" Margin="2"/>
+                <Button Content="Flugzeugtypen" Click="Flugzeugtypen_anzeigen" Margin="2"/>
+                <Button Content="und noch was" Margin="2"/>
+            </StackPanel>
         </ScrollViewer>
-        <Frame Name="Stammdatenanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+        <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>
 </Page>

@@ -24,10 +24,15 @@ namespace Autopilot.GUI
         {
             InitializeComponent();
         }
+        
+        private void Ablehnungsgruende_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_ablehnungsgrund.xaml", UriKind.Relative));
+        }
 
         private void Flugzeugtypen_anzeigen(object sender, RoutedEventArgs e)
         {
-            Stammdatenanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
         }
     }
 }
