@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Autopilot.GUI
 {
     /// <summary>
-    /// Interaktionslogik für Einstellungen.xaml
+    /// Interaktionslogik für Stammdaten.xaml
     /// </summary>
-    public partial class Einstellungen : Page
+    public partial class Stammdaten : Page
     {
-        public Einstellungen()
+        public Stammdaten()
         {
             InitializeComponent();
-        }
-
-        private void Flugzeugtypen_anzeigen(object sender, RoutedEventArgs e)
-        {
-            Stammdatenanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
         }
     }
 }

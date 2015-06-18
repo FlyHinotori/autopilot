@@ -6,8 +6,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Einstellungen">
-
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <ScrollViewer DockPanel.Dock="Right" HorizontalAlignment="Right">
+        <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
+            <Button Content="Flugzeugtypen" Click="Flugzeugtypen_anzeigen" Margin="2"/>
+            <Button Content="noch was" Margin="2"/>
+            <Button Content="und noch was" Margin="2"/>
+        </StackPanel>
+        </ScrollViewer>
+        <Frame Name="Stammdatenanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+    </DockPanel>
 </Page>
