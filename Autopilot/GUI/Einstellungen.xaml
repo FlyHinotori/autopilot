@@ -12,7 +12,10 @@
                 <Button Content="Ablehnungsgründe" Click="Ablehnungsgruende_anzeigen" Margin="2"/>
                 <Button Content="Anreden" Click="Anreden_anzeigen" Margin="2"/>
                 <Button Content="Auftragsarten" Click="Auftragsarten_anzeigen" Margin="2"/>
+                <Button Content="Firmendaten" Click="Firmendaten_anzeigen" Margin="2"/>
+                <Button Content="Flughäfen" Click="Flughaefen_anzeigen" Margin="2"/>
                 <Button Content="Flugzeugtypen" Click="Flugzeugtypen_anzeigen" Margin="2"/>
+                <Button Content="Hersteller" Click="Hersteller_anzeigen" Margin="2"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />

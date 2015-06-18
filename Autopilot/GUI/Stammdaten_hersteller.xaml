@@ -1,0 +1,23 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten_hersteller" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Stammdaten_hersteller" Loaded="Page_Loaded">
+    <Page.Resources>
+        <CollectionViewSource x:Key="autopilotEntitiesViewSource" d:DesignSource="{d:DesignInstance {x:Type Autopilot:AutopilotEntities}, CreateList=True}"/>
+        <CollectionViewSource x:Key="autopilotEntitiesherstellerViewSource" Source="{Binding hersteller, Source={StaticResource autopilotEntitiesViewSource}}"/>
+    </Page.Resources>
+    <Grid>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" RowEditEnding="DataGrid_RowEditEnding" PreviewKeyDown="DataGrid_PreviewKeyDown" AddingNewItem="DataGrid_AddingNewItem" BeginningEdit="DataGrid_BeginningEdit"  Margin="10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="her_bezColumn" Binding="{Binding her_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Hersteller" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="her_idColumn" Binding="{Binding her_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="SizeToHeader" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Page>

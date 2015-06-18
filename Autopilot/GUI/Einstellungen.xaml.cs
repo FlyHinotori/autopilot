@@ -40,9 +40,26 @@ namespace Autopilot.GUI
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_auftragsart.xaml", UriKind.Relative));
         }
 
+        private void Firmendaten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_firmendaten.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+        }
+
+        private void Flughaefen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flughafen.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+        }
+
         private void Flugzeugtypen_anzeigen(object sender, RoutedEventArgs e)
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));
+        }
+
+        private void Hersteller_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_hersteller.xaml", UriKind.Relative));
         }
     }
 }
