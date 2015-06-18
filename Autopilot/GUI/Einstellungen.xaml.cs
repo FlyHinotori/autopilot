@@ -71,5 +71,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_mahnstufe.xaml", UriKind.Relative));
         }
+
+        private void Positionen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_position.xaml", UriKind.Relative));
+        }
     }
 }
