@@ -86,5 +86,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_status.xaml", UriKind.Relative));
         }
+
+        private void Statusgruppen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_statusgruppe.xaml", UriKind.Relative));
+        }
     }
 }
