@@ -66,5 +66,10 @@ namespace Autopilot.GUI
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kundengruppe.xaml", UriKind.Relative));
         }
+
+        private void Mahnstufen_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_mahnstufe.xaml", UriKind.Relative));
+        }
     }
 }
