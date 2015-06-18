@@ -114,6 +114,9 @@
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Stammdaten_anrede.xaml.cs">
+      <DependentUpon>Stammdaten_anrede.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Stammdaten_ablehnungsgrund.xaml.cs">
       <DependentUpon>Stammdaten_ablehnungsgrund.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
     <Page Include="GUI\Neu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Stammdaten_anrede.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Stammdaten_ablehnungsgrund.xaml">
       <Generator>MSBuild:Compile</Generator>

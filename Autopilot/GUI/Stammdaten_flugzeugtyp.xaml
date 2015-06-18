@@ -13,7 +13,7 @@
                 <DataGridTextColumn x:Name="ftyp_idColumn" Binding="{Binding ftyp_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="SizeToHeader" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="her_idColumn" Binding="{Binding her_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="HerstellerID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="twa_idColumn" Binding="{Binding twa_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="TriebwerksartID" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Bezeichnung" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Bezeichnung" Width="Auto"/>
                 <DataGridTextColumn x:Name="ftyp_anz_ccrewColumn" Binding="{Binding ftyp_anz_ccrew, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl CabinCrew" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="ftyp_anz_fcrewColumn" Binding="{Binding ftyp_anz_fcrew, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl FlightCrew" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="ftyp_anz_passColumn" Binding="{Binding ftyp_anz_pass, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Anzahl Passagiere" Width="SizeToHeader"/>

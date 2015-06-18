@@ -30,6 +30,11 @@ namespace Autopilot.GUI
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_ablehnungsgrund.xaml", UriKind.Relative));
         }
 
+        private void Anreden_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_anrede.xaml", UriKind.Relative));
+        }
+
         private void Flugzeugtypen_anzeigen(object sender, RoutedEventArgs e)
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flugzeugtyp.xaml", UriKind.Relative));

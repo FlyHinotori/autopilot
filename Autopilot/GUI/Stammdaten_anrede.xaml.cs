@@ -18,15 +18,15 @@ using System.Collections.ObjectModel;
 namespace Autopilot.GUI
 {
     /// <summary>
-    /// Interaktionslogik für Stammdaten-ablehnungsgrund.xaml
+    /// Interaktionslogik für Stammdaten-anrde.xaml
     /// </summary>
-    public partial class Stammdaten_ablehnungsgrund : Page
+    public partial class Stammdaten_anrede : Page
     {
         AutopilotEntities content = new AutopilotEntities();
         bool isInsertMode = false;
         bool isBeingEdited = false;
 
-        public Stammdaten_ablehnungsgrund()
+        public Stammdaten_anrede()
         {
             InitializeComponent();
         }
@@ -36,27 +36,27 @@ namespace Autopilot.GUI
             DataGrid.ItemsSource = GetList();            
         }
 
-        private ObservableCollection<ablehnungsgrund> GetList()
+        private ObservableCollection<anrede> GetList()
         {
-            var list = from e in content.ablehnungsgrund select e;
-            return new ObservableCollection<ablehnungsgrund>(list);             
+            var list = from e in content.anrede select e;
+            return new ObservableCollection<anrede>(list);             
         }
 
         private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            ablehnungsgrund ablehnungsgrund = new ablehnungsgrund();
-            ablehnungsgrund data = e.Row.DataContext as ablehnungsgrund;
+            anrede anrede = new anrede();
+            anrede data = e.Row.DataContext as anrede;
             if (isInsertMode)
             {
-                var InsertRecord = MessageBox.Show("Möchten Sie " + data.ablg_bez + " als neuen Ablehnungsgrund zufügen?", "Bestätigen?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var InsertRecord = MessageBox.Show("Möchten Sie " + data.anr_bez + " als neue Anrede zufügen?", "Bestätigen?", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (InsertRecord == MessageBoxResult.Yes)
                 {
-                    ablehnungsgrund.ablg_bez = data.ablg_bez;
-                    ablehnungsgrund.ablg_id = data.ablg_id;
-                    content.ablehnungsgrund.Add(ablehnungsgrund);
+                    anrede.anr_bez = data.anr_bez;
+                    anrede.anr_id = data.anr_id;
+                    content.anrede.Add(anrede);
                     content.SaveChanges();
                     DataGrid.ItemsSource = GetList();
-                    MessageBox.Show(data.ablg_bez + " wurde zugefügt!", "Eintrag gespeichert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(data.anr_bez + " wurde zugefügt!", "Eintrag gespeichert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                     DataGrid.ItemsSource = GetList();
@@ -72,16 +72,16 @@ namespace Autopilot.GUI
                 var grid = (DataGrid)sender;
                 if (grid.SelectedItems.Count > 0)
                 {
-                    var Res = MessageBox.Show("Möchten Sie wirklich " + grid.SelectedItems.Count + " Ablehnungsgründe löschen?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                    var Res = MessageBox.Show("Möchten Sie wirklich " + grid.SelectedItems.Count + " Anreden löschen?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                     if (Res == MessageBoxResult.Yes)
                     {
                         foreach (var row in grid.SelectedItems)
                         {
-                            ablehnungsgrund ablehnungsgrund = row as ablehnungsgrund;
-                            content.ablehnungsgrund.Remove(ablehnungsgrund);
+                            anrede anrede = row as anrede;
+                            content.anrede.Remove(anrede);
                         }
                         content.SaveChanges();
-                        MessageBox.Show(grid.SelectedItems.Count + " Ablehnungsgründe wurden gelöscht!");
+                        MessageBox.Show(grid.SelectedItems.Count + " Anreden wurden gelöscht!");
                     }
                     else
                         DataGrid.ItemsSource = GetList();
