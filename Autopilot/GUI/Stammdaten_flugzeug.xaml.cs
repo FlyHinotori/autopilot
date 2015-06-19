@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace Autopilot.GUI
 {
@@ -24,9 +25,11 @@ namespace Autopilot.GUI
     public partial class Stammdaten_flugzeug : Page
     {
         AutopilotEntities content = new AutopilotEntities();
-        bool isInsertMode = false;
-        bool isBeingEdited = false;
-
+        string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+        int flz_id;
+        int ftyp_id;
+        int sta_id;
+        
         public Stammdaten_flugzeug()
         {
             InitializeComponent();
@@ -34,32 +37,27 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Textboxen_fuellen();        
+            DataGrid.ItemsSource = GetList();
+            cb_Flugzeugtyp.ItemsSource = FillFTyp();
+            cb_Status.ItemsSource = FillStatus();
         }
 
-        private void Textboxen_fuellen()
+        private ObservableCollection<flugzeugliste> GetList()
         {
-            string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+            var list = from e in content.flugzeugliste select e;
+            return new ObservableCollection<flugzeugliste>(list);
+        }
 
-            SqlConnection conn = new SqlConnection(DBconnStrg);
-            
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = conn;
-            cmd.CommandText = "SELECT fir_name, fir_strasse, fir_ort, fir_land FROM firmenstammdaten";
-            cmd.CommandType = System.Data.CommandType.Text;
+        private ObservableCollection<flugzeugtyp> FillFTyp()
+        {
+            var list = from e in content.flugzeugtyp select e;
+            return new ObservableCollection<flugzeugtyp>(list);
+        }
 
-            conn.Open();
-
-            SqlDataReader dr_pwd = cmd.ExecuteReader();
-            if (dr_pwd.Read())
-            {
-                tb_Firmenname.Text = Convert.ToString(dr_pwd.GetValue(0));
-                tb_Strasse.Text = Convert.ToString(dr_pwd.GetValue(1));
-                tb_Ort.Text = Convert.ToString(dr_pwd.GetValue(2));
-                tb_Land.Text = Convert.ToString(dr_pwd.GetValue(3));
-            }
-
-            conn.Close();
+        private ObservableCollection<status> FillStatus()
+        {
+            var list = from e in content.status select e;
+            return new ObservableCollection<status>(list);
         }
 
         private void bt_Speichern_Click(object sender, RoutedEventArgs e)
@@ -67,29 +65,31 @@ namespace Autopilot.GUI
             var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?","Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                string SQLcmd = "UPDATE firmenstammdaten SET fir_name = \'" + Convert.ToString(tb_Firmenname.Text) +"\', fir_strasse = \'" + Convert.ToString(tb_Strasse.Text) +"\', fir_ort = \'" + Convert.ToString(tb_Ort.Text) +"\', fir_land = \'" + Convert.ToString(tb_Land.Text) +"\'";
+                var ID = content.flugzeug.SingleOrDefault(c => c.flz_id == flz_id);
+                ID.flz_kennzeichen = tb_Kennzeichen.Text.ToString();
+                ID.sta_id = Convert.ToInt32(cb_Status.SelectedValue.ToString());
+                ID.ftyp_id = Convert.ToInt32(cb_Flugzeugtyp.SelectedValue.ToString());
 
-                string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
-
-                SqlConnection conn = new SqlConnection(DBconnStrg);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = SQLcmd;
-                cmd.CommandType = System.Data.CommandType.Text;
-
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Daten erfolgreich gespeichert.", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (System.Exception err)
-                {
-                    MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                conn.Close();
+                content.SaveChanges();
+                MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
             }
+        }
 
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGrid.SelectedCells.Count != 0 && DataGrid.ItemsSource != null)
+            {
+                DataRowView row = DataGrid.SelectedItems as DataRowView;
+                flz_id = ((flugzeugliste)DataGrid.SelectedItem).flz_id;
+                ftyp_id = ((flugzeugliste)DataGrid.SelectedItem).ftyp_id;
+                sta_id = ((flugzeugliste)DataGrid.SelectedItem).sta_id;
+
+                var ID = content.flugzeug.SingleOrDefault(c => c.flz_id == flz_id);
+                tb_Kennzeichen.Text = Convert.ToString(ID.flz_kennzeichen);
+
+                cb_Flugzeugtyp.SelectedValue = Convert.ToString(ftyp_id);
+                cb_Status.SelectedValue = Convert.ToString(sta_id);
+            }
         }       
 
     }

@@ -108,6 +108,9 @@
     <Compile Include="flugzeug.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="flugzeugliste.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="flugzeugtyp.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

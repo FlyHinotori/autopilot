@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
 
 namespace Autopilot.GUI
 {
@@ -23,6 +24,35 @@ namespace Autopilot.GUI
         public Einstellungen()
         {
             InitializeComponent();
+        }
+
+        private void bt_SQLdo_Click(object sender, RoutedEventArgs e)
+        {
+            var res = MessageBox.Show("SQL-Anweisung wirklich ausführen?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                string SQLcmd = Convert.ToString(tb_SQLcmd.Text);
+
+                string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+
+                SqlConnection conn = new SqlConnection(DBconnStrg);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = SQLcmd;
+                cmd.CommandType = System.Data.CommandType.Text;
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("SQL-Anweisung erfolgreich ausgeführt.", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (System.Exception err)
+                {
+                    MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                conn.Close();
+            }
         }       
         
     }

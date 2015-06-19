@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EntityDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EntityDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ablehnungsgrund">
           <Key>
             <PropertyRef Name="ablg_id" />
@@ -291,6 +291,22 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="flh_id" Type="int" Nullable="false" />
           <Property Name="zwl_reihenfolge" Type="int" />
         </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.flugzeugliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="flugzeugliste">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="flz_id" Type="int" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="ftyp_id" Type="int" Nullable="false" />
+          <Property Name="sta_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="her_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="ftyp_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="flz_kennzeichen" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityContainer Name="EntityDataModelStoreContainer">
           <EntitySet Name="ablehnungsgrund" EntityType="Self.ablehnungsgrund" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="anrede" EntityType="Self.anrede" Schema="dbo" store:Type="Tables" />
@@ -358,9 +374,19 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
     [zwischenlandung].[zwl_reihenfolge] AS [zwl_reihenfolge]
     FROM [dbo].[zwischenlandung] AS [zwischenlandung]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="flugzeugliste" EntityType="Self.flugzeugliste" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [flugzeugliste].[flz_id] AS [flz_id], 
+    [flugzeugliste].[sta_id] AS [sta_id], 
+    [flugzeugliste].[ftyp_id] AS [ftyp_id], 
+    [flugzeugliste].[sta_bez] AS [sta_bez], 
+    [flugzeugliste].[her_bez] AS [her_bez], 
+    [flugzeugliste].[ftyp_bez] AS [ftyp_bez], 
+    [flugzeugliste].[flz_kennzeichen] AS [flz_kennzeichen]
+    FROM [dbo].[flugzeugliste] AS [flugzeugliste]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EntityDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -666,7 +692,22 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <EntitySet Name="wunschcrew" EntityType="Self.wunschcrew" />
           <EntitySet Name="wunschflugzeug" EntityType="Self.wunschflugzeug" />
           <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" />
+          <EntitySet Name="flugzeugliste" EntityType="EntityDataModel.flugzeugliste" />
         </EntityContainer>
+        <EntityType Name="flugzeugliste">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="flz_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="her_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ftyp_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flz_kennzeichen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ftyp_id" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -964,6 +1005,19 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
                 <ScalarProperty Name="auf_id" ColumnName="auf_id" />
                 <ScalarProperty Name="flh_id" ColumnName="flh_id" />
                 <ScalarProperty Name="zwl_reihenfolge" ColumnName="zwl_reihenfolge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flugzeugliste">
+            <EntityTypeMapping TypeName="EntityDataModel.flugzeugliste">
+              <MappingFragment StoreEntitySet="flugzeugliste">
+                <ScalarProperty Name="ftyp_id" ColumnName="ftyp_id" />
+                <ScalarProperty Name="flz_kennzeichen" ColumnName="flz_kennzeichen" />
+                <ScalarProperty Name="ftyp_bez" ColumnName="ftyp_bez" />
+                <ScalarProperty Name="her_bez" ColumnName="her_bez" />
+                <ScalarProperty Name="sta_bez" ColumnName="sta_bez" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
