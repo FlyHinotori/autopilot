@@ -24,9 +24,7 @@ namespace Autopilot.GUI
     public partial class Stammdaten_firmendaten : Page
     {
         AutopilotEntities content = new AutopilotEntities();
-        bool isInsertMode = false;
-        bool isBeingEdited = false;
-
+        
         public Stammdaten_firmendaten()
         {
             InitializeComponent();
