@@ -8,9 +8,11 @@ namespace Autopilot
     /// </summary>
     public partial class MainWindow : Window
     {
+        public AutopilotEntities content = new AutopilotEntities();
+        
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void Rechnungen_anzeigen(object sender, RoutedEventArgs e)
@@ -41,6 +43,17 @@ namespace Autopilot
         private void Neu_anzeigen(object sender, RoutedEventArgs e)
         {
             Inhaltsanzeige.Navigate(new Uri("GUI/Neu.xaml", UriKind.Relative));
+        }
+
+        private void Stammdaten_anzeigen(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten.xaml", UriKind.Relative));
+        }
+
+        private void Kunden_anzeigen(object sender, RoutedEventArgs e)
+        {
+            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kunde.xaml", UriKind.Relative));
+            MessageBox.Show("\nLeider noch ohne Funktion!\n");
         }
     }
 }

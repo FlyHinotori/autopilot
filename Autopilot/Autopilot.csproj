@@ -49,8 +49,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,6 +79,152 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ablehnungsgrund.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="anrede.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auftrag.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="auftragsart.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="buchung.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="firmenstammdaten.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flughafen.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flugzeug.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flugzeugliste.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="flugzeugtyp.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten.xaml.cs">
+      <DependentUpon>Stammdaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_flugzeug.xaml.cs">
+      <DependentUpon>Stammdaten_flugzeug.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_firmendaten.xaml.cs">
+      <DependentUpon>Stammdaten_firmendaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_triebwerksart.xaml.cs">
+      <DependentUpon>Stammdaten_triebwerksart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_titel.xaml.cs">
+      <DependentUpon>Stammdaten_titel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_terminart.xaml.cs">
+      <DependentUpon>Stammdaten_terminart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_statusgruppe.xaml.cs">
+      <DependentUpon>Stammdaten_statusgruppe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_status.xaml.cs">
+      <DependentUpon>Stammdaten_status.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_positionsart.xaml.cs">
+      <DependentUpon>Stammdaten_positionsart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_position.xaml.cs">
+      <DependentUpon>Stammdaten_position.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_mahnstufe.xaml.cs">
+      <DependentUpon>Stammdaten_mahnstufe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_kundengruppe.xaml.cs">
+      <DependentUpon>Stammdaten_kundengruppe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_hersteller.xaml.cs">
+      <DependentUpon>Stammdaten_hersteller.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_auftragsart.xaml.cs">
+      <DependentUpon>Stammdaten_auftragsart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_anrede.xaml.cs">
+      <DependentUpon>Stammdaten_anrede.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_ablehnungsgrund.xaml.cs">
+      <DependentUpon>Stammdaten_ablehnungsgrund.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_flugzeugtyp.xaml.cs">
+      <DependentUpon>Stammdaten_flugzeugtyp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="hersteller.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kunde.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="kundengruppe.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="lizenzen.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mahnstufe.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="personal.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="phonetisch.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="position.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="positionsart.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="status.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="statusgruppe.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="termin.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="terminart.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="termin_flugzeug.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="termin_personal.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="titel.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="triebwerksart.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wunschcrew.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="wunschflugzeug.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="zwischenlandung.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Page Include="GUI\Aufträge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -75,6 +232,10 @@
     <Page Include="GUI\Einstellungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Stammdaten.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Hilfe.xaml">
       <SubType>Designer</SubType>
@@ -88,6 +249,70 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\Stammdaten_flugzeug.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_firmendaten.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_triebwerksart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_titel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_terminart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_statusgruppe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_status.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_positionsart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_position.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_mahnstufe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_kundengruppe.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_hersteller.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_auftragsart.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_anrede.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_ablehnungsgrund.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_flugzeugtyp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GUI\Rechnungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,10 +325,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="AutopilotDataSet.Designer.cs">
+    <Compile Include="EntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
+      <DependentUpon>EntityDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="GUI\Aufträge.xaml.cs">
       <DependentUpon>Aufträge.xaml</DependentUpon>
@@ -146,17 +376,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AutopilotDataSet.xsc">
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
+    <EntityDeploy Include="EntityDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EntityDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EntityDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>EntityDataModel.Context.cs</LastGenOutput>
     </None>
-    <None Include="AutopilotDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AutopilotDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
+    <None Include="EntityDataModel.edmx.diagram">
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </None>
-    <None Include="AutopilotDataSet.xss">
-      <DependentUpon>AutopilotDataSet.xsd</DependentUpon>
+    <None Include="EntityDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
+      <LastGenOutput>EntityDataModel.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\AutopilotEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -168,11 +406,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Autopilot.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Autopilot_log.ldf">
       <DependentUpon>Autopilot.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <SplashScreen Include="SplashScreen1.png" />
   </ItemGroup>
@@ -192,6 +430,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

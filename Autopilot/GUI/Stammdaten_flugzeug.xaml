@@ -1,0 +1,30 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten_flugzeug" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Stammdaten_flugzeug" Loaded="Page_Loaded">
+    <Grid>        
+            <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,161" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGrid_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="flz_idColumn" Binding="{Binding flz_id}" Header="flz_id" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id}" Header="sta_id" Width="Auto"/>
+                <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
+                <DataGridTextColumn x:Name="her_bezColumn" Binding="{Binding her_bez}" Header="Hersteller" Width="Auto"/>
+                <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez}" Header="Flugzeugtyp" Width="Auto"/>
+                <DataGridTextColumn x:Name="flz_kennzeichenColumn" Binding="{Binding flz_kennzeichen}" Header="Kennzeichen" Width="Auto"/>
+            </DataGrid.Columns>
+            </DataGrid>
+        <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="217,0,0,10" VerticalAlignment="Bottom" Width="75" Click="bt_Speichern_Click"/>
+            <TextBox x:Name="tb_Kennzeichen" HorizontalAlignment="Left" Height="23" Margin="92,0,0,10" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="120"/>
+        <Label Content="Kennzeichen" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <Label Content="Flugzeugtyp" HorizontalAlignment="Left" Margin="12,0,0,35" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="cb_Flugzeugtyp" ItemsSource="{Binding}" SelectedValuePath="ftyp_id" DisplayMemberPath="ftyp_bez" HorizontalAlignment="Left" Margin="92,0,0,38" VerticalAlignment="Bottom" Width="120"/>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="44,0,0,61" VerticalAlignment="Bottom" RenderTransformOrigin="1.089,0.981"/>
+        <ComboBox x:Name="cb_Status" ItemsSource="{Binding}" SelectedValuePath="sta_id" DisplayMemberPath="sta_bez" HorizontalAlignment="Left" Margin="92,0,0,65" VerticalAlignment="Bottom" Width="120"/>
+    </Grid>
+
+</Page>

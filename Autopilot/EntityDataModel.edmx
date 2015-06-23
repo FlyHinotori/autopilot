@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="EntityDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ablehnungsgrund">
+          <Key>
+            <PropertyRef Name="ablg_id" />
+          </Key>
+          <Property Name="ablg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ablg_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="anrede">
+          <Key>
+            <PropertyRef Name="anr_id" />
+          </Key>
+          <Property Name="anr_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="anr_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="auftrag">
+          <Key>
+            <PropertyRef Name="auf_id" />
+          </Key>
+          <Property Name="auf_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="aart_id" Type="int" />
+          <Property Name="knd_id" Type="int" />
+          <Property Name="mst_id" Type="int" />
+          <Property Name="ablg_id" Type="int" />
+          <Property Name="flh_id_beginn" Type="int" />
+          <Property Name="flh_id_ende" Type="int" />
+          <Property Name="auf_panzahl" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="auf_dauer_h" Type="numeric" Precision="6" Scale="2" />
+          <Property Name="auf_wuensche" Type="nvarchar" MaxLength="500" />
+          <Property Name="auf_preis" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="auf_zusatzkosten" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="auf_faellig_am" Type="datetime" />
+        </EntityType>
+        <EntityType Name="auftragsart">
+          <Key>
+            <PropertyRef Name="aart_id" />
+          </Key>
+          <Property Name="aart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="aart_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="buchung">
+          <Key>
+            <PropertyRef Name="buc_id" />
+          </Key>
+          <Property Name="buc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="auf_id" Type="int" Nullable="false" />
+          <Property Name="buc_datum" Type="datetime" />
+          <Property Name="buc_soll" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="buc_haben" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="buc_text" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="firmenstammdaten">
+          <Key>
+            <PropertyRef Name="fir_name" />
+          </Key>
+          <Property Name="fir_name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fir_strasse" Type="nvarchar" MaxLength="100" />
+          <Property Name="fir_ort" Type="nvarchar" MaxLength="100" />
+          <Property Name="fir_land" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="flughafen">
+          <Key>
+            <PropertyRef Name="flh_id" />
+          </Key>
+          <Property Name="flh_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="flh_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_stadt" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_land" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_iatacode" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_icaocode" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_latitude" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_longitude" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_altitude" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_zeitzone" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_dst" Type="nvarchar" MaxLength="100" />
+          <Property Name="flh_zeitzone_base" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="flugzeug">
+          <Key>
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="flz_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="ftyp_id" Type="int" Nullable="false" />
+          <Property Name="flz_kennzeichen" Type="nvarchar" MaxLength="100" />
+          <Property Name="flz_bild" Type="image" />
+        </EntityType>
+        <EntityType Name="flugzeugtyp">
+          <Key>
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="ftyp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ftyp_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="ftyp_fkosten_pa" Type="numeric" Precision="10" Scale="2" />
+          <Property Name="her_id" Type="int" />
+          <Property Name="ftyp_speed" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="twa_id" Type="int" />
+          <Property Name="ftyp_anz_fcrew" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ftyp_anz_ccrew" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ftyp_anz_pass" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="ftyp_reichweite_km" Type="numeric" Precision="6" Scale="0" />
+          <Property Name="ftyp_anz_triebwerke" Type="numeric" Precision="2" Scale="0" />
+          <Property Name="ftyp_vkosten_ph" Type="numeric" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="hersteller">
+          <Key>
+            <PropertyRef Name="her_id" />
+          </Key>
+          <Property Name="her_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="her_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="kunde">
+          <Key>
+            <PropertyRef Name="knd_id" />
+          </Key>
+          <Property Name="knd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kng_id" Type="int" />
+          <Property Name="anr_id" Type="int" />
+          <Property Name="tit_id" Type="int" />
+          <Property Name="knd_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_vorname" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_strasse" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_ort" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_plz" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_land" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_telefon" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="kundengruppe">
+          <Key>
+            <PropertyRef Name="kng_id" />
+          </Key>
+          <Property Name="kng_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kng_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.lizenzen' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="lizenzen">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="flz_id" Type="int" Nullable="false" />
+          <Property Name="per_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="mahnstufe">
+          <Key>
+            <PropertyRef Name="mst_id" />
+          </Key>
+          <Property Name="mst_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mst_reihenfolge" Type="int" />
+          <Property Name="mst_tage" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="mst_zuschlag" Type="numeric" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="personal">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="pos_id" Type="int" Nullable="false" />
+          <Property Name="per_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="per_vorname" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="phonetisch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="part_id" Type="int" Nullable="false" />
+          <Property Name="pos_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="pos_gehalt_pa" Type="numeric" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="positionsart">
+          <Key>
+            <PropertyRef Name="part_id" />
+          </Key>
+          <Property Name="part_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="part_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.status' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="stg_id" />
+          </Key>
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="stg_id" Type="int" Nullable="false" />
+          <Property Name="sta_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="statusgruppe">
+          <Key>
+            <PropertyRef Name="stg_id" />
+          </Key>
+          <Property Name="stg_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stg_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="termin">
+          <Key>
+            <PropertyRef Name="ter_id" />
+          </Key>
+          <Property Name="ter_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tart_id" Type="int" Nullable="false" />
+          <Property Name="ter_beginn" Type="datetime" />
+          <Property Name="ter_ende" Type="datetime" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_flugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="termin_flugzeug">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="ter_id" Type="int" Nullable="false" />
+          <Property Name="flz_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_personal' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="termin_personal">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="ter_id" Type="int" Nullable="false" />
+          <Property Name="per_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="terminart">
+          <Key>
+            <PropertyRef Name="tart_id" />
+          </Key>
+          <Property Name="tart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tart_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="titel">
+          <Key>
+            <PropertyRef Name="tit_id" />
+          </Key>
+          <Property Name="tit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tit_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="triebwerksart">
+          <Key>
+            <PropertyRef Name="twa_id" />
+          </Key>
+          <Property Name="twa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="twa_bez" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschcrew' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="wunschcrew">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="auf_id" Type="int" Nullable="false" />
+          <Property Name="per_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschflugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="wunschflugzeug">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="auf_id" Type="int" Nullable="false" />
+          <Property Name="flz_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.zwischenlandung' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="zwischenlandung">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="flh_id" />
+          </Key>
+          <Property Name="auf_id" Type="int" Nullable="false" />
+          <Property Name="flh_id" Type="int" Nullable="false" />
+          <Property Name="zwl_reihenfolge" Type="int" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.flugzeugliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="flugzeugliste">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="flz_id" Type="int" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="ftyp_id" Type="int" Nullable="false" />
+          <Property Name="sta_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="her_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="ftyp_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="flz_kennzeichen" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="EntityDataModelStoreContainer">
+          <EntitySet Name="ablehnungsgrund" EntityType="Self.ablehnungsgrund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="anrede" EntityType="Self.anrede" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auftrag" EntityType="Self.auftrag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="auftragsart" EntityType="Self.auftragsart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="buchung" EntityType="Self.buchung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="firmenstammdaten" EntityType="Self.firmenstammdaten" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flughafen" EntityType="Self.flughafen" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flugzeug" EntityType="Self.flugzeug" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="flugzeugtyp" EntityType="Self.flugzeugtyp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hersteller" EntityType="Self.hersteller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kunde" EntityType="Self.kunde" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kundengruppe" EntityType="Self.kundengruppe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mahnstufe" EntityType="Self.mahnstufe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="personal" EntityType="Self.personal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="phonetisch" EntityType="Self.phonetisch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="position" EntityType="Self.position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="positionsart" EntityType="Self.positionsart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="statusgruppe" EntityType="Self.statusgruppe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="termin" EntityType="Self.termin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="terminart" EntityType="Self.terminart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="titel" EntityType="Self.titel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="triebwerksart" EntityType="Self.triebwerksart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lizenzen" EntityType="Self.lizenzen" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [lizenzen].[flz_id] AS [flz_id], 
+    [lizenzen].[per_id] AS [per_id]
+    FROM [dbo].[lizenzen] AS [lizenzen]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="status" EntityType="Self.status" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [status].[sta_id] AS [sta_id], 
+    [status].[stg_id] AS [stg_id], 
+    [status].[sta_bez] AS [sta_bez]
+    FROM [dbo].[status] AS [status]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="termin_flugzeug" EntityType="Self.termin_flugzeug" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [termin_flugzeug].[ter_id] AS [ter_id], 
+    [termin_flugzeug].[flz_id] AS [flz_id]
+    FROM [dbo].[termin_flugzeug] AS [termin_flugzeug]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [termin_personal].[ter_id] AS [ter_id], 
+    [termin_personal].[per_id] AS [per_id]
+    FROM [dbo].[termin_personal] AS [termin_personal]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wunschcrew" EntityType="Self.wunschcrew" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wunschcrew].[auf_id] AS [auf_id], 
+    [wunschcrew].[per_id] AS [per_id]
+    FROM [dbo].[wunschcrew] AS [wunschcrew]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="wunschflugzeug" EntityType="Self.wunschflugzeug" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [wunschflugzeug].[auf_id] AS [auf_id], 
+    [wunschflugzeug].[flz_id] AS [flz_id]
+    FROM [dbo].[wunschflugzeug] AS [wunschflugzeug]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [zwischenlandung].[auf_id] AS [auf_id], 
+    [zwischenlandung].[flh_id] AS [flh_id], 
+    [zwischenlandung].[zwl_reihenfolge] AS [zwl_reihenfolge]
+    FROM [dbo].[zwischenlandung] AS [zwischenlandung]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="flugzeugliste" EntityType="Self.flugzeugliste" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [flugzeugliste].[flz_id] AS [flz_id], 
+    [flugzeugliste].[sta_id] AS [sta_id], 
+    [flugzeugliste].[ftyp_id] AS [ftyp_id], 
+    [flugzeugliste].[sta_bez] AS [sta_bez], 
+    [flugzeugliste].[her_bez] AS [her_bez], 
+    [flugzeugliste].[ftyp_bez] AS [ftyp_bez], 
+    [flugzeugliste].[flz_kennzeichen] AS [flz_kennzeichen]
+    FROM [dbo].[flugzeugliste] AS [flugzeugliste]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EntityDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ablehnungsgrund">
+          <Key>
+            <PropertyRef Name="ablg_id" />
+          </Key>
+          <Property Name="ablg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ablg_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="anrede">
+          <Key>
+            <PropertyRef Name="anr_id" />
+          </Key>
+          <Property Name="anr_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="anr_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="auftrag">
+          <Key>
+            <PropertyRef Name="auf_id" />
+          </Key>
+          <Property Name="auf_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="aart_id" Type="Int32" />
+          <Property Name="knd_id" Type="Int32" />
+          <Property Name="mst_id" Type="Int32" />
+          <Property Name="ablg_id" Type="Int32" />
+          <Property Name="flh_id_beginn" Type="Int32" />
+          <Property Name="flh_id_ende" Type="Int32" />
+          <Property Name="auf_panzahl" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="auf_dauer_h" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="auf_wuensche" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="auf_preis" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="auf_zusatzkosten" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="auf_faellig_am" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="auftragsart">
+          <Key>
+            <PropertyRef Name="aart_id" />
+          </Key>
+          <Property Name="aart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="aart_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="buchung">
+          <Key>
+            <PropertyRef Name="buc_id" />
+          </Key>
+          <Property Name="buc_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="auf_id" Type="Int32" Nullable="false" />
+          <Property Name="buc_datum" Type="DateTime" Precision="3" />
+          <Property Name="buc_soll" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="buc_haben" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="buc_text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="firmenstammdaten">
+          <Key>
+            <PropertyRef Name="fir_name" />
+          </Key>
+          <Property Name="fir_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fir_strasse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fir_ort" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fir_land" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="flughafen">
+          <Key>
+            <PropertyRef Name="flh_id" />
+          </Key>
+          <Property Name="flh_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="flh_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_stadt" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_land" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_iatacode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_icaocode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_altitude" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_zeitzone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_dst" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flh_zeitzone_base" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="flugzeug">
+          <Key>
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="flz_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="ftyp_id" Type="Int32" Nullable="false" />
+          <Property Name="flz_kennzeichen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flz_bild" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="flugzeugtyp">
+          <Key>
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="ftyp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ftyp_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ftyp_fkosten_pa" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="her_id" Type="Int32" />
+          <Property Name="ftyp_speed" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="twa_id" Type="Int32" />
+          <Property Name="ftyp_anz_fcrew" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ftyp_anz_ccrew" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ftyp_anz_pass" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="ftyp_reichweite_km" Type="Decimal" Precision="6" Scale="0" />
+          <Property Name="ftyp_anz_triebwerke" Type="Decimal" Precision="2" Scale="0" />
+          <Property Name="ftyp_vkosten_ph" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="hersteller">
+          <Key>
+            <PropertyRef Name="her_id" />
+          </Key>
+          <Property Name="her_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="her_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="kunde">
+          <Key>
+            <PropertyRef Name="knd_id" />
+          </Key>
+          <Property Name="knd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kng_id" Type="Int32" />
+          <Property Name="anr_id" Type="Int32" />
+          <Property Name="tit_id" Type="Int32" />
+          <Property Name="knd_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_strasse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_ort" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_plz" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_land" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_mail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_telefon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="kundengruppe">
+          <Key>
+            <PropertyRef Name="kng_id" />
+          </Key>
+          <Property Name="kng_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kng_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="mahnstufe">
+          <Key>
+            <PropertyRef Name="mst_id" />
+          </Key>
+          <Property Name="mst_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mst_reihenfolge" Type="Int32" />
+          <Property Name="mst_tage" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="mst_zuschlag" Type="Decimal" Precision="4" Scale="2" />
+        </EntityType>
+        <EntityType Name="personal">
+          <Key>
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="pos_id" Type="Int32" Nullable="false" />
+          <Property Name="per_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="per_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="phonetisch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="position">
+          <Key>
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="pos_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="part_id" Type="Int32" Nullable="false" />
+          <Property Name="pos_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pos_gehalt_pa" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="positionsart">
+          <Key>
+            <PropertyRef Name="part_id" />
+          </Key>
+          <Property Name="part_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="part_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="statusgruppe">
+          <Key>
+            <PropertyRef Name="stg_id" />
+          </Key>
+          <Property Name="stg_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stg_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="termin">
+          <Key>
+            <PropertyRef Name="ter_id" />
+          </Key>
+          <Property Name="ter_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tart_id" Type="Int32" Nullable="false" />
+          <Property Name="ter_beginn" Type="DateTime" Precision="3" />
+          <Property Name="ter_ende" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="terminart">
+          <Key>
+            <PropertyRef Name="tart_id" />
+          </Key>
+          <Property Name="tart_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tart_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="titel">
+          <Key>
+            <PropertyRef Name="tit_id" />
+          </Key>
+          <Property Name="tit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tit_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="triebwerksart">
+          <Key>
+            <PropertyRef Name="twa_id" />
+          </Key>
+          <Property Name="twa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="twa_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="lizenzen">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="flz_id" Type="Int32" Nullable="false" />
+          <Property Name="per_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="status">
+          <Key>
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="stg_id" />
+          </Key>
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="stg_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="termin_flugzeug">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="ter_id" Type="Int32" Nullable="false" />
+          <Property Name="flz_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="termin_personal">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="ter_id" Type="Int32" Nullable="false" />
+          <Property Name="per_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wunschcrew">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="per_id" />
+          </Key>
+          <Property Name="auf_id" Type="Int32" Nullable="false" />
+          <Property Name="per_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="wunschflugzeug">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="flz_id" />
+          </Key>
+          <Property Name="auf_id" Type="Int32" Nullable="false" />
+          <Property Name="flz_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zwischenlandung">
+          <Key>
+            <PropertyRef Name="auf_id" />
+            <PropertyRef Name="flh_id" />
+          </Key>
+          <Property Name="auf_id" Type="Int32" Nullable="false" />
+          <Property Name="flh_id" Type="Int32" Nullable="false" />
+          <Property Name="zwl_reihenfolge" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="AutopilotEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ablehnungsgrund" EntityType="Self.ablehnungsgrund" />
+          <EntitySet Name="anrede" EntityType="Self.anrede" />
+          <EntitySet Name="auftrag" EntityType="Self.auftrag" />
+          <EntitySet Name="auftragsart" EntityType="Self.auftragsart" />
+          <EntitySet Name="buchung" EntityType="Self.buchung" />
+          <EntitySet Name="firmenstammdaten" EntityType="Self.firmenstammdaten" />
+          <EntitySet Name="flughafen" EntityType="Self.flughafen" />
+          <EntitySet Name="flugzeug" EntityType="Self.flugzeug" />
+          <EntitySet Name="flugzeugtyp" EntityType="Self.flugzeugtyp" />
+          <EntitySet Name="hersteller" EntityType="Self.hersteller" />
+          <EntitySet Name="kunde" EntityType="Self.kunde" />
+          <EntitySet Name="kundengruppe" EntityType="Self.kundengruppe" />
+          <EntitySet Name="mahnstufe" EntityType="Self.mahnstufe" />
+          <EntitySet Name="personal" EntityType="Self.personal" />
+          <EntitySet Name="phonetisch" EntityType="Self.phonetisch" />
+          <EntitySet Name="position" EntityType="Self.position" />
+          <EntitySet Name="positionsart" EntityType="Self.positionsart" />
+          <EntitySet Name="statusgruppe" EntityType="Self.statusgruppe" />
+          <EntitySet Name="termin" EntityType="Self.termin" />
+          <EntitySet Name="terminart" EntityType="Self.terminart" />
+          <EntitySet Name="titel" EntityType="Self.titel" />
+          <EntitySet Name="triebwerksart" EntityType="Self.triebwerksart" />
+          <EntitySet Name="lizenzen" EntityType="Self.lizenzen" />
+          <EntitySet Name="status" EntityType="Self.status" />
+          <EntitySet Name="termin_flugzeug" EntityType="Self.termin_flugzeug" />
+          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" />
+          <EntitySet Name="wunschcrew" EntityType="Self.wunschcrew" />
+          <EntitySet Name="wunschflugzeug" EntityType="Self.wunschflugzeug" />
+          <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" />
+          <EntitySet Name="flugzeugliste" EntityType="EntityDataModel.flugzeugliste" />
+        </EntityContainer>
+        <EntityType Name="flugzeugliste">
+          <Key>
+            <PropertyRef Name="flz_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="ftyp_id" />
+          </Key>
+          <Property Name="flz_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="her_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ftyp_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="flz_kennzeichen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ftyp_id" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EntityDataModelStoreContainer" CdmEntityContainer="AutopilotEntities">
+          <EntitySetMapping Name="ablehnungsgrund">
+            <EntityTypeMapping TypeName="EntityDataModel.ablehnungsgrund">
+              <MappingFragment StoreEntitySet="ablehnungsgrund">
+                <ScalarProperty Name="ablg_id" ColumnName="ablg_id" />
+                <ScalarProperty Name="ablg_bez" ColumnName="ablg_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="anrede">
+            <EntityTypeMapping TypeName="EntityDataModel.anrede">
+              <MappingFragment StoreEntitySet="anrede">
+                <ScalarProperty Name="anr_id" ColumnName="anr_id" />
+                <ScalarProperty Name="anr_bez" ColumnName="anr_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auftrag">
+            <EntityTypeMapping TypeName="EntityDataModel.auftrag">
+              <MappingFragment StoreEntitySet="auftrag">
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="aart_id" ColumnName="aart_id" />
+                <ScalarProperty Name="knd_id" ColumnName="knd_id" />
+                <ScalarProperty Name="mst_id" ColumnName="mst_id" />
+                <ScalarProperty Name="ablg_id" ColumnName="ablg_id" />
+                <ScalarProperty Name="flh_id_beginn" ColumnName="flh_id_beginn" />
+                <ScalarProperty Name="flh_id_ende" ColumnName="flh_id_ende" />
+                <ScalarProperty Name="auf_panzahl" ColumnName="auf_panzahl" />
+                <ScalarProperty Name="auf_dauer_h" ColumnName="auf_dauer_h" />
+                <ScalarProperty Name="auf_wuensche" ColumnName="auf_wuensche" />
+                <ScalarProperty Name="auf_preis" ColumnName="auf_preis" />
+                <ScalarProperty Name="auf_zusatzkosten" ColumnName="auf_zusatzkosten" />
+                <ScalarProperty Name="auf_faellig_am" ColumnName="auf_faellig_am" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="auftragsart">
+            <EntityTypeMapping TypeName="EntityDataModel.auftragsart">
+              <MappingFragment StoreEntitySet="auftragsart">
+                <ScalarProperty Name="aart_id" ColumnName="aart_id" />
+                <ScalarProperty Name="aart_bez" ColumnName="aart_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="buchung">
+            <EntityTypeMapping TypeName="EntityDataModel.buchung">
+              <MappingFragment StoreEntitySet="buchung">
+                <ScalarProperty Name="buc_id" ColumnName="buc_id" />
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="buc_datum" ColumnName="buc_datum" />
+                <ScalarProperty Name="buc_soll" ColumnName="buc_soll" />
+                <ScalarProperty Name="buc_haben" ColumnName="buc_haben" />
+                <ScalarProperty Name="buc_text" ColumnName="buc_text" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="firmenstammdaten">
+            <EntityTypeMapping TypeName="EntityDataModel.firmenstammdaten">
+              <MappingFragment StoreEntitySet="firmenstammdaten">
+                <ScalarProperty Name="fir_name" ColumnName="fir_name" />
+                <ScalarProperty Name="fir_strasse" ColumnName="fir_strasse" />
+                <ScalarProperty Name="fir_ort" ColumnName="fir_ort" />
+                <ScalarProperty Name="fir_land" ColumnName="fir_land" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flughafen">
+            <EntityTypeMapping TypeName="EntityDataModel.flughafen">
+              <MappingFragment StoreEntitySet="flughafen">
+                <ScalarProperty Name="flh_id" ColumnName="flh_id" />
+                <ScalarProperty Name="flh_name" ColumnName="flh_name" />
+                <ScalarProperty Name="flh_stadt" ColumnName="flh_stadt" />
+                <ScalarProperty Name="flh_land" ColumnName="flh_land" />
+                <ScalarProperty Name="flh_iatacode" ColumnName="flh_iatacode" />
+                <ScalarProperty Name="flh_icaocode" ColumnName="flh_icaocode" />
+                <ScalarProperty Name="flh_latitude" ColumnName="flh_latitude" />
+                <ScalarProperty Name="flh_longitude" ColumnName="flh_longitude" />
+                <ScalarProperty Name="flh_altitude" ColumnName="flh_altitude" />
+                <ScalarProperty Name="flh_zeitzone" ColumnName="flh_zeitzone" />
+                <ScalarProperty Name="flh_dst" ColumnName="flh_dst" />
+                <ScalarProperty Name="flh_zeitzone_base" ColumnName="flh_zeitzone_base" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flugzeug">
+            <EntityTypeMapping TypeName="EntityDataModel.flugzeug">
+              <MappingFragment StoreEntitySet="flugzeug">
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="ftyp_id" ColumnName="ftyp_id" />
+                <ScalarProperty Name="flz_kennzeichen" ColumnName="flz_kennzeichen" />
+                <ScalarProperty Name="flz_bild" ColumnName="flz_bild" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flugzeugtyp">
+            <EntityTypeMapping TypeName="EntityDataModel.flugzeugtyp">
+              <MappingFragment StoreEntitySet="flugzeugtyp">
+                <ScalarProperty Name="ftyp_id" ColumnName="ftyp_id" />
+                <ScalarProperty Name="ftyp_bez" ColumnName="ftyp_bez" />
+                <ScalarProperty Name="ftyp_fkosten_pa" ColumnName="ftyp_fkosten_pa" />
+                <ScalarProperty Name="her_id" ColumnName="her_id" />
+                <ScalarProperty Name="ftyp_speed" ColumnName="ftyp_speed" />
+                <ScalarProperty Name="twa_id" ColumnName="twa_id" />
+                <ScalarProperty Name="ftyp_anz_fcrew" ColumnName="ftyp_anz_fcrew" />
+                <ScalarProperty Name="ftyp_anz_ccrew" ColumnName="ftyp_anz_ccrew" />
+                <ScalarProperty Name="ftyp_anz_pass" ColumnName="ftyp_anz_pass" />
+                <ScalarProperty Name="ftyp_reichweite_km" ColumnName="ftyp_reichweite_km" />
+                <ScalarProperty Name="ftyp_anz_triebwerke" ColumnName="ftyp_anz_triebwerke" />
+                <ScalarProperty Name="ftyp_vkosten_ph" ColumnName="ftyp_vkosten_ph" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hersteller">
+            <EntityTypeMapping TypeName="EntityDataModel.hersteller">
+              <MappingFragment StoreEntitySet="hersteller">
+                <ScalarProperty Name="her_id" ColumnName="her_id" />
+                <ScalarProperty Name="her_bez" ColumnName="her_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kunde">
+            <EntityTypeMapping TypeName="EntityDataModel.kunde">
+              <MappingFragment StoreEntitySet="kunde">
+                <ScalarProperty Name="knd_id" ColumnName="knd_id" />
+                <ScalarProperty Name="kng_id" ColumnName="kng_id" />
+                <ScalarProperty Name="anr_id" ColumnName="anr_id" />
+                <ScalarProperty Name="tit_id" ColumnName="tit_id" />
+                <ScalarProperty Name="knd_name" ColumnName="knd_name" />
+                <ScalarProperty Name="knd_vorname" ColumnName="knd_vorname" />
+                <ScalarProperty Name="knd_strasse" ColumnName="knd_strasse" />
+                <ScalarProperty Name="knd_ort" ColumnName="knd_ort" />
+                <ScalarProperty Name="knd_plz" ColumnName="knd_plz" />
+                <ScalarProperty Name="knd_land" ColumnName="knd_land" />
+                <ScalarProperty Name="knd_mail" ColumnName="knd_mail" />
+                <ScalarProperty Name="knd_telefon" ColumnName="knd_telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kundengruppe">
+            <EntityTypeMapping TypeName="EntityDataModel.kundengruppe">
+              <MappingFragment StoreEntitySet="kundengruppe">
+                <ScalarProperty Name="kng_id" ColumnName="kng_id" />
+                <ScalarProperty Name="kng_bez" ColumnName="kng_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mahnstufe">
+            <EntityTypeMapping TypeName="EntityDataModel.mahnstufe">
+              <MappingFragment StoreEntitySet="mahnstufe">
+                <ScalarProperty Name="mst_id" ColumnName="mst_id" />
+                <ScalarProperty Name="mst_reihenfolge" ColumnName="mst_reihenfolge" />
+                <ScalarProperty Name="mst_tage" ColumnName="mst_tage" />
+                <ScalarProperty Name="mst_zuschlag" ColumnName="mst_zuschlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personal">
+            <EntityTypeMapping TypeName="EntityDataModel.personal">
+              <MappingFragment StoreEntitySet="personal">
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="per_name" ColumnName="per_name" />
+                <ScalarProperty Name="per_vorname" ColumnName="per_vorname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="phonetisch">
+            <EntityTypeMapping TypeName="EntityDataModel.phonetisch">
+              <MappingFragment StoreEntitySet="phonetisch">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="position">
+            <EntityTypeMapping TypeName="EntityDataModel.position">
+              <MappingFragment StoreEntitySet="position">
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="part_id" ColumnName="part_id" />
+                <ScalarProperty Name="pos_bez" ColumnName="pos_bez" />
+                <ScalarProperty Name="pos_gehalt_pa" ColumnName="pos_gehalt_pa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="positionsart">
+            <EntityTypeMapping TypeName="EntityDataModel.positionsart">
+              <MappingFragment StoreEntitySet="positionsart">
+                <ScalarProperty Name="part_id" ColumnName="part_id" />
+                <ScalarProperty Name="part_bez" ColumnName="part_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="statusgruppe">
+            <EntityTypeMapping TypeName="EntityDataModel.statusgruppe">
+              <MappingFragment StoreEntitySet="statusgruppe">
+                <ScalarProperty Name="stg_id" ColumnName="stg_id" />
+                <ScalarProperty Name="stg_bez" ColumnName="stg_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="termin">
+            <EntityTypeMapping TypeName="EntityDataModel.termin">
+              <MappingFragment StoreEntitySet="termin">
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="tart_id" ColumnName="tart_id" />
+                <ScalarProperty Name="ter_beginn" ColumnName="ter_beginn" />
+                <ScalarProperty Name="ter_ende" ColumnName="ter_ende" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="terminart">
+            <EntityTypeMapping TypeName="EntityDataModel.terminart">
+              <MappingFragment StoreEntitySet="terminart">
+                <ScalarProperty Name="tart_id" ColumnName="tart_id" />
+                <ScalarProperty Name="tart_bez" ColumnName="tart_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="titel">
+            <EntityTypeMapping TypeName="EntityDataModel.titel">
+              <MappingFragment StoreEntitySet="titel">
+                <ScalarProperty Name="tit_id" ColumnName="tit_id" />
+                <ScalarProperty Name="tit_bez" ColumnName="tit_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="triebwerksart">
+            <EntityTypeMapping TypeName="EntityDataModel.triebwerksart">
+              <MappingFragment StoreEntitySet="triebwerksart">
+                <ScalarProperty Name="twa_id" ColumnName="twa_id" />
+                <ScalarProperty Name="twa_bez" ColumnName="twa_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lizenzen">
+            <EntityTypeMapping TypeName="EntityDataModel.lizenzen">
+              <MappingFragment StoreEntitySet="lizenzen">
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="status">
+            <EntityTypeMapping TypeName="EntityDataModel.status">
+              <MappingFragment StoreEntitySet="status">
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="stg_id" ColumnName="stg_id" />
+                <ScalarProperty Name="sta_bez" ColumnName="sta_bez" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="termin_flugzeug">
+            <EntityTypeMapping TypeName="EntityDataModel.termin_flugzeug">
+              <MappingFragment StoreEntitySet="termin_flugzeug">
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="termin_personal">
+            <EntityTypeMapping TypeName="EntityDataModel.termin_personal">
+              <MappingFragment StoreEntitySet="termin_personal">
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wunschcrew">
+            <EntityTypeMapping TypeName="EntityDataModel.wunschcrew">
+              <MappingFragment StoreEntitySet="wunschcrew">
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="wunschflugzeug">
+            <EntityTypeMapping TypeName="EntityDataModel.wunschflugzeug">
+              <MappingFragment StoreEntitySet="wunschflugzeug">
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zwischenlandung">
+            <EntityTypeMapping TypeName="EntityDataModel.zwischenlandung">
+              <MappingFragment StoreEntitySet="zwischenlandung">
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="flh_id" ColumnName="flh_id" />
+                <ScalarProperty Name="zwl_reihenfolge" ColumnName="zwl_reihenfolge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="flugzeugliste">
+            <EntityTypeMapping TypeName="EntityDataModel.flugzeugliste">
+              <MappingFragment StoreEntitySet="flugzeugliste">
+                <ScalarProperty Name="ftyp_id" ColumnName="ftyp_id" />
+                <ScalarProperty Name="flz_kennzeichen" ColumnName="flz_kennzeichen" />
+                <ScalarProperty Name="ftyp_bez" ColumnName="ftyp_bez" />
+                <ScalarProperty Name="her_bez" ColumnName="her_bez" />
+                <ScalarProperty Name="sta_bez" ColumnName="sta_bez" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
