@@ -150,52 +150,52 @@
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_flugzeug.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_flugzeug.xaml.cs">
       <DependentUpon>Stammdaten_flugzeug.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_firmendaten.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_firmendaten.xaml.cs">
       <DependentUpon>Stammdaten_firmendaten.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_triebwerksart.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_triebwerksart.xaml.cs">
       <DependentUpon>Stammdaten_triebwerksart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_titel.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_titel.xaml.cs">
       <DependentUpon>Stammdaten_titel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_terminart.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_terminart.xaml.cs">
       <DependentUpon>Stammdaten_terminart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_statusgruppe.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_statusgruppe.xaml.cs">
       <DependentUpon>Stammdaten_statusgruppe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_status.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_status.xaml.cs">
       <DependentUpon>Stammdaten_status.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_positionsart.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_positionsart.xaml.cs">
       <DependentUpon>Stammdaten_positionsart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_position.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_position.xaml.cs">
       <DependentUpon>Stammdaten_position.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_mahnstufe.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_mahnstufe.xaml.cs">
       <DependentUpon>Stammdaten_mahnstufe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_kundengruppe.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_kundengruppe.xaml.cs">
       <DependentUpon>Stammdaten_kundengruppe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_hersteller.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_hersteller.xaml.cs">
       <DependentUpon>Stammdaten_hersteller.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_auftragsart.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_auftragsart.xaml.cs">
       <DependentUpon>Stammdaten_auftragsart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_anrede.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_anrede.xaml.cs">
       <DependentUpon>Stammdaten_anrede.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_ablehnungsgrund.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_ablehnungsgrund.xaml.cs">
       <DependentUpon>Stammdaten_ablehnungsgrund.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Stammdaten_flugzeugtyp.xaml.cs">
+    <Compile Include="GUI\Stammdaten\Stammdaten_flugzeugtyp.xaml.cs">
       <DependentUpon>Stammdaten_flugzeugtyp.xaml</DependentUpon>
     </Compile>
     <Compile Include="hersteller.cs">
@@ -282,67 +282,67 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Stammdaten_flugzeug.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_flugzeug.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_firmendaten.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_firmendaten.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_triebwerksart.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_triebwerksart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_titel.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_titel.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_terminart.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_terminart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_statusgruppe.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_statusgruppe.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_status.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_status.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_positionsart.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_positionsart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_position.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_position.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_mahnstufe.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_mahnstufe.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_kundengruppe.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_kundengruppe.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_hersteller.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_hersteller.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_auftragsart.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_auftragsart.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_anrede.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_anrede.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_ablehnungsgrund.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_ablehnungsgrund.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\Stammdaten_flugzeugtyp.xaml">
+    <Page Include="GUI\Stammdaten\Stammdaten_flugzeugtyp.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
