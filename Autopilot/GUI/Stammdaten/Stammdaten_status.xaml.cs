@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
 
-namespace Autopilot.GUI
+namespace Autopilot.Gui
 {
     /// <summary>
     /// Interaktionslogik für Stammdaten-status.xaml

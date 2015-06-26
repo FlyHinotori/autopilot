@@ -16,7 +16,7 @@ using System.Data.Entity;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 
-namespace Autopilot.GUI
+namespace Autopilot.Gui
 {
     /// <summary>
     /// Interaktionslogik für Stammdaten-firmendaten.xaml

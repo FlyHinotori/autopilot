@@ -17,7 +17,7 @@ using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Data;
 
-namespace Autopilot.GUI
+namespace Autopilot.Gui
 {
     /// <summary>
     /// Interaktionslogik für Stammdaten-flugzeug.xaml
