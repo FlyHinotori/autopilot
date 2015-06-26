@@ -8,7 +8,7 @@ namespace Autopilot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public AutopilotEntities content = new AutopilotEntities();
+        public AutopilotEntities Inhalt = new AutopilotEntities();
         
         public MainWindow()
         {

@@ -36,27 +36,27 @@ namespace Autopilot.GUI
             DataGrid.ItemsSource = GetList();            
         }
 
-        private ObservableCollection<ablehnungsgrund> GetList()
+        private ObservableCollection<Ablehnungsgrund> GetList()
         {
             var list = from e in content.ablehnungsgrund select e;
-            return new ObservableCollection<ablehnungsgrund>(list);             
+            return new ObservableCollection<Ablehnungsgrund>(list);             
         }
 
         private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            ablehnungsgrund ablehnungsgrund = new ablehnungsgrund();
-            ablehnungsgrund data = e.Row.DataContext as ablehnungsgrund;
+            Ablehnungsgrund ablehnungsgrund = new Ablehnungsgrund();
+            Ablehnungsgrund data = e.Row.DataContext as Ablehnungsgrund;
             if (isInsertMode)
             {
-                var InsertRecord = MessageBox.Show("Möchten Sie " + data.ablg_bez + " als neuen Ablehnungsgrund zufügen?", "Bestätigen?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var InsertRecord = MessageBox.Show("Möchten Sie " + data.Bezeichnung + " als neuen Ablehnungsgrund zufügen?", "Bestätigen?", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (InsertRecord == MessageBoxResult.Yes)
                 {
-                    ablehnungsgrund.ablg_bez = data.ablg_bez;
-                    ablehnungsgrund.ablg_id = data.ablg_id;
+                    ablehnungsgrund.Bezeichnung = data.Bezeichnung;
+                    ablehnungsgrund.Id = data.Id;
                     content.ablehnungsgrund.Add(ablehnungsgrund);
                     content.SaveChanges();
                     DataGrid.ItemsSource = GetList();
-                    MessageBox.Show(data.ablg_bez + " wurde zugefügt!", "Eintrag gespeichert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show(data.Bezeichnung + " wurde zugefügt!", "Eintrag gespeichert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                     DataGrid.ItemsSource = GetList();
@@ -77,7 +77,7 @@ namespace Autopilot.GUI
                     {
                         foreach (var row in grid.SelectedItems)
                         {
-                            ablehnungsgrund ablehnungsgrund = row as ablehnungsgrund;
+                            Ablehnungsgrund ablehnungsgrund = row as Ablehnungsgrund;
                             content.ablehnungsgrund.Remove(ablehnungsgrund);
                         }
                         content.SaveChanges();

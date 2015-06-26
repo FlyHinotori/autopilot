@@ -25,7 +25,7 @@ namespace Autopilot
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ablehnungsgrund> ablehnungsgrund { get; set; }
+        public virtual DbSet<Ablehnungsgrund> ablehnungsgrund { get; set; }
         public virtual DbSet<anrede> anrede { get; set; }
         public virtual DbSet<auftrag> auftrag { get; set; }
         public virtual DbSet<auftragsart> auftragsart { get; set; }
