@@ -33,13 +33,13 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGrid.ItemsSource = GetList();            
+            DataGrid.ItemsSource = GetList();
         }
 
         private ObservableCollection<positionsart> GetList()
         {
             var list = from e in content.positionsart select e;
-            return new ObservableCollection<positionsart>(list);             
+            return new ObservableCollection<positionsart>(list);
         }
 
         private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)

@@ -29,7 +29,7 @@ namespace Autopilot.GUI
         int flz_id;
         int ftyp_id;
         int sta_id;
-        
+
         public Stammdaten_flugzeug()
         {
             InitializeComponent();
@@ -61,8 +61,8 @@ namespace Autopilot.GUI
         }
 
         private void bt_Speichern_Click(object sender, RoutedEventArgs e)
-        {            
-            var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?","Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        {
+            var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
                 var ID = content.flugzeug.SingleOrDefault(c => c.flz_id == flz_id);
@@ -90,7 +90,7 @@ namespace Autopilot.GUI
                 cb_Flugzeugtyp.SelectedValue = Convert.ToString(ftyp_id);
                 cb_Status.SelectedValue = Convert.ToString(sta_id);
             }
-        }       
+        }
 
     }
 }

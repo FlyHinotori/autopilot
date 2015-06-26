@@ -20,7 +20,7 @@ namespace Autopilot.GUI
     /// <summary>
     /// Interaktionslogik für Stammdaten-mahnstufe.xaml
     /// </summary>
-    public partial class Stammdaten_mahnstufe: Page
+    public partial class Stammdaten_mahnstufe : Page
     {
         AutopilotEntities content = new AutopilotEntities();
         bool isInsertMode = false;
@@ -33,13 +33,13 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGrid.ItemsSource = GetList();            
+            DataGrid.ItemsSource = GetList();
         }
 
         private ObservableCollection<mahnstufe> GetList()
         {
             var list = from e in content.mahnstufe select e;
-            return new ObservableCollection<mahnstufe>(list);             
+            return new ObservableCollection<mahnstufe>(list);
         }
 
         private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)

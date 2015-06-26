@@ -24,7 +24,7 @@ namespace Autopilot.GUI
     public partial class Stammdaten_firmendaten : Page
     {
         AutopilotEntities content = new AutopilotEntities();
-        
+
         public Stammdaten_firmendaten()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Textboxen_fuellen();        
+            Textboxen_fuellen();
         }
 
         private void Textboxen_fuellen()
@@ -40,7 +40,7 @@ namespace Autopilot.GUI
             string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
 
             SqlConnection conn = new SqlConnection(DBconnStrg);
-            
+
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
             cmd.CommandText = "SELECT fir_name, fir_strasse, fir_ort, fir_land FROM firmenstammdaten";
@@ -61,11 +61,11 @@ namespace Autopilot.GUI
         }
 
         private void bt_Speichern_Click(object sender, RoutedEventArgs e)
-        {            
-            var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?","Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        {
+            var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                string SQLcmd = "UPDATE firmenstammdaten SET fir_name = \'" + Convert.ToString(tb_Firmenname.Text) +"\', fir_strasse = \'" + Convert.ToString(tb_Strasse.Text) +"\', fir_ort = \'" + Convert.ToString(tb_Ort.Text) +"\', fir_land = \'" + Convert.ToString(tb_Land.Text) +"\'";
+                string SQLcmd = "UPDATE firmenstammdaten SET fir_name = \'" + Convert.ToString(tb_Firmenname.Text) + "\', fir_strasse = \'" + Convert.ToString(tb_Strasse.Text) + "\', fir_ort = \'" + Convert.ToString(tb_Ort.Text) + "\', fir_land = \'" + Convert.ToString(tb_Land.Text) + "\'";
 
                 string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
 
@@ -88,7 +88,7 @@ namespace Autopilot.GUI
                 conn.Close();
             }
 
-        }       
+        }
 
     }
 }

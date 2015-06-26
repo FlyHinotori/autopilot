@@ -25,7 +25,7 @@ namespace Autopilot.GUI
         AutopilotEntities content = new AutopilotEntities();
         bool isInsertMode = false;
         bool isBeingEdited = false;
-                        
+
         public Stammdaten_flugzeugtyp()
         {
             InitializeComponent();
@@ -33,13 +33,13 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            DataGrid.ItemsSource = GetList();            
+            DataGrid.ItemsSource = GetList();
         }
 
         private ObservableCollection<flugzeugtyp> GetList()
-        {            
+        {
             var list = from e in content.flugzeugtyp select e;
-            return new ObservableCollection<flugzeugtyp>(list);             
+            return new ObservableCollection<flugzeugtyp>(list);
         }
 
         private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
