@@ -12,9 +12,9 @@ namespace Autopilot
     using System;
     using System.Collections.Generic;
     
-    public partial class ablehnungsgrund
+    public partial class Ablehnungsgrund
     {
-        public int ablg_id { get; set; }
-        public string ablg_bez { get; set; }
+        public int Id { get; set; }
+        public string Bezeichnung { get; set; }
     }
 }

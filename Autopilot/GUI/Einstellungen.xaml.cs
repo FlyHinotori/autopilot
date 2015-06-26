@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 
-namespace Autopilot.GUI
+namespace Autopilot.Gui
 {
     /// <summary>
     /// Interaktionslogik für Einstellungen.xaml

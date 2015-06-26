@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Autopilot.GUI
+namespace Autopilot.Gui
 {
     /// <summary>
     /// Interaktionslogik für Rechnungen.xaml

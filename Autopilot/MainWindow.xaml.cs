@@ -8,7 +8,7 @@ namespace Autopilot
     /// </summary>
     public partial class MainWindow : Window
     {
-        public AutopilotEntities content = new AutopilotEntities();
+        public AutopilotEntities Inhalt = new AutopilotEntities();
         
         public MainWindow()
         {
@@ -17,42 +17,42 @@ namespace Autopilot
 
         private void Rechnungen_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Rechnungen.xaml", UriKind.Relative));
         }
 
         private void Aufträge_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Aufträge.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Aufträge.xaml", UriKind.Relative));
         }
 
         private void Kalender_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Kalender.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Kalender.xaml", UriKind.Relative));
         }
 
         private void Einstellungen_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Einstellungen.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Einstellungen.xaml", UriKind.Relative));
         }
 
         private void Hilfe_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Hilfe.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Hilfe.xaml", UriKind.Relative));
         }
 
         private void Neu_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Neu.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Neu.xaml", UriKind.Relative));
         }
 
         private void Stammdaten_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("Gui/Stammdaten.xaml", UriKind.Relative));
         }
 
         private void Kunden_anzeigen(object sender, RoutedEventArgs e)
         {
-            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_kunde.xaml", UriKind.Relative));
+            //Inhaltsanzeige.Navigate(new Uri("Gui/Stammdaten_kunde.xaml", UriKind.Relative));
             MessageBox.Show("\nLeider noch ohne Funktion!\n");
         }
     }
