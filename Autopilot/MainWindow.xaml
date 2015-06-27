@@ -4,10 +4,9 @@
         Title="Autopilot" WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Label Content="Suche"/>
-            <TextBox/>
-            <Button Content="Einstellungen" Click="Einstellungen_anzeigen"/>
-            <Button Content="Hilfe" Click="Hilfe_anzeigen"/>
+
+            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+            <Button Content="&#xf059;" Click="Hilfe_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
             <Button Content="&#xf055;" Click="Neu_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
