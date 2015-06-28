@@ -1,0 +1,32 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Stammdaten_flughafen" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Stammdaten_flughafen" Loaded="Page_Loaded">
+    <Grid>
+        <Label Content="Datenquelle" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="tb_urlQuelle" Height="23" Margin="89,13,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsReadOnly="True"/>
+        <Button x:Name="bt_Import" Content="Import" Margin="215,41,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click" RenderTransformOrigin="0.236,0.568"/>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,67,10,10" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="flh_idColumn" Binding="{Binding flh_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="Auto" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="flh_nameColumn" Binding="{Binding flh_name, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_stadtColumn" Binding="{Binding flh_stadt, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Stadt" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_landColumn" Binding="{Binding flh_land, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Land" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_iatacodeColumn" Binding="{Binding flh_iatacode, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="IATA Code" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_icaocodeColumn" Binding="{Binding flh_icaocode, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ICAO Code" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_altitudeColumn" Binding="{Binding flh_altitude, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Altitude" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="flh_latitudeColumn" Binding="{Binding flh_latitude, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Latitude" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_longitudeColumn" Binding="{Binding flh_longitude, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Longitude" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_dstColumn" Binding="{Binding flh_dst, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Daylight Saving Time" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_zeitzoneColumn" Binding="{Binding flh_zeitzone, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Zeitzone" Width="Auto"/>
+                <DataGridTextColumn x:Name="flh_zeitzone_baseColumn" Binding="{Binding flh_zeitzone_base, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Zeitzonenbasis" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Page>
