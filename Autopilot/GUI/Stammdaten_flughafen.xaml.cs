@@ -36,13 +36,8 @@ namespace Autopilot.GUI
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            Textboxen_fuellen();
-            DataGrid.ItemsSource = GetList();
-        }
-
-        private void Textboxen_fuellen()
-        {
             tb_urlQuelle.Text = urlQuelle;
+            DataGrid.ItemsSource = GetList();
         }
 
         private ObservableCollection<flughafen> GetList()
