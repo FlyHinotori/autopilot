@@ -11,7 +11,7 @@
         <Label Content="Datenquelle" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tb_urlQuelle" Height="23" Margin="89,13,10,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsReadOnly="True"/>
         <Button x:Name="bt_Import" Content="Import" Margin="215,41,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click" RenderTransformOrigin="0.236,0.568"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,67,10,10" IsReadOnly="True" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,67,10,10" RowEditEnding="DataGrid_RowEditEnding" PreviewKeyDown="DataGrid_PreviewKeyDown" AddingNewItem="DataGrid_AddingNewItem" BeginningEdit="DataGrid_BeginningEdit" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="flh_idColumn" Binding="{Binding flh_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="ID" Width="Auto" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="flh_nameColumn" Binding="{Binding flh_name, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Name" Width="Auto"/>

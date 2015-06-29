@@ -28,6 +28,8 @@ namespace Autopilot.GUI
     {
         AutopilotEntities content = new AutopilotEntities();
         string urlQuelle = @"https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat";
+        bool isInsertMode = false;
+        bool isBeingEdited = false;
 
         public Stammdaten_flughafen()
         {
@@ -46,8 +48,80 @@ namespace Autopilot.GUI
             return new ObservableCollection<flughafen>(list);
         }
 
+        private void DataGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            flughafen flughafen = new flughafen();
+            flughafen data = e.Row.DataContext as flughafen;
+            if (isInsertMode)
+            {
+                var InsertRecord = MessageBox.Show("Möchten Sie " + data.flh_name + " als neuen Flughafen zufügen?", "Bestätigen?", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (InsertRecord == MessageBoxResult.Yes)
+                {
+                    flughafen.flh_altitude = flughafen.flh_altitude;
+                    flughafen.flh_dst = data.flh_dst;
+                    flughafen.flh_iatacode = data.flh_iatacode;
+                    flughafen.flh_icaocode = data.flh_icaocode;
+                    flughafen.flh_id = data.flh_id;
+                    flughafen.flh_land = data.flh_land;
+                    flughafen.flh_latitude = data.flh_latitude;
+                    flughafen.flh_longitude = data.flh_longitude;
+                    flughafen.flh_name = data.flh_name;
+                    flughafen.flh_stadt = data.flh_stadt;
+                    flughafen.flh_zeitzone = data.flh_zeitzone;
+                    flughafen.flh_zeitzone_base = data.flh_zeitzone_base;
+                    content.flughafen.Add(flughafen);
+                    content.SaveChanges();
+                    DataGrid.ItemsSource = GetList();
+                    MessageBox.Show(data.flh_name + " wurde zugefügt!", "Eintrag gespeichert", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                    DataGrid.ItemsSource = GetList();
+            }
+
+            content.SaveChanges();
+        }
+
+        private void DataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete && !isBeingEdited)
+            {
+                var grid = (DataGrid)sender;
+                if (grid.SelectedItems.Count > 0)
+                {
+                    var Res = MessageBox.Show("Möchten Sie wirklich " + grid.SelectedItems.Count + " Flughafen löschen?", "Löschen", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                    if (Res == MessageBoxResult.Yes)
+                    {
+                        foreach (var row in grid.SelectedItems)
+                        {
+                            flughafen flughafen = row as flughafen;
+                            content.flughafen.Remove(flughafen);
+                        }
+                        content.SaveChanges();
+                        MessageBox.Show(grid.SelectedItems.Count + " Flughafen wurde gelöscht!");
+                    }
+                    else
+                        DataGrid.ItemsSource = GetList();
+                }
+            }
+        }
+
+        private void DataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
+        {
+            isInsertMode = true;
+        }
+
+        private void DataGrid_BeginningEdit(object sender, DataGridBeginningEditEventArgs e)
+        {
+            isBeingEdited = true;
+        }
+
         private void bt_Speichern_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("Funktion wurde deaktiviert.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            /// <summary>
+            /// Funktion des Import vorerst deaktiviert
+            /// </summary>
+            /*
             var res = MessageBox.Show("Sollen der Import jetzt durchgeführt werden?", "Import", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
@@ -154,6 +228,7 @@ namespace Autopilot.GUI
                     MessageBox.Show("Import abgeschlossen!\n\nAktualisieren der Ansicht noch nicht programmiert.");
                 }
             }
+            */
         }
     }
 }
