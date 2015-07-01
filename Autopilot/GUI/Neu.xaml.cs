@@ -20,9 +20,12 @@ namespace Autopilot.GUI
     /// </summary>
     public partial class Neu : Page
     {
+        private NeuerAuftrag FAuftrag;
         public Neu()
         {
             InitializeComponent();
+            FAuftrag = new NeuerAuftrag();
+            TabsNeuerAuftrag.DataContext = FAuftrag;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -127,6 +127,7 @@
     <Compile Include="buchung.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="NeuerAuftrag.cs" />
     <Compile Include="EntityDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
