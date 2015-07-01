@@ -10,7 +10,12 @@
     <Grid>
         <TabControl x:Name="TabsNeuerAuftrag" Margin="5,0,5,61" >
             <TabItem x:Name="TabKunde" Header="Kunde" Visibility="Hidden">
-                <Grid/>
+                <Grid>
+                    <TextBox x:Name="TBKundenName" HorizontalAlignment="Left" Height="23" Margin="93,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Name, Mode=TwoWay}"/>
+                    <TextBox x:Name="TBAdresse" HorizontalAlignment="Left" Height="23" Margin="93,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Adresse, Mode=TwoWay}"/>
+                    <Label Content="Name:" HorizontalAlignment="Left" Margin="22,32,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Adresse:" HorizontalAlignment="Left" Margin="22,63,0,0" VerticalAlignment="Top"/>
+                </Grid>
             </TabItem>
             <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">
                 <Grid/>
