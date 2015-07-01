@@ -24,5 +24,11 @@ namespace Autopilot.GUI
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.TabsNeuerAuftrag.SelectedItem = TabRoute;
+        }
+
     }
 }
