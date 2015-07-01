@@ -8,6 +8,19 @@
 	Title="Neu">
 
     <Grid>
-        
+        <TabControl x:Name="TabsNeuerAuftrag" Margin="5,0,5,61" >
+            <TabItem x:Name="TabKunde" Header="Kunde" Visibility="Hidden">
+                <Grid/>
+            </TabItem>
+            <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">
+                <Grid/>
+            </TabItem>
+            <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">
+                <Grid/>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="btnWeiter" Content="Weiter" HorizontalAlignment="Right" Margin="215,0,5,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="Button_Click"/>
+        <Button x:Name="btnZurueck" Content="Zurück" HorizontalAlignment="Right" Margin="135,0,90,10" VerticalAlignment="Bottom" Width="75" Height="46"/>
+
     </Grid>
 </Page>
