@@ -16,6 +16,8 @@ using System.Data.Entity;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Data;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Autopilot.GUI
 {
@@ -29,6 +31,7 @@ namespace Autopilot.GUI
         int flz_id;
         int ftyp_id;
         int sta_id;
+        string PfadFlugzeugBild;
         
         public Stammdaten_flugzeug()
         {
@@ -40,6 +43,9 @@ namespace Autopilot.GUI
             DataGrid.ItemsSource = GetList();
             cb_Flugzeugtyp.ItemsSource = FillFTyp();
             cb_Status.ItemsSource = FillStatus();
+            bt_Speichern.IsEnabled = false;
+            bt_BildUpload.IsEnabled = false;
+            bt_FileDialog.IsEnabled = false;
         }
 
         private ObservableCollection<flugzeugliste> GetList()
@@ -87,10 +93,67 @@ namespace Autopilot.GUI
                 var ID = content.flugzeug.SingleOrDefault(c => c.flz_id == flz_id);
                 tb_Kennzeichen.Text = Convert.ToString(ID.flz_kennzeichen);
 
+                if (ID.flz_bild != null)
+                {
+                    Stream StreamObj = new MemoryStream(ID.flz_bild);
+                    BitmapImage BitObj = new BitmapImage();
+                    BitObj.BeginInit();
+                    BitObj.StreamSource = StreamObj;
+                    BitObj.EndInit();
+                    this.img_Flugzeug.Source = BitObj;
+                }
+                else
+                {
+                    img_Flugzeug.Source = null;
+                }
+
                 cb_Flugzeugtyp.SelectedValue = Convert.ToString(ftyp_id);
                 cb_Status.SelectedValue = Convert.ToString(sta_id);
+                bt_Speichern.IsEnabled = true;
+                bt_FileDialog.IsEnabled = true;
+                bt_BildUpload.IsEnabled = true;
             }
-        }       
+        }
+
+        public class ImageClass
+        {
+            public int Id { get; set; }
+            public string ImagePath { get; set; }
+            public byte[] ImageToByte { get; set; }
+        }
+
+        private void bt_FileDialog_Click(object sender, RoutedEventArgs e)
+        {
+            ImageClass images = new ImageClass();
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            //openFileDialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files(*.png)|*.png|JPG";
+            //openFileDialog.DefaultExt = ".jpeg";
+            PfadFlugzeugBild = openFileDialog.FileName;
+            ImageSource imageSource = new BitmapImage(new Uri(PfadFlugzeugBild));
+            img_Flugzeug.Source = imageSource;
+        }    
+   
+        private void bt_BildUpload_Click(object sender, RoutedEventArgs e)
+        {
+            if (PfadFlugzeugBild == null || PfadFlugzeugBild == "")
+            {
+                MessageBox.Show("Bitte vorher ein Bild auswählen!", "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                ImageClass images = new ImageClass();
+                images.ImagePath = PfadFlugzeugBild;
+                images.ImageToByte = File.ReadAllBytes(PfadFlugzeugBild);
+
+                var ID = content.flugzeug.SingleOrDefault(c => c.flz_id == flz_id);
+                ID.flz_bild = images.ImageToByte;
+
+                content.SaveChanges();
+            }
+
+            PfadFlugzeugBild = "";
+        }
 
     }
 }
