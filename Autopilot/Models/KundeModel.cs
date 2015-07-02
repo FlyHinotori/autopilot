@@ -9,7 +9,7 @@ namespace Autopilot.Models
 {
     public class KundeModel : INotifyPropertyChanged
     {
-        //members
+        //members of table "kunde"
         string FName = String.Empty;
         string FVorname = String.Empty;
         string FStrasse = String.Empty;
@@ -18,6 +18,12 @@ namespace Autopilot.Models
         string FLand = String.Empty;
         string FEMail = String.Empty;
         string FTelefon = String.Empty;
+        //members of table "kundengruppe"
+        string FGruppe = String.Empty;
+        //members of table "anrede"
+        string FAnrede = String.Empty;
+        //members of table "titel"
+        string FTitel = String.Empty;
 
         //properties
         public string Name
@@ -90,6 +96,33 @@ namespace Autopilot.Models
             {
                 FTelefon = value;
                 NotifyPropertyChanged("Telefon");
+            }
+        }
+        public string Gruppe
+        {
+            get { return FGruppe; }
+            set
+            {
+                FGruppe = value;
+                NotifyPropertyChanged("Gruppe");
+            }
+        }
+        public string Anrede
+        {
+            get { return FAnrede; }
+            set
+            {
+                FAnrede = value;
+                NotifyPropertyChanged("Anrede");
+            }
+        }
+        public string Titel
+        {
+            get { return FTitel; }
+            set
+            {
+                FTitel = value;
+                NotifyPropertyChanged("Titel");
             }
         }
 
