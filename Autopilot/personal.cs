@@ -19,5 +19,6 @@ namespace Autopilot
         public int pos_id { get; set; }
         public string per_name { get; set; }
         public string per_vorname { get; set; }
+        public byte[] per_bild { get; set; }
     }
 }

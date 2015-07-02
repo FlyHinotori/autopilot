@@ -155,6 +155,9 @@
     <Compile Include="GUI\Stammdaten_flughafen.xaml.cs">
       <DependentUpon>Stammdaten_flughafen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Stammdaten_personal.xaml.cs">
+      <DependentUpon>Stammdaten_personal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Stammdaten_flugzeug.xaml.cs">
       <DependentUpon>Stammdaten_flugzeug.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,9 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="personal.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="personalliste.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="phonetisch.cs">
@@ -288,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUI\Stammdaten_flughafen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Stammdaten_personal.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

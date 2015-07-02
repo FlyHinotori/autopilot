@@ -141,7 +141,7 @@
           <Property Name="kng_bez" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.lizenzen' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.lizenzen' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="lizenzen">
           <Key>
             <PropertyRef Name="flz_id" />
@@ -168,6 +168,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="pos_id" Type="int" Nullable="false" />
           <Property Name="per_name" Type="nvarchar" MaxLength="100" />
           <Property Name="per_vorname" Type="nvarchar" MaxLength="100" />
+          <Property Name="per_bild" Type="image" />
         </EntityType>
         <EntityType Name="phonetisch">
           <Key>
@@ -193,7 +194,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="part_bez" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.status' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.status' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="status">
           <Key>
             <PropertyRef Name="sta_id" />
@@ -220,7 +221,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="ter_ende" Type="datetime" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_flugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_flugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="termin_flugzeug">
           <Key>
             <PropertyRef Name="ter_id" />
@@ -230,7 +231,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="flz_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_personal' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_personal' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="termin_personal">
           <Key>
             <PropertyRef Name="ter_id" />
@@ -261,7 +262,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="twa_bez" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschcrew' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschcrew' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="wunschcrew">
           <Key>
             <PropertyRef Name="auf_id" />
@@ -271,7 +272,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="per_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschflugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.wunschflugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="wunschflugzeug">
           <Key>
             <PropertyRef Name="auf_id" />
@@ -281,7 +282,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="flz_id" Type="int" Nullable="false" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.zwischenlandung' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.zwischenlandung' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="zwischenlandung">
           <Key>
             <PropertyRef Name="auf_id" />
@@ -292,7 +293,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="zwl_reihenfolge" Type="int" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
-Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.flugzeugliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.flugzeugliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="flugzeugliste">
           <Key>
             <PropertyRef Name="flz_id" />
@@ -306,6 +307,24 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="her_bez" Type="nvarchar" MaxLength="100" />
           <Property Name="ftyp_bez" Type="nvarchar" MaxLength="100" />
           <Property Name="flz_kennzeichen" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.personalliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="personalliste">
+          <Key>
+            <PropertyRef Name="per_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="per_id" Type="int" Nullable="false" />
+          <Property Name="sta_id" Type="int" Nullable="false" />
+          <Property Name="pos_id" Type="int" Nullable="false" />
+          <Property Name="sta_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="part_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="pos_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="per_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="per_vorname" Type="nvarchar" MaxLength="100" />
+          <Property Name="pos_gehalt_pa" Type="numeric" Precision="10" Scale="2" />
         </EntityType>
         <EntityContainer Name="EntityDataModelStoreContainer">
           <EntitySet Name="ablehnungsgrund" EntityType="Self.ablehnungsgrund" Schema="dbo" store:Type="Tables" />
@@ -384,6 +403,19 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
     [flugzeugliste].[ftyp_bez] AS [ftyp_bez], 
     [flugzeugliste].[flz_kennzeichen] AS [flz_kennzeichen]
     FROM [dbo].[flugzeugliste] AS [flugzeugliste]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="personalliste" EntityType="Self.personalliste" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [personalliste].[per_id] AS [per_id], 
+    [personalliste].[sta_id] AS [sta_id], 
+    [personalliste].[pos_id] AS [pos_id], 
+    [personalliste].[sta_bez] AS [sta_bez], 
+    [personalliste].[part_bez] AS [part_bez], 
+    [personalliste].[pos_bez] AS [pos_bez], 
+    [personalliste].[per_name] AS [per_name], 
+    [personalliste].[per_vorname] AS [per_vorname], 
+    [personalliste].[pos_gehalt_pa] AS [pos_gehalt_pa]
+    FROM [dbo].[personalliste] AS [personalliste]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -543,6 +575,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="pos_id" Type="Int32" Nullable="false" />
           <Property Name="per_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="per_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="per_bild" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="phonetisch">
           <Key>
@@ -693,6 +726,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <EntitySet Name="wunschflugzeug" EntityType="Self.wunschflugzeug" />
           <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" />
           <EntitySet Name="flugzeugliste" EntityType="EntityDataModel.flugzeugliste" />
+          <EntitySet Name="personalliste" EntityType="EntityDataModel.personalliste" />
         </EntityContainer>
         <EntityType Name="flugzeugliste">
           <Key>
@@ -707,6 +741,22 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <Property Name="ftyp_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="flz_kennzeichen" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ftyp_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="personalliste">
+          <Key>
+            <PropertyRef Name="per_id" />
+            <PropertyRef Name="sta_id" />
+            <PropertyRef Name="pos_id" />
+          </Key>
+          <Property Name="per_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_id" Type="Int32" Nullable="false" />
+          <Property Name="pos_id" Type="Int32" Nullable="false" />
+          <Property Name="sta_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="part_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pos_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="per_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="per_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pos_gehalt_pa" Type="Decimal" Precision="10" Scale="2" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -874,6 +924,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
           <EntitySetMapping Name="personal">
             <EntityTypeMapping TypeName="EntityDataModel.personal">
               <MappingFragment StoreEntitySet="personal">
+                <ScalarProperty Name="per_bild" ColumnName="per_bild" />
                 <ScalarProperty Name="per_id" ColumnName="per_id" />
                 <ScalarProperty Name="sta_id" ColumnName="sta_id" />
                 <ScalarProperty Name="pos_id" ColumnName="pos_id" />
@@ -1018,6 +1069,21 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\MEINEFORKS\AUTOPILOT\AU
                 <ScalarProperty Name="sta_bez" ColumnName="sta_bez" />
                 <ScalarProperty Name="sta_id" ColumnName="sta_id" />
                 <ScalarProperty Name="flz_id" ColumnName="flz_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="personalliste">
+            <EntityTypeMapping TypeName="EntityDataModel.personalliste">
+              <MappingFragment StoreEntitySet="personalliste">
+                <ScalarProperty Name="pos_gehalt_pa" ColumnName="pos_gehalt_pa" />
+                <ScalarProperty Name="per_vorname" ColumnName="per_vorname" />
+                <ScalarProperty Name="per_name" ColumnName="per_name" />
+                <ScalarProperty Name="pos_bez" ColumnName="pos_bez" />
+                <ScalarProperty Name="part_bez" ColumnName="part_bez" />
+                <ScalarProperty Name="sta_bez" ColumnName="sta_bez" />
+                <ScalarProperty Name="pos_id" ColumnName="pos_id" />
+                <ScalarProperty Name="sta_id" ColumnName="sta_id" />
+                <ScalarProperty Name="per_id" ColumnName="per_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
