@@ -9,6 +9,12 @@ namespace Autopilot.Models
 {
     public class KundeModel : INotifyPropertyChanged
     {
+        AutopilotEntities FContent;
+        public KundeModel()
+        {
+            FContent = new AutopilotEntities();
+        }
+
         //members of table "kunde"
         string FName = String.Empty;
         string FVorname = String.Empty;
@@ -134,6 +140,22 @@ namespace Autopilot.Models
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        }        
+        } 
+       
+        //save methods
+        public void Save()
+        {
+            Autopilot.kunde NeuerKunde = new Autopilot.kunde();
+            NeuerKunde.knd_name = FName;
+            NeuerKunde.knd_vorname = FVorname;
+            NeuerKunde.knd_strasse = FStrasse;
+            NeuerKunde.knd_ort = FOrt;
+            NeuerKunde.knd_plz = FPostleitzahl;
+            NeuerKunde.knd_land = FLand;
+            NeuerKunde.knd_mail = FEMail;
+            NeuerKunde.knd_telefon = FTelefon;
+            FContent.kunde.Add(NeuerKunde);
+            FContent.SaveChanges();
+        }
     }
 }

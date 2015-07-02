@@ -38,5 +38,11 @@ namespace Autopilot.Models
             }
         }
 
+        //save methods
+        public void Save()
+        {
+            FKunde.Save();
+        }
+
     }
 }
