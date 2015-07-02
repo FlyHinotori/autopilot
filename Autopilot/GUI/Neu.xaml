@@ -4,17 +4,29 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="369" d:DesignWidth="302"
 	Title="Neu">
 
     <Grid>
         <TabControl x:Name="TabsNeuerAuftrag" Margin="5,0,5,61" >
             <TabItem x:Name="TabKunde" Header="Kunde" Visibility="Hidden">
                 <Grid>
-                    <TextBox x:Name="TBKundenName" HorizontalAlignment="Left" Height="23" Margin="93,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Name, Mode=TwoWay}"/>
-                    <TextBox x:Name="TBAdresse" HorizontalAlignment="Left" Height="23" Margin="93,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Adresse, Mode=TwoWay}"/>
+                    <TextBox x:Name="TBName" HorizontalAlignment="Left" Height="23" Margin="93,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Name, Mode=TwoWay}"/>
                     <Label Content="Name:" HorizontalAlignment="Left" Margin="22,32,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Adresse:" HorizontalAlignment="Left" Margin="22,63,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBVorname" HorizontalAlignment="Left" Height="23" Margin="93,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Vorname, Mode=TwoWay}"/>
+                    <Label Content="Vorname:" HorizontalAlignment="Left" Margin="22,60,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBStrasse" HorizontalAlignment="Left" Height="23" Margin="93,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Strasse, Mode=TwoWay}"/>
+                    <Label Content="Straße:" HorizontalAlignment="Left" Margin="22,88,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBPLZ" HorizontalAlignment="Left" Height="23" Margin="93,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Postleitzahl, Mode=TwoWay}"/>
+                    <Label Content="PLZ:" HorizontalAlignment="Left" Margin="22,116,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBOrt" HorizontalAlignment="Left" Height="23" Margin="93,144,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Ort, Mode=TwoWay}"/>
+                    <Label Content="Ort:" HorizontalAlignment="Left" Margin="22,144,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBLand" HorizontalAlignment="Left" Height="23" Margin="93,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Land, Mode=TwoWay}"/>
+                    <Label Content="Land:" HorizontalAlignment="Left" Margin="22,172,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBEmail" HorizontalAlignment="Left" Height="23" Margin="93,200,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.EMail, Mode=TwoWay}"/>
+                    <Label Content="EMail:" HorizontalAlignment="Left" Margin="22,200,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBTelefon" HorizontalAlignment="Left" Height="23" Margin="93,228,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Telefon, Mode=TwoWay}"/>
+                    <Label Content="Telefon:" HorizontalAlignment="Left" Margin="22,228,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">

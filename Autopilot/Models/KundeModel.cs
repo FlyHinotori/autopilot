@@ -11,7 +11,13 @@ namespace Autopilot.Models
     {
         //members
         string FName = String.Empty;
-        string FAdresse = String.Empty;
+        string FVorname = String.Empty;
+        string FStrasse = String.Empty;
+        string FOrt = String.Empty;
+        string FPostleitzahl = String.Empty;
+        string FLand = String.Empty;
+        string FEMail = String.Empty;
+        string FTelefon = String.Empty;
 
         //properties
         public string Name
@@ -23,13 +29,67 @@ namespace Autopilot.Models
                 NotifyPropertyChanged("Name");
             }
         }
-        public string Adresse
+        public string Vorname
         {
-            get { return FAdresse; }
+            get { return FVorname; }
             set
             {
-                FAdresse = value;
-                NotifyPropertyChanged("Adresse");
+                FVorname = value;
+                NotifyPropertyChanged("Vorname");
+            }
+        }
+        public string Strasse
+        {
+            get { return FStrasse; }
+            set
+            {
+                FStrasse = value;
+                NotifyPropertyChanged("Strasse");
+            }
+        }
+        public string Ort
+        {
+            get { return FOrt; }
+            set
+            {
+                FOrt = value;
+                NotifyPropertyChanged("Ort");
+            }
+        }
+        public string Postleitzahl
+        {
+            get { return FPostleitzahl; }
+            set
+            {
+                FPostleitzahl = value;
+                NotifyPropertyChanged("Postleitzahl");
+            }
+        }
+        public string Land
+        {
+            get { return FLand; }
+            set
+            {
+                FLand = value;
+                NotifyPropertyChanged("Land");
+            }
+        }
+        public string EMail
+        {
+            get { return FEMail; }
+            set
+            {
+                FEMail = value;
+                NotifyPropertyChanged("EMail");
+            }
+        }
+        public string Telefon
+        {
+            get { return FTelefon; }
+            set
+            {
+                FTelefon = value;
+                NotifyPropertyChanged("Telefon");
             }
         }
 
