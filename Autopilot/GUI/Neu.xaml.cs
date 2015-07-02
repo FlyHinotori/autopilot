@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Autopilot.Models;
 
 namespace Autopilot.GUI
 {
@@ -20,11 +21,11 @@ namespace Autopilot.GUI
     /// </summary>
     public partial class Neu : Page
     {
-        private NeuerAuftrag FAuftrag;
+        private AuftragModel FAuftrag;
         public Neu()
         {
             InitializeComponent();
-            FAuftrag = new NeuerAuftrag();
+            FAuftrag = new AuftragModel();
             TabsNeuerAuftrag.DataContext = FAuftrag;
         }
 
