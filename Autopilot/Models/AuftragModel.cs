@@ -5,31 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Autopilot
+namespace Autopilot.Models
 {
-    public class NeuerAuftrag : INotifyPropertyChanged
+    public class AuftragModel : INotifyPropertyChanged
     {
+        public AuftragModel()
+        {
+            FKunde = new KundeModel();
+        }
+
         //members
-        string FName = String.Empty;
-        string FAdresse = String.Empty;
+        KundeModel FKunde;
 
         //properties
-        public string Name
+        public KundeModel Kunde
         {
-            get { return FName; }
+            get { return FKunde; }
             set
             {
-                FName = value;
-                NotifyPropertyChanged("Name");
-            }
-        }
-        public string Adresse
-        {
-            get { return FAdresse; }
-            set
-            {
-                FAdresse = value;
-                NotifyPropertyChanged("Adresse");
+                FKunde = value;
+                NotifyPropertyChanged("Kunde");
             }
         }
 
