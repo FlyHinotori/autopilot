@@ -77,8 +77,7 @@ namespace Autopilot.GUI
 
         private void Personal_anzeigen(object sender, RoutedEventArgs e)
         {
-            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_personal.xaml", UriKind.Relative));
-            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_personal.xaml", UriKind.Relative));            
         }
 
         private void Positionen_anzeigen(object sender, RoutedEventArgs e)
