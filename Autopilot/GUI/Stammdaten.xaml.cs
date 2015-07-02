@@ -47,8 +47,7 @@ namespace Autopilot.GUI
 
         private void Flughaefen_anzeigen(object sender, RoutedEventArgs e)
         {
-            //Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flughafen.xaml", UriKind.Relative));
-            MessageBox.Show("\nLeider noch ohne Funktion!\n");
+            Inhaltsanzeige.Navigate(new Uri("GUI/Stammdaten_flughafen.xaml", UriKind.Relative));
         }
 
         private void Flugzeuge_anzeigen(object sender, RoutedEventArgs e)

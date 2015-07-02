@@ -78,7 +78,9 @@
       <HintPath>..\packages\StyleCop.4.7.49.0\lib\net35\StyleCop.CSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
@@ -149,6 +151,9 @@
     </Compile>
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Stammdaten_flughafen.xaml.cs">
+      <DependentUpon>Stammdaten_flughafen.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Stammdaten_flugzeug.xaml.cs">
       <DependentUpon>Stammdaten_flugzeug.xaml</DependentUpon>
@@ -281,6 +286,10 @@
     <Page Include="GUI\Neu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Stammdaten_flughafen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Stammdaten_flugzeug.xaml">
       <Generator>MSBuild:Compile</Generator>
