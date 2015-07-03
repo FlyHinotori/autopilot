@@ -7,6 +7,14 @@ using System.ComponentModel;
 
 namespace Autopilot.Models
 {
+    public class KundeDatenUnvollstaendigException: Exception
+    {
+        public KundeDatenUnvollstaendigException(string message)
+            : base(message)
+        {
+        }
+    }
+
     public class KundeModel : INotifyPropertyChanged
     {
         AutopilotEntities FContent;
@@ -142,9 +150,67 @@ namespace Autopilot.Models
             }
         } 
        
-        //save methods
+        private int GetTitleID()
+        {
+            //Find current title in database
+            Autopilot.titel DerTitel = FContent.titel.Where(t => t.tit_bez == FTitel).FirstOrDefault();
+            //No title found?
+            if (DerTitel == null)
+            {
+                //Create the new title
+                Autopilot.titel NeuerTitel = new Autopilot.titel();
+                NeuerTitel.tit_bez = FTitel;
+                FContent.titel.Add(NeuerTitel);
+                FContent.SaveChanges();
+                //Assign the new title
+                DerTitel = FContent.titel.Where(t => t.tit_bez == FTitel).First();
+            }
+            return DerTitel.tit_id;
+        }
+
+        private int GetAnredeID()
+        {
+            //Find current anrede in database
+            Autopilot.anrede DieAnrede = FContent.anrede.Where(a => a.anr_bez == FAnrede).FirstOrDefault();
+            //No anrede found?
+            if (DieAnrede == null)
+            {
+                //Create the new anrede
+                Autopilot.anrede NeueAnrede = new Autopilot.anrede();
+                NeueAnrede.anr_bez = FAnrede;
+                FContent.anrede.Add(NeueAnrede);
+                FContent.SaveChanges();
+                //Assign the new anrede
+                DieAnrede = FContent.anrede.Where(a => a.anr_bez == FAnrede).First();
+            }
+            return DieAnrede.anr_id;
+        }
+
+        private int GetKundengruppeID()
+        {
+            //Find current kundengruppe in database
+            Autopilot.kundengruppe DieGruppe = FContent.kundengruppe.Where(kg => kg.kng_bez == FGruppe).FirstOrDefault();
+            //No kundengruppe found?
+            if (DieGruppe == null)
+            {
+                //Create the new kundengruppe
+                Autopilot.kundengruppe NeueGruppe = new Autopilot.kundengruppe();
+                NeueGruppe.kng_bez = FGruppe;
+                FContent.kundengruppe.Add(NeueGruppe);
+                FContent.SaveChanges();
+                //Assign the new kundengruppe
+                DieGruppe = FContent.kundengruppe.Where(kg => kg.kng_bez == FGruppe).First();
+            }
+            return DieGruppe.kng_id;
+        }
+
         public void Save()
         {
+            if ((FName.Length == 0) && (FVorname.Length == 0))
+            {
+                throw new KundeDatenUnvollstaendigException("Name oder Vorname fehlt!");
+            }
+            //store information in table "kunde"
             Autopilot.kunde NeuerKunde = new Autopilot.kunde();
             NeuerKunde.knd_name = FName;
             NeuerKunde.knd_vorname = FVorname;
@@ -154,6 +220,18 @@ namespace Autopilot.Models
             NeuerKunde.knd_land = FLand;
             NeuerKunde.knd_mail = FEMail;
             NeuerKunde.knd_telefon = FTelefon;
+            if (FTitel.Length > 0)
+            {
+                NeuerKunde.tit_id = GetTitleID();
+            }
+            if (FAnrede.Length > 0)
+            {
+                NeuerKunde.anr_id = GetAnredeID();
+            }
+            if (FGruppe.Length > 0)
+            {
+                NeuerKunde.kng_id = GetKundengruppeID();
+            }
             FContent.kunde.Add(NeuerKunde);
             FContent.SaveChanges();
         }
