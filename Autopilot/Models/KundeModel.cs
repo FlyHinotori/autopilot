@@ -39,7 +39,7 @@ namespace Autopilot.Models
         //members of table "titel"
         string FTitel = String.Empty;
 
-        //properties
+        #region properties
         public string Name
         {
             get { return FName; }
@@ -139,8 +139,9 @@ namespace Autopilot.Models
                 NotifyPropertyChanged("Titel");
             }
         }
+        #endregion
 
-        //INotifyPropertyChanged implementation
+        #region INotifyPropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")
         {
@@ -148,8 +149,10 @@ namespace Autopilot.Models
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
-        } 
-       
+        }
+        #endregion
+
+        #region foreign key getters
         private int GetTitleID()
         {
             //Find current title in database
@@ -203,6 +206,7 @@ namespace Autopilot.Models
             }
             return DieGruppe.kng_id;
         }
+        #endregion
 
         public void Save()
         {
