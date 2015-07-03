@@ -129,6 +129,7 @@
     <Compile Include="buchung.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GUI\WaitCursor.cs" />
     <Compile Include="Models\KundeModel.cs" />
     <Compile Include="Models\AuftragModel.cs" />
     <Compile Include="EntityDataModel.cs">

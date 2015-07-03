@@ -31,16 +31,10 @@ namespace Autopilot.GUI
 
         private void AuftragSpeichern()
         {
-            Cursor origCursor = Mouse.OverrideCursor;
-            Mouse.OverrideCursor = Cursors.Wait;
-            try
+            using(new WaitCursor())
             {
                 FAuftrag.Save();
             }
-            finally
-            {
-                Mouse.OverrideCursor = origCursor;
-            }   
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
