@@ -17,7 +17,7 @@ namespace Autopilot.Models
         //members
         KundeModel FKunde;
 
-        //properties
+        #region properties
         public KundeModel Kunde
         {
             get { return FKunde; }
@@ -27,8 +27,9 @@ namespace Autopilot.Models
                 NotifyPropertyChanged("Kunde");
             }
         }
+        #endregion
 
-        //INotifyPropertyChanged implementation
+        #region INotifyPropertyChanged implementation
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")
         {
@@ -37,6 +38,7 @@ namespace Autopilot.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+        #endregion
 
         //save methods
         public void Save()
