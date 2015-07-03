@@ -7,7 +7,8 @@ using System.ComponentModel;
 
 namespace Autopilot.Models
 {
-    enum AuftragStatus { Aufnahme, Angebot, Vertrag, Durchführung, Beendet, Storno };
+    public enum AuftragStatus { Aufnahme, Angebot, Vertrag, Durchführung, Beendet, Storno };
+
     public class AuftragModel : INotifyPropertyChanged
     {
         public AuftragModel()
