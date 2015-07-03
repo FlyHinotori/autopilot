@@ -33,7 +33,15 @@ namespace Autopilot.GUI
         {
             using(new WaitCursor())
             {
-                FAuftrag.Save();
+                try
+                {
+                    FAuftrag.Save();
+                }
+                catch (KundeDatenUnvollstaendigException e)
+                {
+                    MessageBox.Show("Problem mit den Kundendaten: " + e.Message);
+                }
+                
             }
         }
 
