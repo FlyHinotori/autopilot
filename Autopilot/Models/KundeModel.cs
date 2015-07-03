@@ -7,14 +7,6 @@ using System.ComponentModel;
 
 namespace Autopilot.Models
 {
-    public class KundeDatenUnvollstaendigException: Exception
-    {
-        public KundeDatenUnvollstaendigException(string message)
-            : base(message)
-        {
-        }
-    }
-
     public class KundeModel : INotifyPropertyChanged
     {
         AutopilotEntities FContent;

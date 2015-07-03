@@ -224,6 +224,7 @@
     <Compile Include="mahnstufe.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelExceptions.cs" />
     <Compile Include="personal.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
