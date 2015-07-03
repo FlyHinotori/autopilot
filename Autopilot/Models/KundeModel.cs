@@ -196,17 +196,23 @@ namespace Autopilot.Models
             //No kundengruppe found?
             if (DieGruppe == null)
             {
-                //Create the new kundengruppe
-                Autopilot.kundengruppe NeueGruppe = new Autopilot.kundengruppe();
-                NeueGruppe.kng_bez = FGruppe;
-                FContent.kundengruppe.Add(NeueGruppe);
-                FContent.SaveChanges();
-                //Assign the new kundengruppe
-                DieGruppe = FContent.kundengruppe.Where(kg => kg.kng_bez == FGruppe).First();
+                return 0;
             }
-            return DieGruppe.kng_id;
+            else 
+            {
+                return DieGruppe.kng_id;
+            }
         }
         #endregion
+
+        private bool KundengruppeExists()
+        {
+            if (FGruppe.Length > 0)
+            {
+                return FContent.kundengruppe.Where(kg => kg.kng_bez == FGruppe).FirstOrDefault() != null;
+            }
+            return false;            
+        }
 
         private Autopilot.kunde GetKundeDBSet()
         {
@@ -228,6 +234,10 @@ namespace Autopilot.Models
             {
                 throw new KundeDatenUnvollstaendigException("Name oder Vorname fehlt!");
             }
+            if (!KundengruppeExists())
+            {
+                throw new KundeDatenUnvollstaendigException("Kundengruppe ungültig!");
+            }
             //store information in table "kunde"
             Autopilot.kunde DerKunde = GetKundeDBSet();
             DerKunde.knd_name = FName;
@@ -246,10 +256,7 @@ namespace Autopilot.Models
             {
                 DerKunde.anr_id = GetAnredeID();
             }
-            if (FGruppe.Length > 0)
-            {
-                DerKunde.kng_id = GetKundengruppeID();
-            }
+            DerKunde.kng_id = GetKundengruppeID();
             FContent.SaveChanges();
         }
     }
