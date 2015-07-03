@@ -230,7 +230,7 @@ namespace Autopilot.Models
         
         public void Save()
         {
-            if ((FName.Length == 0) && (FVorname.Length == 0))
+            if ((FName.Length == 0) || (FVorname.Length == 0))
             {
                 throw new KundeDatenUnvollstaendigException("Name oder Vorname fehlt!");
             }
