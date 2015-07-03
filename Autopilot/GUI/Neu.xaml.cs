@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Autopilot.Models;
+using System.Collections.ObjectModel;
 
 namespace Autopilot.GUI
 {
@@ -21,13 +22,24 @@ namespace Autopilot.GUI
     /// </summary>
     public partial class Neu : Page
     {
+        AutopilotEntities FContent;
         private AuftragModel FAuftrag;
         public Neu()
         {
             InitializeComponent();
+            FContent = new AutopilotEntities();
             FAuftrag = new AuftragModel();
             TabsNeuerAuftrag.DataContext = FAuftrag;
+            CBGruppe.ItemsSource = FillKundengruppe();
         }
+
+        #region context list fillers
+        private ObservableCollection<kundengruppe> FillKundengruppe()
+        {
+            var list = from e in FContent.kundengruppe select e;
+            return new ObservableCollection<kundengruppe>(list);
+        }
+        #endregion
 
         private void AuftragSpeichern()
         {

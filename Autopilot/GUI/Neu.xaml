@@ -31,7 +31,7 @@
                     <Label Content="EMail:" HorizontalAlignment="Left" Margin="19,238,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TBTelefon" HorizontalAlignment="Left" Height="23" Margin="90,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Telefon, Mode=TwoWay}"/>
                     <Label Content="Telefon:" HorizontalAlignment="Left" Margin="19,266,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TBGruppe" HorizontalAlignment="Left" Height="23" Margin="90,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Gruppe, Mode=TwoWay}"/>
+                    <ComboBox x:Name="CBGruppe" HorizontalAlignment="Left" Height="23" Margin="90,294,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding Kunde.Gruppe, Mode=TwoWay}" SelectedValuePath="kng_bez" DisplayMemberPath="kng_bez"/>
                     <Label Content="Gruppe:" HorizontalAlignment="Left" Margin="19,294,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
@@ -43,7 +43,7 @@
             </TabItem>
         </TabControl>
         <Button x:Name="btnWeiter" Content="Weiter" HorizontalAlignment="Right" Margin="215,0,5,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="Button_Click"/>
-        <Button x:Name="btnZurueck" Content="Zurück" HorizontalAlignment="Right" Margin="135,0,90,10" VerticalAlignment="Bottom" Width="75" Height="46"/>
+        <Button x:Name="btnZurueck" Content="Zurück" HorizontalAlignment="Right" Margin="135,0,90,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="btnZurueck_Click"/>
 
     </Grid>
 </Page>
