@@ -208,6 +208,20 @@ namespace Autopilot.Models
         }
         #endregion
 
+        private Autopilot.kunde GetKundeDBSet()
+        {
+            //Get kunde from database
+            Autopilot.kunde Result = FContent.kunde.Where(k => k.knd_name == FName && k.knd_vorname == FVorname).FirstOrDefault();
+            //No kunde found?
+            if (Result == null)
+            {
+                //Create and add new kunde
+                Result = new Autopilot.kunde();
+                FContent.kunde.Add(Result);
+            }
+            return Result;
+        }
+        
         public void Save()
         {
             if ((FName.Length == 0) && (FVorname.Length == 0))
@@ -215,29 +229,29 @@ namespace Autopilot.Models
                 throw new KundeDatenUnvollstaendigException("Name oder Vorname fehlt!");
             }
             //store information in table "kunde"
-            Autopilot.kunde NeuerKunde = new Autopilot.kunde();
-            NeuerKunde.knd_name = FName;
-            NeuerKunde.knd_vorname = FVorname;
-            NeuerKunde.knd_strasse = FStrasse;
-            NeuerKunde.knd_ort = FOrt;
-            NeuerKunde.knd_plz = FPostleitzahl;
-            NeuerKunde.knd_land = FLand;
-            NeuerKunde.knd_mail = FEMail;
-            NeuerKunde.knd_telefon = FTelefon;
+            Autopilot.kunde DerKunde = GetKundeDBSet();
+            DerKunde.knd_name = FName;
+            DerKunde.knd_vorname = FVorname;
+            DerKunde.knd_strasse = FStrasse;
+            DerKunde.knd_ort = FOrt;
+            DerKunde.knd_plz = FPostleitzahl;
+            DerKunde.knd_land = FLand;
+            DerKunde.knd_mail = FEMail;
+            DerKunde.knd_telefon = FTelefon;
             if (FTitel.Length > 0)
             {
-                NeuerKunde.tit_id = GetTitleID();
+                DerKunde.tit_id = GetTitleID();
             }
             if (FAnrede.Length > 0)
             {
-                NeuerKunde.anr_id = GetAnredeID();
+                DerKunde.anr_id = GetAnredeID();
             }
             if (FGruppe.Length > 0)
             {
-                NeuerKunde.kng_id = GetKundengruppeID();
+                DerKunde.kng_id = GetKundengruppeID();
             }
-            FContent.kunde.Add(NeuerKunde);
             FContent.SaveChanges();
         }
+    }    
     }
 }
