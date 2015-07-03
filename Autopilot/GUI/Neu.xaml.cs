@@ -29,9 +29,28 @@ namespace Autopilot.GUI
             TabsNeuerAuftrag.DataContext = FAuftrag;
         }
 
+        private void AuftragSpeichern()
+        {
+            Cursor origCursor = Mouse.OverrideCursor;
+            Mouse.OverrideCursor = Cursors.Wait;
+            try
+            {
+                FAuftrag.Save();
+            }
+            finally
+            {
+                Mouse.OverrideCursor = origCursor;
+            }   
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.TabsNeuerAuftrag.SelectedItem = TabRoute;
+        }
+
+        private void btnZurueck_Click(object sender, RoutedEventArgs e)
+        {
+            AuftragSpeichern(); // <- debug    
         }
 
     }
