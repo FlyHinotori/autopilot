@@ -13,7 +13,7 @@
                 <Grid>
                     <ComboBox x:Name="CBAnrede" HorizontalAlignment="Left" Height="23" Margin="90,14,0,0" VerticalAlignment="Top" Width="170" IsEditable="True" Text="{Binding Kunde.Anrede, Mode=TwoWay}" ItemsSource="{Binding}" SelectedValuePath="anr_bez" DisplayMemberPath="anr_bez"/>
                     <Label Content="Anrede:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TBTitel" HorizontalAlignment="Left" Height="23" Margin="90,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Titel, Mode=TwoWay}"/>
+                    <ComboBox x:Name="CBTitel" HorizontalAlignment="Left" Height="23" Margin="90,42,0,0"  VerticalAlignment="Top" Width="170" IsEditable="True" Text="{Binding Kunde.Titel, Mode=TwoWay}" ItemsSource="{Binding}" SelectedValuePath="tit_bez" DisplayMemberPath="tit_bez"/>
                     <Label Content="Titel:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TBName" HorizontalAlignment="Left" Height="23" Margin="90,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding Kunde.Name, Mode=TwoWay}"/>
                     <Label Content="Name:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
