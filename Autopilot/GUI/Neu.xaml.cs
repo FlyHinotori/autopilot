@@ -31,6 +31,7 @@ namespace Autopilot.GUI
             FAuftrag = new AuftragModel();
             TabsNeuerAuftrag.DataContext = FAuftrag;
             CBGruppe.ItemsSource = FillKundengruppe();
+            CBAnrede.ItemsSource = FillAnrede();
         }
 
         #region context list fillers
@@ -38,6 +39,11 @@ namespace Autopilot.GUI
         {
             var list = from e in FContent.kundengruppe select e;
             return new ObservableCollection<kundengruppe>(list);
+        }
+        private ObservableCollection<anrede> FillAnrede()
+        {
+            var list = from e in FContent.anrede select e;
+            return new ObservableCollection<anrede>(list);
         }
         #endregion
 
