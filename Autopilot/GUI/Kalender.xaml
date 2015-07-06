@@ -8,11 +8,11 @@
 	Title="Kalender" Loaded="Page_Loaded">
     <Grid Margin="10,0,0,0">
         <Button x:Name="bt_NeuerTermin" Content="+" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="22" Click="bt_NeuerTermin_Click"/>
-        <DatePicker x:Name="dp_EndeFilter" HorizontalAlignment="Left" Margin="461,10,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dp_BeginnFilter" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="dp_EndeFilter" HorizontalAlignment="Left" Margin="461,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeFilter_SelectedDateChanged"/>
+        <DatePicker x:Name="dp_BeginnFilter" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeFilter_SelectedDateChanged"/>
         <Label Content="bis" HorizontalAlignment="Left" Margin="431,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.329,-1.051"/>
         <Label Content="von" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tb_Filter" HorizontalAlignment="Left" Height="23" Margin="37,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="221"/>
+        <TextBox x:Name="tb_Filter" HorizontalAlignment="Left" Height="23" Margin="37,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" TextChanged="tb_Filter_TextChanged" GotFocus="tb_Filter_GotFocus"/>
         <DataGrid x:Name="DataGridFilter" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="220" Width="580" SelectionChanged="DataGridFilter_SelectionChanged" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ter_id}" Width="Auto" Header="ter_id" Visibility="Hidden"/>

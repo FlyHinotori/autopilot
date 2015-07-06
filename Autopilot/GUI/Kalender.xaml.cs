@@ -188,5 +188,44 @@ namespace Autopilot.GUI
                 MessageBox.Show("In die Terminart \"Charter\" kann hier nicht gewechselt werden.\n\nZum Speichern bitte die Auswahl ändern!", "Hinweis", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void tb_Filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            filtereDataGridFilter();
+        }
+
+        private void tb_Filter_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tb_Filter.Clear();
+        }
+
+        private void dp_BeginnEndeFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filtereDataGridFilter();
+        }
+
+        private void filtereDataGridFilter()
+        {
+            if (DataGridFilter != null)
+            {
+                string suchbegriff = Convert.ToString(tb_Filter.Text);
+
+                if (suchbegriff != null && dp_BeginnFilter.SelectedDate != null && dp_EndeFilter.SelectedDate != null)
+                {
+                    var dv = datatableTermine.DefaultView;
+                    dv.RowFilter = "ter_txt LIKE \'%" + suchbegriff + "%\' and ter_beginn >= #" + dp_BeginnFilter.SelectedDate.Value.Year + "-" + dp_BeginnFilter.SelectedDate.Value.Month + "-" + dp_BeginnFilter.SelectedDate.Value.Day + "#" + "and ter_ende <= #" + dp_EndeFilter.SelectedDate.Value.Year + "-" + dp_EndeFilter.SelectedDate.Value.Month + "-" + dp_EndeFilter.SelectedDate.Value.Day + "#";
+                }
+                if (suchbegriff != null && (dp_BeginnFilter.SelectedDate == null || dp_EndeFilter.SelectedDate == null))
+                {
+                    var dv = datatableTermine.DefaultView;
+                    dv.RowFilter = "ter_txt LIKE \'%" + suchbegriff + "%\'";
+                }
+                if (suchbegriff == null && dp_BeginnFilter.SelectedDate != null && dp_EndeFilter.SelectedDate != null)
+                {
+                    var dv = datatableTermine.DefaultView;
+                    dv.RowFilter = "ter_beginn >= #" + dp_BeginnFilter.SelectedDate.Value.Year + "-" + dp_BeginnFilter.SelectedDate.Value.Month + "-" + dp_BeginnFilter.SelectedDate.Value.Day + "#" + "and ter_ende <= #" + dp_EndeFilter.SelectedDate.Value.Year + "-" + dp_EndeFilter.SelectedDate.Value.Month + "-" + dp_EndeFilter.SelectedDate.Value.Day + "#";
+                }
+            }
+        }
     }
 }
