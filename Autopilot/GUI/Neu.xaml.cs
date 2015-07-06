@@ -78,7 +78,8 @@ namespace Autopilot.GUI
 
         private void btnZurueck_Click(object sender, RoutedEventArgs e)
         {
-            AuftragSpeichern(); // <- debug    
+            if (TabsNeuerAuftrag.SelectedIndex > 0)
+                TabsNeuerAuftrag.SelectedIndex -= 1;
         }
 
     }
