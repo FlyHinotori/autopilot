@@ -39,6 +39,12 @@
                 <Grid>
                     <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="90,14,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ArtID, Mode=TwoWay}" SelectedValuePath="aart_id" DisplayMemberPath="aart_bez"/>
                     <Label Content="Auftragsart:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBStartFlughafen" HorizontalAlignment="Left" Height="23" Margin="90,42,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding StartFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name"/>
+                    <Label Content="Start:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="90,70,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name"/>
+                    <Label Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="90,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}"/>
+                    <Label Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top"/>                    
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">

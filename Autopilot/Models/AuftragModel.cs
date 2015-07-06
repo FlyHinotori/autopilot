@@ -21,6 +21,9 @@ namespace Autopilot.Models
         KundeModel FKunde;
         AuftragStatus FStatus;
         int FArtID;
+        int FStartFlughafenID;
+        int FZielFlughafenID;
+        int FPassengerCount;
 
         #region properties
         public KundeModel Kunde
@@ -48,6 +51,33 @@ namespace Autopilot.Models
             {
                 FArtID = value;
                 NotifyPropertyChanged("ArtID");
+            }
+        }
+        public int StartFlughafenID
+        {
+            get { return FStartFlughafenID; }
+            set
+            {
+                FStartFlughafenID = value;
+                NotifyPropertyChanged("StartFlughafenID");
+            }
+        }
+        public int ZielFlughafenID
+        {
+            get { return FZielFlughafenID; }
+            set
+            {
+                FZielFlughafenID = value;
+                NotifyPropertyChanged("ZielFlughafenID");
+            }
+        }
+        public int PassengerCount
+        {
+            get { return FPassengerCount; }
+            set
+            {
+                FPassengerCount = value;
+                NotifyPropertyChanged("PassengerCount");
             }
         }
         #endregion

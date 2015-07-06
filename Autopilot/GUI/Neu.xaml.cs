@@ -34,6 +34,8 @@ namespace Autopilot.GUI
             CBAnrede.ItemsSource = FillAnrede();
             CBTitel.ItemsSource = FillTitel();
             CBAuftragsArt.ItemsSource = FillAuftragsart();
+            CBStartFlughafen.ItemsSource = FillFlughafen();
+            CBZielFlughafen.ItemsSource = FillFlughafen();
         }
 
         #region context list fillers
@@ -56,6 +58,11 @@ namespace Autopilot.GUI
         {
             var list = from e in FContent.auftragsart select e;
             return new ObservableCollection<auftragsart>(list);
+        }
+        private ObservableCollection<flughafen> FillFlughafen()
+        {
+            var list = from e in FContent.flughafen select e;
+            return new ObservableCollection<flughafen>(list);
         }
         #endregion
 
