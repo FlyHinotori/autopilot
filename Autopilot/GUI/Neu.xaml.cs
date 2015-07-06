@@ -71,7 +71,9 @@ namespace Autopilot.GUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.TabsNeuerAuftrag.SelectedItem = TabRoute;
+            int NoOfTabs = TabsNeuerAuftrag.Items.Count - 1;
+            if (TabsNeuerAuftrag.SelectedIndex < NoOfTabs)
+                TabsNeuerAuftrag.SelectedIndex += 1;
         }
 
         private void btnZurueck_Click(object sender, RoutedEventArgs e)
