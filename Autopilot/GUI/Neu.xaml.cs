@@ -117,5 +117,12 @@ namespace Autopilot.GUI
             AuftragSpeichern();
         }
 
+        private void TBPassengerCount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //just handle integer input
+            int i;
+            e.Handled = !int.TryParse(e.Text, out i);
+        }
+
     }
 }

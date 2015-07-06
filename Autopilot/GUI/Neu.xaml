@@ -44,7 +44,7 @@
                     <Label Content="Start:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,70,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name"/>
                     <Label Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}"/>
+                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="TBPassengerCount_PreviewTextInput"/>
                     <Label Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
