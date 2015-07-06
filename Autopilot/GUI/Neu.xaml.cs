@@ -71,8 +71,8 @@ namespace Autopilot.GUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int NoOfTabs = TabsNeuerAuftrag.Items.Count - 1;
-            if (TabsNeuerAuftrag.SelectedIndex < NoOfTabs)
+            int HighestTabIndex = TabsNeuerAuftrag.Items.Count - 1;
+            if (TabsNeuerAuftrag.SelectedIndex < HighestTabIndex)
                 TabsNeuerAuftrag.SelectedIndex += 1;
         }
 
