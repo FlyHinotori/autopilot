@@ -44,6 +44,6 @@
         </TabControl>
         <Button x:Name="btnWeiter" Content="Weiter" HorizontalAlignment="Right" Margin="215,0,5,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="Button_Click"/>
         <Button x:Name="btnZurueck" Content="Zurück" HorizontalAlignment="Right" Margin="135,0,90,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="btnZurueck_Click"/>
-
+        <Button x:Name="btnSpeichern" Content="Speichern" HorizontalAlignment="Right" Margin="215,0,5,10" VerticalAlignment="Bottom" Width="75" Height="46" Visibility="Hidden" Click="btnSpeichern_Click"/>
     </Grid>
 </Page>

@@ -85,8 +85,23 @@ namespace Autopilot.GUI
         private void TabsNeuerAuftrag_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int HighestTabIndex = TabsNeuerAuftrag.Items.Count - 1;
-            btnWeiter.IsEnabled = (TabsNeuerAuftrag.SelectedIndex != HighestTabIndex);
+            if (TabsNeuerAuftrag.SelectedIndex != HighestTabIndex)
+            {
+                btnWeiter.Visibility = Visibility.Visible;
+                btnSpeichern.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                btnWeiter.Visibility = Visibility.Hidden;
+                btnSpeichern.Visibility = Visibility.Visible;
+            }
+
             btnZurueck.IsEnabled = (TabsNeuerAuftrag.SelectedIndex != 0);
+        }
+
+        private void btnSpeichern_Click(object sender, RoutedEventArgs e)
+        {
+            AuftragSpeichern();
         }
 
     }
