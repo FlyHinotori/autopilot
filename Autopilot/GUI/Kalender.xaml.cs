@@ -27,15 +27,16 @@ namespace Autopilot.GUI
     {
         AutopilotEntities content = new AutopilotEntities();
         string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
-        string TerminNeu = "0";
         DataTable datatableTermine = new DataTable("Termine");
         DataTable datatableInfo = new DataTable("Termine");
+        DataTable datatableAuswahl = new DataTable("Auswahl");
         Int32 ter_id;
         Int32 tart_id;
         DateTime ter_beginn;
         DateTime ter_ende;
         string FlugzeugPersonal;
         string FlugzeugPersonalID;
+        string NeuerTermin ="0";
 
         public Kalender()
         {
@@ -45,6 +46,8 @@ namespace Autopilot.GUI
         {
             fuelleDataGridFilter();
             cb_Terminart.ItemsSource = FillFTyp();
+            DataGridAuswahl.Visibility = Visibility.Hidden;
+            DataGridFilter.Visibility = Visibility.Visible;
         }
 
         private void fuelleDataGridFilter()
@@ -70,6 +73,8 @@ namespace Autopilot.GUI
             dp_BeginnAuswahl.IsEnabled = false;
             dp_EndeAuswahl.IsEnabled = false;
             bt_Speichern.IsEnabled = false;
+            bt_Abbrechen.IsEnabled = false;
+            bt_Loeschen.IsEnabled = false;
             lb_Termin.Content = null;
         }
 
@@ -78,12 +83,7 @@ namespace Autopilot.GUI
             var list = from e in content.terminart select e;
             return new ObservableCollection<terminart>(list);
         }
-
-        private void bt_NeuerTermin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
+                
         private void DataGridFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (DataGridFilter.SelectedCells.Count != 0 && DataGridFilter.ItemsSource != null && DataGridFilter.SelectedItem != null)
@@ -108,6 +108,8 @@ namespace Autopilot.GUI
                     dp_BeginnAuswahl.IsEnabled = true;
                     dp_EndeAuswahl.IsEnabled = true;
                     bt_Speichern.IsEnabled = true;
+                    bt_Abbrechen.IsEnabled = true;
+                    bt_Loeschen.IsEnabled = true;
                 }
                 else
                 {
@@ -115,6 +117,8 @@ namespace Autopilot.GUI
                     dp_BeginnAuswahl.IsEnabled = false;
                     dp_EndeAuswahl.IsEnabled = false;
                     bt_Speichern.IsEnabled = false;
+                    bt_Abbrechen.IsEnabled = false;
+                    bt_Loeschen.IsEnabled = false;
                 }
 
                 fuelleDataGridInfo();
@@ -130,7 +134,15 @@ namespace Autopilot.GUI
             if (FlugzeugPersonal == "f")
             {
                 //Termine Flugzeuge laden
-                SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_flugzeug, flugzeug where termin.tart_id = terminart.tart_id and termin.ter_id = termin_flugzeug.ter_id and termin_flugzeug.flz_id = flugzeug.flz_id and flugzeug.flz_id = " + FlugzeugPersonalID + " and ((ter_beginn between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)) or (ter_ende between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)))";
+                SQLcmd = "";
+                if (NeuerTermin == "0")
+                {
+                    SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_flugzeug, flugzeug where termin.tart_id = terminart.tart_id and termin.ter_id = termin_flugzeug.ter_id and termin_flugzeug.flz_id = flugzeug.flz_id and flugzeug.flz_id = " + FlugzeugPersonalID + " and ((ter_beginn between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)) or (ter_ende between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)))";
+                }
+                else
+                {
+                    SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_flugzeug, flugzeug where termin.tart_id = terminart.tart_id and termin.ter_id = termin_flugzeug.ter_id and termin_flugzeug.flz_id = flugzeug.flz_id and flugzeug.flz_id = " + FlugzeugPersonalID;
+                }
                 SqlCommand cmd_f = new SqlCommand(SQLcmd, conn);
                 SqlDataAdapter adapter_f = new SqlDataAdapter(cmd_f);
                 adapter_f.Fill(datatableInfo);
@@ -138,7 +150,15 @@ namespace Autopilot.GUI
             else
             {
                 //Termine Personal laden
-                SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_personal, personal where termin.tart_id = terminart.tart_id and termin.ter_id = termin_personal.ter_id and termin_personal.per_id = personal.per_id and personal.per_id = " + FlugzeugPersonalID + " and ((ter_beginn between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)) or (ter_ende between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)))";
+                SQLcmd = "";
+                if (NeuerTermin == "0")
+                {
+                    SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_personal, personal where termin.tart_id = terminart.tart_id and termin.ter_id = termin_personal.ter_id and termin_personal.per_id = personal.per_id and personal.per_id = " + FlugzeugPersonalID + " and ((ter_beginn between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)) or (ter_ende between CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.Value.AddDays(-1).ToShortDateString() + "\',103) and CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.Value.AddDays(1).ToShortDateString() + "\',103)))";
+                }
+                else
+                {
+                    SQLcmd = "SELECT tart_bez, ter_beginn, ter_ende from termin, terminart, termin_personal, personal where termin.tart_id = terminart.tart_id and termin.ter_id = termin_personal.ter_id and termin_personal.per_id = personal.per_id and personal.per_id = " + FlugzeugPersonalID;
+                }
                 SqlCommand cmd_p = new SqlCommand(SQLcmd, conn);
                 SqlDataAdapter adapter_p = new SqlDataAdapter(cmd_p);
                 adapter_p.Fill(datatableInfo);
@@ -159,28 +179,112 @@ namespace Autopilot.GUI
         {
             if (cb_Terminart.Text != "Charter")
             {
-                var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                if (res == MessageBoxResult.Yes)
+                if (NeuerTermin == "0")
                 {
-                    SqlConnection conn = new SqlConnection(DBconnStrg);
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand();
-                    cmd.Connection = conn;
-                    cmd.CommandText = "UPDATE termin SET tart_id = " + cb_Terminart.SelectedValue + ", ter_beginn = CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.ToString() + "\',103), ter_ende = CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.ToString() + "\',103) WHERE ter_id =" + ter_id;
-                    cmd.CommandType = CommandType.Text;
-
-                    try
+                    //Termin bearbeiten
+                    var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
                     {
-                        cmd.ExecuteNonQuery();
-                    }
-                    catch (System.Exception err)
-                    {
-                        MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
-                    }
-                    conn.Close();
+                        SqlConnection conn = new SqlConnection(DBconnStrg);
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand();
+                        cmd.Connection = conn;
+                        cmd.CommandText = "UPDATE termin SET tart_id = " + cb_Terminart.SelectedValue + ", ter_beginn = CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.ToString() + "\',103), ter_ende = CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.ToString() + "\',103) WHERE ter_id =" + ter_id;
+                        cmd.CommandType = CommandType.Text;
 
-                    fuelleDataGridFilter();
-                    DataGridInfo.ItemsSource = null;
+                        try
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch (System.Exception err)
+                        {
+                            MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        conn.Close();
+
+                        fuelleDataGridFilter();
+                        DataGridInfo.ItemsSource = null;
+                    }
+                }
+                else
+                {
+                    //Neuer Termin
+                    var res = MessageBox.Show("Soll ein neuer Termin angelegt werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (res == MessageBoxResult.Yes)
+                    {
+                        SqlConnection conn = new SqlConnection(DBconnStrg);
+                        conn.Open();
+                        SqlCommand cmd1 = new SqlCommand();
+                        cmd1.Connection = conn;
+                        cmd1.CommandText = "INSERT INTO termin (tart_id, ter_beginn, ter_ende) VALUES (" + cb_Terminart.SelectedValue.ToString() + ",CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.ToString() + "\',103), CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.ToString() + "\',103))";
+                        cmd1.CommandType = CommandType.Text;
+
+                        try
+                        {
+                            cmd1.ExecuteNonQuery();
+                        }
+                        catch (System.Exception err)
+                        {
+                            MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                        conn.Close();
+
+                        //ter_id holen
+                        SqlCommand cmd2 = new SqlCommand();
+                        cmd2.Connection = conn;
+                        cmd2.CommandText = "SELECT MAX(ter_id) FROM termin WHERE tart_id = " + cb_Terminart.SelectedValue.ToString() + " AND ter_beginn = CONVERT(date,\'" + dp_BeginnAuswahl.SelectedDate.ToString() + "\',103) and ter_ende = CONVERT(date,\'" + dp_EndeAuswahl.SelectedDate.ToString() + "\',103)";
+                        cmd2.CommandType = CommandType.Text;
+
+                        conn.Open();
+
+                        SqlDataReader dr2 = cmd2.ExecuteReader();
+                        if (dr2.Read())
+                        {
+                            ter_id = Convert.ToInt32(dr2.GetValue(0));
+                        }
+
+                        conn.Close();
+
+                        SqlCommand cmd3 = new SqlCommand();
+                        cmd3.Connection = conn;
+                        string SQLcmd3 = "";
+                        if (FlugzeugPersonal == "f")
+                        {
+                            SQLcmd3 = "INSERT INTO termin_flugzeug (ter_id, flz_id) VALUES (" + ter_id + "," + FlugzeugPersonalID + ")";
+                        }
+                        else
+                        {
+                            SQLcmd3 = "INSERT INTO termin_personal (ter_id, per_id) VALUES (" + ter_id + "," + FlugzeugPersonalID + ")";
+                        }
+                        cmd3.CommandText = SQLcmd3;
+                        cmd3.CommandType = CommandType.Text;
+
+                        conn.Open();
+
+                        try
+                        {
+                            cmd3.ExecuteNonQuery();
+                            NeuerTermin = "0";
+                            DataGridAuswahl.Visibility = Visibility.Hidden;
+                            DataGridFilter.Visibility = Visibility.Visible;
+                            dp_BeginnFilter.Visibility = Visibility.Visible;
+                            dp_EndeFilter.Visibility = Visibility.Visible;
+                            lb_von.Visibility = Visibility.Visible;
+                            lb_bis.Visibility = Visibility.Visible;
+                            tb_Filter.Clear();
+                            dp_BeginnFilter.SelectedDate = null;
+                            dp_EndeFilter.SelectedDate = null;
+
+                            fuelleDataGridFilter();
+                            filtereDataGridFilter();
+                        }
+                        catch (System.Exception err)
+                        {
+                            MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                        conn.Close();
+                    }
                 }
             }
             else
@@ -191,7 +295,14 @@ namespace Autopilot.GUI
 
         private void tb_Filter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            filtereDataGridFilter();
+            if (NeuerTermin == "0")
+            {
+                filtereDataGridFilter();
+            }
+            else
+            {
+                filtereDataGridAuswahl();
+            }
         }
 
         private void tb_Filter_GotFocus(object sender, RoutedEventArgs e)
@@ -201,7 +312,14 @@ namespace Autopilot.GUI
 
         private void dp_BeginnEndeFilter_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            filtereDataGridFilter();
+            if (NeuerTermin == "0")
+            {
+                filtereDataGridFilter();
+            }
+            else
+            {
+                filtereDataGridAuswahl();
+            }
         }
 
         private void filtereDataGridFilter()
@@ -225,6 +343,157 @@ namespace Autopilot.GUI
                     var dv = datatableTermine.DefaultView;
                     dv.RowFilter = "ter_beginn >= #" + dp_BeginnFilter.SelectedDate.Value.Year + "-" + dp_BeginnFilter.SelectedDate.Value.Month + "-" + dp_BeginnFilter.SelectedDate.Value.Day + "#" + "and ter_ende <= #" + dp_EndeFilter.SelectedDate.Value.Year + "-" + dp_EndeFilter.SelectedDate.Value.Month + "-" + dp_EndeFilter.SelectedDate.Value.Day + "#";
                 }
+            }
+        }
+
+        private void bt_NeuerTermin_Click(object sender, RoutedEventArgs e)
+        {
+            NeuerTermin = "1";
+            DataGridAuswahl.Visibility = Visibility.Visible;
+            DataGridFilter.Visibility = Visibility.Hidden;
+            dp_BeginnFilter.Visibility = Visibility.Hidden;
+            dp_EndeFilter.Visibility = Visibility.Hidden;
+            lb_von.Visibility = Visibility.Hidden;
+            lb_bis.Visibility = Visibility.Hidden;
+            tb_Filter.Clear();
+
+            fuelleDataGridAuswahl();
+            filtereDataGridAuswahl();
+        }
+
+        private void fuelleDataGridAuswahl()
+        {
+            datatableAuswahl.Clear();
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            //Flugzeuge laden
+            string SQLcmd = "SELECT flugzeug.flz_id as auswahl_id, 'f' as f_p, ftyp_bez + ' - ' + flz_kennzeichen as auswahl_txt from flugzeugtyp, flugzeug where flugzeug.ftyp_id = flugzeugtyp.ftyp_id";
+            SqlCommand cmd_f = new SqlCommand(SQLcmd, conn);
+            SqlDataAdapter adapter_f = new SqlDataAdapter(cmd_f);
+            adapter_f.Fill(datatableAuswahl);
+
+            //Personal laden
+            SQLcmd = "SELECT personal.per_id as auswahl_id, 'p' as f_p, per_name + ', ' + per_vorname + '(' + pos_bez + ')' as auswahl_txt from position, personal where personal.pos_id = position.pos_id";
+            SqlCommand cmd_p = new SqlCommand(SQLcmd, conn);
+            SqlDataAdapter adapter_p = new SqlDataAdapter(cmd_p);
+            adapter_p.Fill(datatableAuswahl);
+
+            DataGridAuswahl.ItemsSource = datatableAuswahl.DefaultView;
+
+            cb_Terminart.IsEnabled = false;
+            dp_BeginnAuswahl.IsEnabled = false;
+            dp_EndeAuswahl.IsEnabled = false;
+            bt_Speichern.IsEnabled = false;
+            bt_Abbrechen.IsEnabled = false;
+            bt_Loeschen.IsEnabled = false;
+            lb_Termin.Content = null;
+        }
+
+        private void DataGridAuswahl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DataGridAuswahl.SelectedCells.Count != 0 && DataGridAuswahl.ItemsSource != null && DataGridAuswahl.SelectedItem != null)
+            {
+                DataRowView row = DataGridAuswahl.SelectedItems as DataRowView;
+                FlugzeugPersonalID = ((DataRowView)DataGridAuswahl.SelectedItem).Row["auswahl_id"].ToString();
+                FlugzeugPersonal = ((DataRowView)DataGridAuswahl.SelectedItem).Row["f_p"].ToString();
+                lb_Termin.Content = ((DataRowView)DataGridAuswahl.SelectedItem).Row["auswahl_txt"].ToString();
+
+                cb_Terminart.SelectedValue = null;
+                dp_BeginnAuswahl.SelectedDate = null;
+                dp_EndeAuswahl.SelectedDate = null;
+
+                cb_Terminart.IsEnabled = true;
+                dp_BeginnAuswahl.IsEnabled = true;
+                dp_EndeAuswahl.IsEnabled = true;
+                bt_Speichern.IsEnabled = true;
+                bt_Abbrechen.IsEnabled = true;
+                bt_Loeschen.IsEnabled = false;
+            
+                fuelleDataGridInfo();
+            }
+        }
+
+        private void filtereDataGridAuswahl()
+        {
+            if (DataGridAuswahl != null)
+            {
+                string suchbegriff = Convert.ToString(tb_Filter.Text);
+
+                if (suchbegriff != null && suchbegriff != "")
+                {
+                    var dv = datatableAuswahl.DefaultView;
+                    dv.RowFilter = "auswahl_txt LIKE \'%" + suchbegriff + "%\'";
+                }                
+            }
+        }
+
+        private void bt_Abbrechen_Click(object sender, RoutedEventArgs e)
+        {
+            NeuerTermin = "0";
+            DataGridAuswahl.Visibility = Visibility.Hidden;
+            DataGridFilter.Visibility = Visibility.Visible;
+            dp_BeginnFilter.Visibility = Visibility.Visible;
+            dp_EndeFilter.Visibility = Visibility.Visible;
+            lb_von.Visibility = Visibility.Visible;
+            lb_bis.Visibility = Visibility.Visible;
+            tb_Filter.Clear();
+            dp_BeginnFilter.SelectedDate = null;
+            dp_EndeFilter.SelectedDate = null;
+
+            fuelleDataGridFilter();
+            filtereDataGridFilter();
+        }
+
+        private void bt_Loeschen_Click(object sender, RoutedEventArgs e)
+        {
+            var res = MessageBox.Show("Soll der Termin wirklich gelöscht werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                SqlConnection conn = new SqlConnection(DBconnStrg);
+                conn.Open();
+                SqlCommand cmd1 = new SqlCommand();
+                cmd1.Connection = conn;
+                cmd1.CommandText = "DELETE FROM termin where ter_id = " + ter_id;
+                cmd1.CommandType = CommandType.Text;
+
+                SqlCommand cmd2 = new SqlCommand();
+                cmd2.Connection = conn;
+                string SQLcmd2 = "";
+                if (FlugzeugPersonal == "f")
+                {
+                    SQLcmd2 = "DELETE FROM termin_flugzeug WHERE ter_id = " + ter_id + " and flz_id = " + FlugzeugPersonalID;
+                }
+                else
+                {
+                    SQLcmd2 = "DELETE FROM termin_personal WHERE ter_id = " + ter_id + " and per_id = " + FlugzeugPersonalID;
+                }
+                cmd2.CommandText = SQLcmd2;
+                cmd2.CommandType = CommandType.Text;
+
+                try
+                {
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                    NeuerTermin = "0";
+                    DataGridAuswahl.Visibility = Visibility.Hidden;
+                    DataGridFilter.Visibility = Visibility.Visible;
+                    dp_BeginnFilter.Visibility = Visibility.Visible;
+                    dp_EndeFilter.Visibility = Visibility.Visible;
+                    lb_von.Visibility = Visibility.Visible;
+                    lb_bis.Visibility = Visibility.Visible;
+                    tb_Filter.Clear();
+                    dp_BeginnFilter.SelectedDate = null;
+                    dp_EndeFilter.SelectedDate = null;
+
+                    fuelleDataGridFilter();
+                    filtereDataGridFilter();
+                    DataGridInfo.ItemsSource = null;
+                }
+                catch (System.Exception err)
+                {
+                    MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                conn.Close();
             }
         }
     }

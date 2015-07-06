@@ -6,14 +6,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="600"
 	Title="Kalender" Loaded="Page_Loaded">
-    <Grid Margin="10,0,0,0">
+    <Grid Margin="0,0,0,0">
         <Button x:Name="bt_NeuerTermin" Content="+" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="22" Click="bt_NeuerTermin_Click"/>
         <DatePicker x:Name="dp_EndeFilter" HorizontalAlignment="Left" Margin="461,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeFilter_SelectedDateChanged"/>
         <DatePicker x:Name="dp_BeginnFilter" HorizontalAlignment="Left" Margin="297,10,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeFilter_SelectedDateChanged"/>
-        <Label Content="bis" HorizontalAlignment="Left" Margin="431,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.329,-1.051"/>
-        <Label Content="von" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lb_bis" Content="bis" HorizontalAlignment="Left" Margin="431,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.329,-1.051"/>
+        <Label x:Name="lb_von" Content="von" HorizontalAlignment="Left" Margin="263,10,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tb_Filter" HorizontalAlignment="Left" Height="23" Margin="37,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" TextChanged="tb_Filter_TextChanged" GotFocus="tb_Filter_GotFocus"/>
-        <DataGrid x:Name="DataGridFilter" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="220" Width="580" SelectionChanged="DataGridFilter_SelectionChanged" >
+        <DataGrid x:Name="DataGridFilter" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="220" Width="580" SelectionChanged="DataGridFilter_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ter_id}" Width="Auto" Header="ter_id" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding ID_spez}" Width="Auto" Header="IDspez" Visibility="Hidden"/>
@@ -25,12 +25,12 @@
                 <DataGridTextColumn Binding="{Binding ter_txt}" Width="Auto" Header="Termin"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Terminart" HorizontalAlignment="Left" Margin="50,324,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cb_Terminart" HorizontalAlignment="Left" Margin="116,328,0,0" VerticalAlignment="Top" Width="129" ItemsSource="{Binding}" SelectedValuePath="tart_id" DisplayMemberPath="tart_bez"/>
-        <Label Content="von" HorizontalAlignment="Left" Margin="81,353,0,0" VerticalAlignment="Top"/>
-        <Label Content="bis" HorizontalAlignment="Left" Margin="85,382,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dp_BeginnAuswahl" HorizontalAlignment="Left" Margin="116,355,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged"/>
-        <DatePicker x:Name="dp_EndeAuswahl" HorizontalAlignment="Left" Margin="116,384,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged"/>
+        <Label Content="Terminart" HorizontalAlignment="Left" Margin="19,324,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_Terminart" HorizontalAlignment="Left" Margin="85,328,0,0" VerticalAlignment="Top" Width="160" ItemsSource="{Binding}" SelectedValuePath="tart_id" DisplayMemberPath="tart_bez"/>
+        <Label Content="von" HorizontalAlignment="Left" Margin="51,354,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.159,0.487"/>
+        <Label Content="bis" HorizontalAlignment="Left" Margin="55,383,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,0.513"/>
+        <DatePicker x:Name="dp_BeginnAuswahl" HorizontalAlignment="Left" Margin="85,355,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged" Width="160"/>
+        <DatePicker x:Name="dp_EndeAuswahl" HorizontalAlignment="Left" Margin="85,384,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged" Width="160"/>
         <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="287,266,0,0" VerticalAlignment="Top" Height="224" Width="303">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
@@ -39,7 +39,15 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="170,413,0,0" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click"/>
-        <Label x:Name="lb_Termin" Content="" HorizontalAlignment="Left" Margin="116,297,0,0" VerticalAlignment="Top" Width="129"/>
-
+        <Label x:Name="lb_Termin" Content="" HorizontalAlignment="Left" Margin="85,297,0,0" VerticalAlignment="Top" Width="160"/>
+        <DataGrid x:Name="DataGridAuswahl" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="220" Width="580" SelectionChanged="DataGridAuswahl_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding auswahl_id}" Width="Auto" Header="ID_spez"/>
+                <DataGridTextColumn Binding="{Binding f_p}" Width="Auto" Header="f_p"/>
+                <DataGridTextColumn Binding="{Binding auswahl_txt}" Width="Auto" Header="Auswahl"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="bt_Abbrechen" Content="Abbrechen" HorizontalAlignment="Left" Margin="85,413,0,0" VerticalAlignment="Top" Width="75" Click="bt_Abbrechen_Click"/>
+        <Button x:Name="bt_Loeschen" Content="Löschen" HorizontalAlignment="Left" Margin="170,438,0,0" VerticalAlignment="Top" Width="75" Click="bt_Loeschen_Click"/>
     </Grid>
 </Page>
