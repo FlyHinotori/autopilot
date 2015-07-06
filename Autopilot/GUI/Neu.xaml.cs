@@ -33,6 +33,7 @@ namespace Autopilot.GUI
             CBGruppe.ItemsSource = FillKundengruppe();
             CBAnrede.ItemsSource = FillAnrede();
             CBTitel.ItemsSource = FillTitel();
+            CBAuftragsArt.ItemsSource = FillAuftragsart();
         }
 
         #region context list fillers
@@ -50,6 +51,11 @@ namespace Autopilot.GUI
         {
             var list = from e in FContent.titel select e;
             return new ObservableCollection<titel>(list);
+        }
+        private ObservableCollection<auftragsart> FillAuftragsart()
+        {
+            var list = from e in FContent.auftragsart select e;
+            return new ObservableCollection<auftragsart>(list);
         }
         #endregion
 

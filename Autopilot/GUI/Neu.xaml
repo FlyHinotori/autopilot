@@ -36,7 +36,10 @@
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">
-                <Grid/>
+                <Grid>
+                    <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="90,14,0,0" VerticalAlignment="Top" Width="170" Text="{Binding Art, Mode=TwoWay}" ItemsSource="{Binding}" SelectedValuePath="aart_bez" DisplayMemberPath="aart_bez"/>
+                    <Label Content="Auftragsart:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top"/>                    
+                </Grid>
             </TabItem>
             <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">
                 <Grid/>

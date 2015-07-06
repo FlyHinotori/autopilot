@@ -20,6 +20,7 @@ namespace Autopilot.Models
         //members
         KundeModel FKunde;
         AuftragStatus FStatus;
+        string FArt; //TODO make this an enum, but mind to provide a converter to be able to bind the respective property in XAML (that's tricky)...
 
         #region properties
         public KundeModel Kunde
@@ -38,6 +39,15 @@ namespace Autopilot.Models
             {
                 FStatus = value;
                 NotifyPropertyChanged("Status");
+            }
+        }
+        public string Art
+        {
+            get { return FArt; }
+            set
+            {
+                FArt = value;
+                NotifyPropertyChanged("Art");
             }
         }
         #endregion
