@@ -8,7 +8,7 @@
 	Title="Neu">
 
     <Grid>
-        <TabControl x:Name="TabsNeuerAuftrag" Margin="5,0,5,61" >
+        <TabControl x:Name="TabsNeuerAuftrag" Margin="5,0,5,61" SelectionChanged="TabsNeuerAuftrag_SelectionChanged" >
             <TabItem x:Name="TabKunde" Header="Kunde" Visibility="Hidden">
                 <Grid>
                     <ComboBox x:Name="CBAnrede" HorizontalAlignment="Left" Height="23" Margin="90,14,0,0" VerticalAlignment="Top" Width="170" IsEditable="True" Text="{Binding Kunde.Anrede, Mode=TwoWay}" ItemsSource="{Binding}" SelectedValuePath="anr_bez" DisplayMemberPath="anr_bez"/>

@@ -82,5 +82,12 @@ namespace Autopilot.GUI
                 TabsNeuerAuftrag.SelectedIndex -= 1;
         }
 
+        private void TabsNeuerAuftrag_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int HighestTabIndex = TabsNeuerAuftrag.Items.Count - 1;
+            btnWeiter.IsEnabled = (TabsNeuerAuftrag.SelectedIndex != HighestTabIndex);
+            btnZurueck.IsEnabled = (TabsNeuerAuftrag.SelectedIndex != 0);
+        }
+
     }
 }
