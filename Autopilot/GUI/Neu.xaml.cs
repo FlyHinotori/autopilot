@@ -39,6 +39,7 @@ namespace Autopilot.GUI
             CBZwischenhalt.ItemsSource = FillFlughafen();
             CBCabinCrew.ItemsSource = FillStewardess();
             CBPiloten.ItemsSource = FillPiloten();
+            CBFlugzeugTyp.ItemsSource = FillFlugzeugTyp();
         }
 
         #region context list fillers
@@ -98,6 +99,11 @@ namespace Autopilot.GUI
                     Piloten.Add(Person);
             }
             return Piloten;
+        }
+        private ObservableCollection<flugzeugtyp> FillFlugzeugTyp()
+        {
+            var list = from e in FContent.flugzeugtyp select e;
+            return new ObservableCollection<flugzeugtyp>(list);
         }
         #endregion
 

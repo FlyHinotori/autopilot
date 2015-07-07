@@ -32,6 +32,7 @@ namespace Autopilot.Models
         ObservableCollection<flughafen> FZwischenHalte;
         ObservableCollection<personal> FCabinCrew;
         ObservableCollection<personal> FPilotenCrew;
+        int FFlugzeugTypID;
 
         #region properties
         public KundeModel Kunde
@@ -122,6 +123,15 @@ namespace Autopilot.Models
             {
                 FPilotenCrew = value;
                 NotifyPropertyChanged("PilotenCrew");
+            }
+        }
+        public int FlugzeugTypID
+        {
+            get { return FFlugzeugTypID; }
+            set
+            {
+                FFlugzeugTypID = value;
+                NotifyPropertyChanged("FlugzeugTypID");
             }
         }
         #endregion
