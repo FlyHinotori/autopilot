@@ -16,6 +16,7 @@ namespace Autopilot.Models
         {
             FKunde = new KundeModel();
             FZwischenHalte = new ObservableCollection<flughafen>();
+            FCabinCrew = new ObservableCollection<personal>();
             FStatus = AuftragStatus.Aufnahme;
         }
 
@@ -28,6 +29,7 @@ namespace Autopilot.Models
         int FPassengerCount;
         int FCharterDauer;
         ObservableCollection<flughafen> FZwischenHalte;
+        ObservableCollection<personal> FCabinCrew;
 
         #region properties
         public KundeModel Kunde
@@ -100,6 +102,15 @@ namespace Autopilot.Models
             {
                 FCharterDauer = value;
                 NotifyPropertyChanged("CharterDauer");
+            }
+        }
+        public ObservableCollection<personal> CabinCrew
+        {
+            get { return FCabinCrew; }
+            set
+            {
+                FCabinCrew = value;
+                NotifyPropertyChanged("CabinCrew");
             }
         }
         #endregion

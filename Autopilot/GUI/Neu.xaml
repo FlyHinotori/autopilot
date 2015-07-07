@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="432"
 	Title="Neu">
 
 
@@ -52,7 +51,16 @@
                     <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,154,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" />
                     <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,154,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" />
                     <TextBox x:Name="TBCharterDauer" HorizontalAlignment="Left" Height="23" Margin="120,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding CharterDauer, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput"/>
-                    <Label Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,259,0,0" VerticalAlignment="Top"/>                    
+                    <Label Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,259,0,0" VerticalAlignment="Top"/>
+                    <GroupBox Header="Kundenwünsche" HorizontalAlignment="Left" Margin="340,5,0,0" Height="500" Width="350" VerticalAlignment="Top">
+                        <Grid>
+                            <ComboBox x:Name="CBCabinCrew" HorizontalAlignment="Left" Height="23" Margin="100,5,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="per_vorname"/>
+                            <Label Content="Kabinen-Crew:" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="btnAddCabinCrew" Content="+" HorizontalAlignment="Left" Margin="280,5,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddCabinCrew_Click"/>
+                            <ListBox x:Name="LBCabinCrew" HorizontalAlignment="Left" Height="100" Margin="100,33,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding CabinCrew}" SelectedValuePath="per_id" DisplayMemberPath="per_vorname" />
+                            <Button x:Name="btnRemoveCabinCrew" Content="-" HorizontalAlignment="Left" Margin="280,33,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveCabinCrew_Click"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">
