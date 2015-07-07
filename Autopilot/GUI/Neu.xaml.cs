@@ -36,6 +36,7 @@ namespace Autopilot.GUI
             CBAuftragsArt.ItemsSource = FillAuftragsart();
             CBStartFlughafen.ItemsSource = FillFlughafen();
             CBZielFlughafen.ItemsSource = FillFlughafen();
+            CBZwischenhalt.ItemsSource = FillFlughafen();
         }
 
         #region context list fillers
@@ -122,6 +123,16 @@ namespace Autopilot.GUI
             //just handle integer input
             int i;
             e.Handled = !int.TryParse(e.Text, out i);
+        }
+
+        private void btnAddZwischenhalt_Click(object sender, RoutedEventArgs e)
+        {
+            FAuftrag.ZwischenHalte.Add((flughafen)CBZwischenhalt.SelectedItem);
+        }
+
+        private void btnRemoveZwischenhalt_Click(object sender, RoutedEventArgs e)
+        {
+            FAuftrag.ZwischenHalte.Remove((flughafen)LBZwischenhalte.SelectedItem);
         }
 
     }

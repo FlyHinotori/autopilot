@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace Autopilot.Models
 {
@@ -14,6 +15,7 @@ namespace Autopilot.Models
         public AuftragModel()
         {
             FKunde = new KundeModel();
+            FZwischenHalte = new ObservableCollection<flughafen>();
             FStatus = AuftragStatus.Aufnahme;
         }
 
@@ -24,6 +26,7 @@ namespace Autopilot.Models
         int FStartFlughafenID;
         int FZielFlughafenID;
         int FPassengerCount;
+        ObservableCollection<flughafen> FZwischenHalte;
 
         #region properties
         public KundeModel Kunde
@@ -78,6 +81,15 @@ namespace Autopilot.Models
             {
                 FPassengerCount = value;
                 NotifyPropertyChanged("PassengerCount");
+            }
+        }
+        public ObservableCollection<flughafen> ZwischenHalte
+        {
+            get { return FZwischenHalte; }
+            set
+            {
+                FZwischenHalte = value;
+                NotifyPropertyChanged("ZwischenHalte");
             }
         }
         #endregion

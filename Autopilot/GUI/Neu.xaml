@@ -46,6 +46,11 @@
                     <Label Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="TBPassengerCount_PreviewTextInput"/>
                     <Label Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBZwischenhalt" HorizontalAlignment="Left" Height="23" Margin="120,126,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="flh_name"/>
+                    <Label Content="Zwischenziele:" HorizontalAlignment="Left" Margin="19,126,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnAddZwischenhalt" Content="+" HorizontalAlignment="Left" Margin="301,126,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddZwischenhalt_Click"/>
+                    <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,154,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" />
+                    <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,154,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" />
                 </Grid>
             </TabItem>
             <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">
