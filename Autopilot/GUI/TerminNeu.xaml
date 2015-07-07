@@ -16,8 +16,8 @@
         <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" Margin="79,178,10,0" VerticalAlignment="Top" Height="112">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
-                <DataGridTextColumn Binding="{Binding ter_beginn}" Width="Auto" Header="von"/>
-                <DataGridTextColumn Binding="{Binding ter_ende}" Width="Auto" Header="bis"/>
+                <DataGridTextColumn Binding="{Binding ter_beginn, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="von"/>
+                <DataGridTextColumn Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="bis"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="215,137,0,0" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click"/>

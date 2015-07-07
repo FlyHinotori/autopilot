@@ -19,8 +19,8 @@
                 <DataGridTextColumn Binding="{Binding tart_id}" Width="Auto" Header="tart_id" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding f_p}" Width="Auto" Header="f_p" Visibility="Hidden"/>
                 <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
-                <DataGridTextColumn Binding="{Binding ter_beginn}" Width="Auto" Header="von"/>
-                <DataGridTextColumn Binding="{Binding ter_ende}" Width="Auto" Header="bis"/>
+                <DataGridTextColumn Binding="{Binding ter_beginn, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="von"/>
+                <DataGridTextColumn Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="bis"/>
                 <DataGridTextColumn Binding="{Binding ter_txt}" Width="Auto" Header="Termin"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -33,8 +33,8 @@
         <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" Margin="287,10,10,10" VerticalAlignment="Bottom" Height="224">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
-                <DataGridTextColumn Binding="{Binding ter_beginn}" Width="Auto" Header="von"/>
-                <DataGridTextColumn Binding="{Binding ter_ende}" Width="Auto" Header="bis"/>
+                <DataGridTextColumn Binding="{Binding ter_beginn, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="von"/>
+                <DataGridTextColumn Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="bis"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="170,0,0,67" VerticalAlignment="Bottom" Width="75" Click="bt_Speichern_Click"/>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace Autopilot.GUI
 {
     /// <summary>
-    /// Interaktionslogik für KalenderFrame.xaml
+    /// Interaktionslogik für Kalender.xaml
     /// </summary>
-    public partial class KalenderFrame : Page
+    public partial class Kalender : Page
     {
-        public KalenderFrame()
+        public Kalender()
         {
             InitializeComponent();
             Inhaltsanzeige.Navigate(new Uri("GUI/TerminUebersicht.xaml", UriKind.Relative));

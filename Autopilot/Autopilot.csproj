@@ -152,8 +152,8 @@
     <Compile Include="GUI\TerminNeu.xaml.cs">
       <DependentUpon>TerminNeu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\KalenderFrame.xaml.cs">
-      <DependentUpon>KalenderFrame.xaml</DependentUpon>
+    <Compile Include="GUI\Kalender.xaml.cs">
+      <DependentUpon>Kalender.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
@@ -287,7 +287,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="GUI\KalenderFrame.xaml">
+    <Page Include="GUI\Kalender.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
