@@ -38,6 +38,7 @@ namespace Autopilot.GUI
             CBZielFlughafen.ItemsSource = FillFlughafen();
             CBZwischenhalt.ItemsSource = FillFlughafen();
             CBCabinCrew.ItemsSource = FillStewardess();
+            CBPiloten.ItemsSource = FillPiloten();
         }
 
         #region context list fillers
@@ -83,6 +84,20 @@ namespace Autopilot.GUI
                     Stewardesses.Add(Person);
             }
             return Stewardesses;
+        }
+        private ObservableCollection<personal> FillPiloten()
+        {
+            position Copilot = FContent.position.Where(p => p.pos_bez == "Copilot").FirstOrDefault();
+            position Pilot = FContent.position.Where(p => p.pos_bez == "Pilot").FirstOrDefault();
+            ObservableCollection<personal> PersonList = FillPersonal();
+            ObservableCollection<personal> Piloten = new ObservableCollection<personal>();
+
+            foreach (personal Person in PersonList)
+            {
+                if ((Person.pos_id == Copilot.pos_id) || (Person.pos_id == Pilot.pos_id))
+                    Piloten.Add(Person);
+            }
+            return Piloten;
         }
         #endregion
 
@@ -162,6 +177,16 @@ namespace Autopilot.GUI
         private void btnRemoveCabinCrew_Click(object sender, RoutedEventArgs e)
         {
             FAuftrag.CabinCrew.Remove((personal)LBCabinCrew.SelectedItem);
+        }
+
+        private void btnAddPilot_Click(object sender, RoutedEventArgs e)
+        {
+            FAuftrag.PilotenCrew.Add((personal)CBPiloten.SelectedItem);
+        }
+
+        private void btnRemovePilot_Click(object sender, RoutedEventArgs e)
+        {
+            FAuftrag.PilotenCrew.Remove((personal)LBPiloten.SelectedItem);
         }
 
     }

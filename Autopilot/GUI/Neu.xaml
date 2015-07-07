@@ -59,6 +59,11 @@
                             <Button x:Name="btnAddCabinCrew" Content="+" HorizontalAlignment="Left" Margin="280,5,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddCabinCrew_Click"/>
                             <ListBox x:Name="LBCabinCrew" HorizontalAlignment="Left" Height="100" Margin="100,33,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding CabinCrew}" SelectedValuePath="per_id" DisplayMemberPath="per_vorname" />
                             <Button x:Name="btnRemoveCabinCrew" Content="-" HorizontalAlignment="Left" Margin="280,33,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveCabinCrew_Click"/>
+                            <ComboBox x:Name="CBPiloten" HorizontalAlignment="Left" Height="23" Margin="100,148,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="per_vorname"/>
+                            <Label Content="Piloten-Crew:" HorizontalAlignment="Left" Margin="0,148,0,0" VerticalAlignment="Top"/>
+                            <Button x:Name="btnAddPilot" Content="+" HorizontalAlignment="Left" Margin="280,148,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddPilot_Click"/>
+                            <ListBox x:Name="LBPiloten" HorizontalAlignment="Left" Height="100" Margin="100,176,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding PilotenCrew}" SelectedValuePath="per_id" DisplayMemberPath="per_vorname" />
+                            <Button x:Name="btnRemovePilot" Content="-" HorizontalAlignment="Left" Margin="280,176,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemovePilot_Click"/>                            
                         </Grid>
                     </GroupBox>
                 </Grid>
