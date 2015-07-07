@@ -26,6 +26,7 @@ namespace Autopilot.Models
         int FStartFlughafenID;
         int FZielFlughafenID;
         int FPassengerCount;
+        int FCharterDauer;
         ObservableCollection<flughafen> FZwischenHalte;
 
         #region properties
@@ -90,6 +91,15 @@ namespace Autopilot.Models
             {
                 FZwischenHalte = value;
                 NotifyPropertyChanged("ZwischenHalte");
+            }
+        }
+        public int CharterDauer
+        {
+            get { return FCharterDauer; }
+            set
+            {
+                FCharterDauer = value;
+                NotifyPropertyChanged("CharterDauer");
             }
         }
         #endregion

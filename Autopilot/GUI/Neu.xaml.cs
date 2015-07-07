@@ -118,7 +118,7 @@ namespace Autopilot.GUI
             AuftragSpeichern();
         }
 
-        private void TBPassengerCount_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void IntegerInputField_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //just handle integer input
             int i;
