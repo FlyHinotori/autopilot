@@ -27,7 +27,7 @@ namespace Autopilot
 
         private void Kalender_anzeigen(object sender, RoutedEventArgs e)
         {
-            Inhaltsanzeige.Navigate(new Uri("GUI/Kalender.xaml", UriKind.Relative));
+            Inhaltsanzeige.Navigate(new Uri("GUI/KalenderFrame.xaml", UriKind.Relative));
         }
 
         private void Einstellungen_anzeigen(object sender, RoutedEventArgs e)

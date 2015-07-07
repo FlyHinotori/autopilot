@@ -1,0 +1,27 @@
+﻿<Page x:Class="Autopilot.GUI.TerminNeu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="TerminNeu" Loaded="Page_Loaded">
+    <Grid Margin="0,0,0,0">
+        <Label Content="Terminart" HorizontalAlignment="Left" Margin="13,52,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cb_Terminart" HorizontalAlignment="Left" Margin="79,52,0,0" VerticalAlignment="Top" Width="211" SelectedValuePath="id" DisplayMemberPath="txt"/>
+        <Label Content="von" HorizontalAlignment="Left" Margin="45,76,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.159,0.487"/>
+        <Label Content="bis" HorizontalAlignment="Left" Margin="49,106,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,0.513"/>
+        <DatePicker x:Name="dp_BeginnAuswahl" HorizontalAlignment="Left" Margin="79,79,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged" Width="211"/>
+        <DatePicker x:Name="dp_EndeAuswahl" HorizontalAlignment="Left" Margin="79,108,0,0" VerticalAlignment="Top" SelectedDateChanged="dp_BeginnEndeAuswahl_SelectedDateChanged" Width="211"/>
+        <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" Margin="79,178,10,0" VerticalAlignment="Top" Height="112">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
+                <DataGridTextColumn Binding="{Binding ter_beginn}" Width="Auto" Header="von"/>
+                <DataGridTextColumn Binding="{Binding ter_ende}" Width="Auto" Header="bis"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="215,137,0,0" VerticalAlignment="Top" Width="75" Click="bt_Speichern_Click"/>
+        <ComboBox x:Name="cb_Ressource" HorizontalAlignment="Left" Margin="79,25,0,0" VerticalAlignment="Top" Width="211" SelectionChanged="cb_Ressource_SelectionChanged" SelectedValuePath="id" DisplayMemberPath="txt"/>
+        <Label Content="Ressource" HorizontalAlignment="Left" Margin="10,25,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.484,-0.372"/>
+    </Grid>
+</Page>
