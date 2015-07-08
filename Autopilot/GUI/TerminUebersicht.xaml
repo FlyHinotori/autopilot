@@ -21,7 +21,7 @@
                 <DataGridTextColumn Binding="{Binding tart_bez}" Width="Auto" Header="Terminart"/>
                 <DataGridTextColumn Binding="{Binding ter_beginn, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="von"/>
                 <DataGridTextColumn Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Width="Auto" Header="bis"/>
-                <DataGridTextColumn Binding="{Binding ter_txt}" Width="Auto" Header="Termin"/>
+                <DataGridTextColumn Binding="{Binding ter_txt}" Width="Auto" Header="Resource"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Terminart" HorizontalAlignment="Left" Margin="19,0,0,148" VerticalAlignment="Bottom"/>
