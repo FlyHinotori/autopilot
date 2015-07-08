@@ -37,21 +37,21 @@
             </TabItem>
             <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">
                 <Grid>
-                    <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ArtID, Mode=TwoWay}" SelectedValuePath="aart_id" DisplayMemberPath="aart_bez"/>
+                    <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ArtID, Mode=TwoWay}" SelectedValuePath="aart_id" DisplayMemberPath="aart_bez" SelectionChanged="CBAuftragsArt_SelectionChanged"/>
                     <Label Content="Auftragsart:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CBStartFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding StartFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name"/>
-                    <Label Content="Start:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,70,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name"/>
-                    <Label Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput"/>
-                    <Label Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CBZwischenhalt" HorizontalAlignment="Left" Height="23" Margin="120,126,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="flh_name"/>
-                    <Label Content="Zwischenziele:" HorizontalAlignment="Left" Margin="19,126,0,0" VerticalAlignment="Top"/>
-                    <Button x:Name="btnAddZwischenhalt" Content="+" HorizontalAlignment="Left" Margin="301,126,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddZwischenhalt_Click"/>
-                    <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,154,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" />
-                    <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,154,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" />
-                    <TextBox x:Name="TBCharterDauer" HorizontalAlignment="Left" Height="23" Margin="120,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding CharterDauer, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput"/>
-                    <Label Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,259,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBStartFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding StartFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LStartFlughafen" Content="Start:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,70,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LZielFlughafen" Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
+                    <Label x:Name="LPassengerCount" Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <ComboBox x:Name="CBZwischenhalt" HorizontalAlignment="Left" Height="23" Margin="120,126,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LZwischenhalt" Content="Zwischenziele:" HorizontalAlignment="Left" Margin="19,126,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <Button x:Name="btnAddZwischenhalt" Content="+" HorizontalAlignment="Left" Margin="301,126,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddZwischenhalt_Click" Visibility="Hidden"/>
+                    <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,154,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden" />
+                    <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,154,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" Visibility="Hidden" />
+                    <TextBox x:Name="TBCharterDauer" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding CharterDauer, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
+                    <Label x:Name="LCharterDauer" Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                     <GroupBox Header="Kundenwünsche" HorizontalAlignment="Left" Margin="340,5,0,0" Height="500" Width="350" VerticalAlignment="Top">
                         <Grid>
                             <ComboBox x:Name="CBCabinCrew" HorizontalAlignment="Left" Height="23" Margin="100,5,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="per_vorname"/>

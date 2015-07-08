@@ -195,5 +195,75 @@ namespace Autopilot.GUI
             FAuftrag.PilotenCrew.Remove((personal)LBPiloten.SelectedItem);
         }
 
+        private void CBAuftragsArt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            auftragsart NewAuftragsart = ((sender as ComboBox).SelectedItem as auftragsart);
+            if (NewAuftragsart.aart_bez == "Einzelflug")
+                SetEinzelflugView();
+            else if (NewAuftragsart.aart_bez == "Flug mit Zwischenaufenthalt")
+                SetZwischenhaltView();
+            else if (NewAuftragsart.aart_bez == "Zeitcharter")
+                SetCharterView();
+            else
+                throw new Exception("Auftragsart nicht bekannt!");
+        }
+
+        // Summary:
+        //     Shows the CharterDauer controls
+        private void SetCharterView()
+        {
+            LStartFlughafen.Visibility = Visibility.Hidden;
+            CBStartFlughafen.Visibility = Visibility.Hidden;
+            LZielFlughafen.Visibility = Visibility.Hidden;
+            CBZielFlughafen.Visibility = Visibility.Hidden;
+            LPassengerCount.Visibility = Visibility.Hidden;
+            TBPassengerCount.Visibility = Visibility.Hidden;
+            LZwischenhalt.Visibility = Visibility.Hidden;
+            CBZwischenhalt.Visibility = Visibility.Hidden;
+            btnAddZwischenhalt.Visibility = Visibility.Hidden;
+            LBZwischenhalte.Visibility = Visibility.Hidden;
+            btnRemoveZwischenhalt.Visibility = Visibility.Hidden;
+            LCharterDauer.Visibility = Visibility.Visible;
+            TBCharterDauer.Visibility = Visibility.Visible;
+        }
+
+        // Summary:
+        //     Shows the Startflughafen, Zielflughafen, Zwischenhalte and PassengerCount controls
+        private void SetZwischenhaltView()
+        {
+            LStartFlughafen.Visibility = Visibility.Visible;
+            CBStartFlughafen.Visibility = Visibility.Visible;
+            LZielFlughafen.Visibility = Visibility.Visible;
+            CBZielFlughafen.Visibility = Visibility.Visible;
+            LPassengerCount.Visibility = Visibility.Visible;
+            TBPassengerCount.Visibility = Visibility.Visible;
+            LZwischenhalt.Visibility = Visibility.Visible;
+            CBZwischenhalt.Visibility = Visibility.Visible;
+            btnAddZwischenhalt.Visibility = Visibility.Visible;
+            LBZwischenhalte.Visibility = Visibility.Visible;
+            btnRemoveZwischenhalt.Visibility = Visibility.Visible;
+            LCharterDauer.Visibility = Visibility.Hidden;
+            TBCharterDauer.Visibility = Visibility.Hidden;
+        }
+
+        // Summary:
+        //     Shows the Startflughafen, Zielflughafen and PassengerCount controls
+        private void SetEinzelflugView()
+        {
+            LStartFlughafen.Visibility = Visibility.Visible;
+            CBStartFlughafen.Visibility = Visibility.Visible;
+            LZielFlughafen.Visibility = Visibility.Visible;
+            CBZielFlughafen.Visibility = Visibility.Visible;
+            LPassengerCount.Visibility = Visibility.Visible;
+            TBPassengerCount.Visibility = Visibility.Visible;
+            LZwischenhalt.Visibility = Visibility.Hidden;
+            CBZwischenhalt.Visibility = Visibility.Hidden;
+            btnAddZwischenhalt.Visibility = Visibility.Hidden;
+            LBZwischenhalte.Visibility = Visibility.Hidden;
+            btnRemoveZwischenhalt.Visibility = Visibility.Hidden;
+            LCharterDauer.Visibility = Visibility.Hidden;
+            TBCharterDauer.Visibility = Visibility.Hidden;
+        }
+
     }
 }
