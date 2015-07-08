@@ -26,11 +26,9 @@
         <TabControl x:Name="tc_Auftrag" Margin="10,245,10,10" >
             <TabItem x:Name="ti_Details" Header="Details">
                 <Grid Background="#FFE5E5E5">
-                    <Label x:Name="lb_vom" Content="vom:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lb_bis" Content="bis:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lb_Charteroption" Content="Charteroption:" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lb_Abflug" Content="Abflug:" HorizontalAlignment="Left" Margin="87,36,0,0" VerticalAlignment="Top"/>
-                    <Label x:Name="lb_Landung" Content="Landung:" HorizontalAlignment="Left" Margin="87,67,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_Preis" Content="Preis:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_Zusatzkosten" Content="Zusatzkosten:" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_faelligam" Content="fällig am:" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
             <TabItem x:Name="ti_Kontouebersicht" Header="Kontenübersicht">

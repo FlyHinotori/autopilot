@@ -82,11 +82,33 @@ namespace Autopilot.GUI
             {
                 DataRowView row = DataGridUebersicht.SelectedItems as DataRowView;
                 auf_id = Convert.ToInt32(((DataRowView)DataGridUebersicht.SelectedItem).Row["auf_id"].ToString());
+                fuelleDetails();
                 fuelleDataGridKonto();
                 ti_Details.IsEnabled = true;
                 ti_Kontouebersicht.IsEnabled = true;
                 ti_Buchen.IsEnabled = true;
             }  
+        }
+
+        private void fuelleDetails()
+        {
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+            conn.Open();
+            
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "SELECT convert(decimal(8,2),auf_preis), convert(decimal(8,2),auf_zusatzkosten), CONVERT(char, auf_faellig_am, 104) FROM auftrag WHERE auf_id = " + auf_id;
+            cmd.CommandType = CommandType.Text;
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                lb_Preis.Content = "Preis: €" + Convert.ToString(dr.GetValue(0));
+                lb_Zusatzkosten.Content = "Zusatzkosten: €" + Convert.ToString(dr.GetValue(1));
+                lb_faelligam.Content = "fällig am: " + Convert.ToString(dr.GetValue(2));
+            }
+            
+            conn.Close();
         }
 
         private void fuelleDataGridKonto()
