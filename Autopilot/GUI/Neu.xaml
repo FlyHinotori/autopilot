@@ -37,21 +37,25 @@
             </TabItem>
             <TabItem x:Name="TabRoute" Header="Route" Visibility="Hidden">
                 <Grid>
-                    <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ArtID, Mode=TwoWay}" SelectedValuePath="aart_id" DisplayMemberPath="aart_bez" SelectionChanged="CBAuftragsArt_SelectionChanged"/>
-                    <Label Content="Auftragsart:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="CBStartFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding StartFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
-                    <Label x:Name="LStartFlughafen" Content="Start:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-                    <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,70,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
-                    <Label x:Name="LZielFlughafen" Content="Ziel:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
-                    <Label x:Name="LPassengerCount" Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-                    <ComboBox x:Name="CBZwischenhalt" HorizontalAlignment="Left" Height="23" Margin="120,126,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="flh_name" Visibility="Hidden"/>
-                    <Label x:Name="LZwischenhalt" Content="Zwischenziele:" HorizontalAlignment="Left" Margin="19,126,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
-                    <Button x:Name="btnAddZwischenhalt" Content="+" HorizontalAlignment="Left" Margin="301,126,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddZwischenhalt_Click" Visibility="Hidden"/>
-                    <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,154,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden" />
-                    <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,154,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" Visibility="Hidden" />
-                    <TextBox x:Name="TBCharterDauer" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding CharterDauer, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
-                    <Label x:Name="LCharterDauer" Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <DatePicker x:Name="DPStartDate" HorizontalAlignment="Left" Height="23" Margin="120,14,0,0" VerticalAlignment="Top" Width="170" SelectedDate="{Binding StartDate, Mode=TwoWay}"/>
+                    <Label Content="Von:" HorizontalAlignment="Left" Margin="19,14,0,0" VerticalAlignment="Top" />
+                    <DatePicker x:Name="DPEndDate" HorizontalAlignment="Left" Height="23" Margin="120,42,0,0" VerticalAlignment="Top" Width="170" SelectedDate="{Binding EndDate, Mode=TwoWay}"/>
+                    <Label Content="Bis:" HorizontalAlignment="Left" Margin="19,42,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBAuftragsArt" HorizontalAlignment="Left" Height="23" Margin="120,70,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ArtID, Mode=TwoWay}" SelectedValuePath="aart_id" DisplayMemberPath="aart_bez" SelectionChanged="CBAuftragsArt_SelectionChanged"/>
+                    <Label Content="Auftragsart:" HorizontalAlignment="Left" Margin="19,70,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="CBStartFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding StartFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LStartFlughafen" Content="Start:" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <ComboBox x:Name="CBZielFlughafen" HorizontalAlignment="Left" Height="23" Margin="120,126,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" SelectedValue="{Binding ZielFlughafenID, Mode=TwoWay}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LZielFlughafen" Content="Ziel:" HorizontalAlignment="Left" Margin="19,126,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <TextBox x:Name="TBPassengerCount" HorizontalAlignment="Left" Height="23" Margin="120,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding PassengerCount, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
+                    <Label x:Name="LPassengerCount" Content="Passagierzahl:" HorizontalAlignment="Left" Margin="19,154,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <ComboBox x:Name="CBZwischenhalt" HorizontalAlignment="Left" Height="23" Margin="120,182,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="flh_name" Visibility="Hidden"/>
+                    <Label x:Name="LZwischenhalt" Content="Zwischenziele:" HorizontalAlignment="Left" Margin="19,182,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
+                    <Button x:Name="btnAddZwischenhalt" Content="+" HorizontalAlignment="Left" Margin="301,182,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnAddZwischenhalt_Click" Visibility="Hidden"/>
+                    <ListBox x:Name="LBZwischenhalte" HorizontalAlignment="Left" Height="100" Margin="120,210,0,0" VerticalAlignment="Top" Width="170" ItemsSource="{Binding ZwischenHalte}" SelectedValuePath="flh_id" DisplayMemberPath="flh_name" Visibility="Hidden" />
+                    <Button x:Name="btnRemoveZwischenhalt" Content="-" HorizontalAlignment="Left" Margin="301,210,0,0" VerticalAlignment="Top" Width="23" Height="23" Click="btnRemoveZwischenhalt_Click" Visibility="Hidden" />
+                    <TextBox x:Name="TBCharterDauer" HorizontalAlignment="Left" Height="23" Margin="120,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Text="{Binding CharterDauer, Mode=TwoWay}" PreviewTextInput="IntegerInputField_PreviewTextInput" Visibility="Hidden"/>
+                    <Label x:Name="LCharterDauer" Content="Dauer (h):" HorizontalAlignment="Left" Margin="19,98,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
                     <GroupBox Header="Kundenwünsche" HorizontalAlignment="Left" Margin="340,5,0,0" Height="450" Width="350" VerticalAlignment="Top">
                         <Grid>
                             <ComboBox x:Name="CBCabinCrew" HorizontalAlignment="Left" Height="23" Margin="100,5,0,0"  VerticalAlignment="Top" Width="170" ItemsSource="{Binding}" DisplayMemberPath="per_vorname"/>
@@ -71,9 +75,6 @@
                         </Grid>
                     </GroupBox>
                 </Grid>
-            </TabItem>
-            <TabItem x:Name="TabZeit" Header="Zeit" Visibility="Hidden">
-                <Grid/>
             </TabItem>
         </TabControl>
         <Button x:Name="btnWeiter" Content="Weiter" HorizontalAlignment="Right" Margin="215,0,5,10" VerticalAlignment="Bottom" Width="75" Height="46" Click="Button_Click"/>

@@ -19,6 +19,8 @@ namespace Autopilot.Models
             FCabinCrew = new ObservableCollection<personal>();
             FPilotenCrew = new ObservableCollection<personal>();
             FStatus = AuftragStatus.Aufnahme;
+            FStartDate = DateTime.Now.Date;
+            FEndDate = DateTime.Now.Date;
         }
 
         //members
@@ -34,6 +36,8 @@ namespace Autopilot.Models
         ObservableCollection<personal> FPilotenCrew;
         int FFlugzeugTypID;
         string FWuensche;
+        DateTime FStartDate;
+        DateTime FEndDate;
 
         #region properties
         public KundeModel Kunde
@@ -142,6 +146,24 @@ namespace Autopilot.Models
             {
                 FWuensche = value;
                 NotifyPropertyChanged("Wuensche");
+            }
+        }
+        public DateTime StartDate
+        {
+            get { return FStartDate; }
+            set
+            {
+                FStartDate = value;
+                NotifyPropertyChanged("StartDate");
+            }
+        }
+        public DateTime EndDate
+        {
+            get { return FEndDate; }
+            set
+            {
+                FEndDate = value;
+                NotifyPropertyChanged("EndDate");
             }
         }
         #endregion
