@@ -6,12 +6,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Rechnungen">
-
-    <ListBox> <!-- Für diese Liste sollten die Daten direkt aus der Datenbank kommen, folglich fehlt hier eine DataSource -->
-        <ListBox.ItemsPanel>
-            <ItemsPanelTemplate>
-                <!-- Hier muss noch das Aussehen der Daten festgelegt werden -->
-            </ItemsPanelTemplate>
-        </ListBox.ItemsPanel>
-    </ListBox>
+    <DockPanel>
+        <ScrollViewer DockPanel.Dock="Right" HorizontalAlignment="Right">
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
+                <Button x:Name="bt_UEbersicht" Content="Übersicht" Margin="2" Click="bt_UEbersicht_Click"/>
+                <Button x:Name="bt_Mahnlauf" Content="Mahnlauf" Margin="2" Click="bt_Mahnlauf_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+    </DockPanel>
 </Page>

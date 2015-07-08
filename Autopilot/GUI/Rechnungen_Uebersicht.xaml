@@ -1,0 +1,37 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.Rechnungen_Uebersicht" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	  Title="Rechnungen_Uebersicht" Loaded="Page_Loaded">
+    <Grid>
+        <DataGrid x:Name="DataGridUebersicht" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,38,10,152" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="auf_idColumn" Binding="{Binding auf_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="auf_id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="sta_id" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TabControl x:Name="tc_Auftrag" HorizontalAlignment="Left" Height="137" Margin="10,153,0,0" VerticalAlignment="Top" Width="280">
+            <TabItem x:Name="ti_Details" Header="Details">
+                <Grid Background="#FFE5E5E5">
+                    <Label x:Name="lb_vom" Content="vom:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_bis" Content="bis:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_Charteroption" Content="Charteroption:" HorizontalAlignment="Left" Margin="78,10,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_Abflug" Content="Abflug:" HorizontalAlignment="Left" Margin="87,36,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="lb_Landung" Content="Landung:" HorizontalAlignment="Left" Margin="87,67,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ti_Kontouebersicht" Header="Kontenübersicht">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem x:Name="ti_Buchen" Header="Buchen">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+        <TextBox x:Name="tb_FilterUebersicht" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" TextChanged="tb_FilterUebersicht_TextChanged"/>
+    </Grid>
+
+</Page>
