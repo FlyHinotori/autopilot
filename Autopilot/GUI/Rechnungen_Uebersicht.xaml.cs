@@ -44,7 +44,7 @@ namespace Autopilot.GUI
             SqlConnection conn = new SqlConnection(DBconnStrg);
 
             //Aufträge laden
-            string SQLcmd = "SELECT auftrag.auf_id, status.sta_id, auftragsart.aart_id, kunde.knd_id, sta_bez, aart_bez, knd_name + \', \' + knd_vorname FROM auftrag, status, auftragsart, kunde WHERE auftrag.sta_id = status.sta_id AND auftrag.aart_id = auftragsart.aart_id AND auftrag.knd_id = kunde.knd_id";
+            string SQLcmd = "SELECT auftrag.auf_id, status.sta_id, auftragsart.aart_id, kunde.knd_id, sta_bez, aart_bez, ter_beginn, ter_ende, knd_name + \', \' + knd_vorname as kunde_bez, (select flh_name + \'(\' + flh_stadt + \')\' as abflug from flughafen where flughafen.flh_id = auftrag.flh_id_beginn) as abflughafen, (select flh_name + '(' + flh_stadt + ')' as zielflug from flughafen where flughafen.flh_id = auftrag.flh_id_ende) as zielflughafen FROM auftrag, status, auftragsart, kunde, termin_auftrag, termin WHERE auftrag.sta_id = status.sta_id AND auftrag.aart_id = auftragsart.aart_id AND auftrag.knd_id = kunde.knd_id AND auftrag.auf_id = termin_auftrag.auf_id AND termin_auftrag.ter_id = termin.ter_id";
             SqlCommand cmd = new SqlCommand(SQLcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(datatableUebersicht);
@@ -58,10 +58,15 @@ namespace Autopilot.GUI
             {
                 string suchbegriff = Convert.ToString(tb_FilterUebersicht.Text);
 
-                if (suchbegriff != null)
+                if (suchbegriff != null && suchbegriff != "")
                 {
                     var dv = datatableUebersicht.DefaultView;
-                    //dv.RowFilter = "auf_id LIKE \'%" + suchbegriff + "%\'";
+                    dv.RowFilter = "auf_id = \'" + suchbegriff + "\' OR kunde_bez like \'%" + suchbegriff + "%\' OR abflughafen like \'%" + suchbegriff + "%\' OR zielflughafen like \'%" + suchbegriff + "%\'";
+                }
+                else
+                {
+                    var dv = datatableUebersicht.DefaultView;
+                    dv.RowFilter = "kunde_bez like \'%\'";
                 }
             }
         }
