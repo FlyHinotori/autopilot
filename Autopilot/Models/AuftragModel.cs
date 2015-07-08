@@ -33,6 +33,7 @@ namespace Autopilot.Models
         ObservableCollection<personal> FCabinCrew;
         ObservableCollection<personal> FPilotenCrew;
         int FFlugzeugTypID;
+        string FWuensche;
 
         #region properties
         public KundeModel Kunde
@@ -132,6 +133,15 @@ namespace Autopilot.Models
             {
                 FFlugzeugTypID = value;
                 NotifyPropertyChanged("FlugzeugTypID");
+            }
+        }
+        public string Wuensche
+        {
+            get { return FWuensche; }
+            set
+            {
+                FWuensche = value;
+                NotifyPropertyChanged("Wuensche");
             }
         }
         #endregion
