@@ -149,6 +149,9 @@
     <Compile Include="flugzeugtyp.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Rechnungen_Mahnlauf.xaml.cs">
+      <DependentUpon>Rechnungen_Mahnlauf.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Rechnungen_Uebersicht.xaml.cs">
       <DependentUpon>Rechnungen_Uebersicht.xaml</DependentUpon>
     </Compile>
@@ -288,6 +291,10 @@
     <Page Include="GUI\Einstellungen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\Rechnungen_Mahnlauf.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Rechnungen_Uebersicht.xaml">
       <Generator>MSBuild:Compile</Generator>

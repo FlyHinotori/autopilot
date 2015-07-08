@@ -24,7 +24,7 @@ namespace Autopilot.GUI
     /// </summary>
     public partial class Rechnungen_Uebersicht : Page
     {
-        AutopilotEntities content = new AutopilotEntities();
+        //AutopilotEntities content = new AutopilotEntities();
         string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
         DataTable datatableUebersicht = new DataTable("Uebersicht");
         DataTable datatableKonto = new DataTable("Konto");
