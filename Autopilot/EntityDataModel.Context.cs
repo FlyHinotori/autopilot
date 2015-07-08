@@ -56,5 +56,6 @@ namespace Autopilot
         public virtual DbSet<zwischenlandung> zwischenlandung { get; set; }
         public virtual DbSet<flugzeugliste> flugzeugliste { get; set; }
         public virtual DbSet<personalliste> personalliste { get; set; }
+        public virtual DbSet<termin_auftrag> termin_auftrag { get; set; }
     }
 }

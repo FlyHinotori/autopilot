@@ -252,6 +252,9 @@
     <Compile Include="terminart.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="termin_auftrag.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="termin_flugzeug.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
