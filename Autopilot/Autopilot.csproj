@@ -149,6 +149,12 @@
     <Compile Include="flugzeugtyp.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="GUI\TerminNeu.xaml.cs">
+      <DependentUpon>TerminNeu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Kalender.xaml.cs">
+      <DependentUpon>Kalender.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Stammdaten.xaml.cs">
       <DependentUpon>Stammdaten.xaml</DependentUpon>
     </Compile>
@@ -277,6 +283,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUI\TerminNeu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Kalender.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GUI\Stammdaten.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -285,7 +299,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUI\Kalender.xaml">
+    <Page Include="GUI\TerminUebersicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -396,8 +410,8 @@
     <Compile Include="GUI\Hilfe.xaml.cs">
       <DependentUpon>Hilfe.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUI\Kalender.xaml.cs">
-      <DependentUpon>Kalender.xaml</DependentUpon>
+    <Compile Include="GUI\TerminUebersicht.xaml.cs">
+      <DependentUpon>TerminUebersicht.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUI\Neu.xaml.cs">
       <DependentUpon>Neu.xaml</DependentUpon>

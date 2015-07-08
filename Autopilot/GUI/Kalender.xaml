@@ -6,8 +6,13 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="Kalender">
-
-    <Calendar>
-        
-    </Calendar>
+    <DockPanel>
+        <ScrollViewer DockPanel.Dock="Right" HorizontalAlignment="Right">
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
+                <Button x:Name="bt_Terminuebersicht" Content="Terminübersicht" Margin="2" Click="bt_Terminuebersicht_Click"/>
+                <Button x:Name="bt_NeuerTermin" Content="Neuer Termin" Margin="2" Click="bt_NeuerTermin_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+    </DockPanel>
 </Page>
