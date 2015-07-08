@@ -2,19 +2,32 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Autopilot" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="IconButton" TargetType="Button">
+            <Setter Property="FontFamily" Value="/Autopilot;component/Resources/#FontAwesome" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="Foreground">
+                <Setter.Value>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.MenuTextColorKey}}"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{x:Null}" />
+            <Setter Property="BorderBrush" Value="{x:Null}" />
+            <Setter Property="Margin" Value="5,5,5,5" />
+        </Style>
+    </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-
-            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf059;" Click="Hilfe_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf059;" Click="Hilfe_anzeigen" Style="{StaticResource IconButton}" />
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
-            <Button Content="&#xf055;" Click="Neu_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf01c;" Click="Aufträge_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf153;" Click="Rechnungen_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf073;" Click="Kalender_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf0c0;" Click="Kunden_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
-            <Button Content="&#xf1c0;" Click="Stammdaten_anzeigen" FontFamily="/Autopilot;component/Resources/#FontAwesome" FontSize="36" Background="{x:Null}" BorderBrush="{x:Null}" Margin="0,0,0,10"/>
+            <Button Content="&#xf055;" Click="Neu_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf01c;" Click="Aufträge_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf153;" Click="Rechnungen_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf073;" Click="Kalender_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf0c0;" Click="Kunden_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf1c0;" Click="Stammdaten_anzeigen" Style="{StaticResource IconButton}" />
         </StackPanel>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Right" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>
