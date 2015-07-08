@@ -23,6 +23,17 @@ namespace Autopilot.GUI
         public Kalender()
         {
             InitializeComponent();
+            Inhaltsanzeige.Navigate(new Uri("GUI/TerminUebersicht.xaml", UriKind.Relative));
+        }
+
+        private void bt_NeuerTermin_Click(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/TerminNeu.xaml", UriKind.Relative));
+        }
+
+        private void bt_Terminuebersicht_Click(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/TerminUebersicht.xaml", UriKind.Relative));
         }
     }
 }
