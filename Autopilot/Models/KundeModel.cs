@@ -16,6 +16,7 @@ namespace Autopilot.Models
         }
 
         //members of table "kunde"
+        int FID;
         string FName = String.Empty;
         string FVorname = String.Empty;
         string FStrasse = String.Empty;
@@ -129,6 +130,15 @@ namespace Autopilot.Models
             {
                 FTitel = value;
                 NotifyPropertyChanged("Titel");
+            }
+        }
+        public int ID
+        {
+            get { return FID; }
+            set
+            {
+                FID = value;
+                NotifyPropertyChanged("ID");
             }
         }
         #endregion
@@ -250,6 +260,7 @@ namespace Autopilot.Models
             }
             DerKunde.kng_id = GetKundengruppeID();
             FContent.SaveChanges();
+            FID = DerKunde.knd_id;
         }
     }
 }
