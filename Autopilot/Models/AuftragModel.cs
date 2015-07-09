@@ -28,6 +28,7 @@ namespace Autopilot.Models
         AutopilotEntities FContent;
         KundeModel FKunde;
         AuftragStatus FStatus;
+        int FID;
         int FArtID;
         int FStartFlughafenID;
         int FZielFlughafenID;
@@ -42,6 +43,15 @@ namespace Autopilot.Models
         DateTime FEndDate;
 
         #region properties
+        public int ID
+        {
+            get { return FID; }
+            set
+            {
+                FID = value;
+                NotifyPropertyChanged("ID");
+            }
+        }
         public KundeModel Kunde
         {
             get { return FKunde; }
@@ -174,7 +184,7 @@ namespace Autopilot.Models
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName = "")
         {
-            if ( PropertyChanged != null )
+            if (PropertyChanged != null)
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -220,12 +230,36 @@ namespace Autopilot.Models
             DerAuftrag.auf_dauer_h = FCharterDauer;
             DerAuftrag.auf_wuensche = FWuensche;
             FContent.auftrag.Add(DerAuftrag);
-            FContent.SaveChanges();            
+            FContent.SaveChanges();
+            ID = DerAuftrag.auf_id;
+        }
+        private void SaveTermin()
+        {
+            //Fetch TerminartID
+            terminart Terminart = FContent.terminart.Where(ta => ta.tart_bez == "Charter").FirstOrDefault();
+            if (Terminart == null)
+                throw new AuftragDatenFehlerhaftException("Terminart Charter nicht gefunden");
+
+            //Save general Termin
+            Autopilot.termin Termin = new Autopilot.termin();
+            Termin.tart_id = Terminart.tart_id;
+            Termin.ter_beginn = FStartDate;
+            Termin.ter_ende = FEndDate;
+            FContent.termin.Add(Termin);
+            FContent.SaveChanges();
+
+            //Link Auftrag with Termin
+            Autopilot.termin_auftrag AuftragTermin = new Autopilot.termin_auftrag();
+            AuftragTermin.auf_id = FID;
+            AuftragTermin.ter_id = Termin.ter_id;
+            FContent.termin_auftrag.Add(AuftragTermin);
+            FContent.SaveChanges();
         }
         public void Save()
         {
             FKunde.Save();
             SaveAuftrag();
+            SaveTermin();
         }
 
     }
