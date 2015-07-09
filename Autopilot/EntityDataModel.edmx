@@ -319,6 +319,26 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           <Property Name="flz_kennzeichen" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.Kundenliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="Kundenliste">
+          <Key>
+            <PropertyRef Name="knd_id" />
+            
+            <PropertyRef Name="anr_id" />
+            <PropertyRef Name="tit_id" />
+          </Key>
+          <Property Name="knd_id" Type="int" Nullable="false" />
+          <Property Name="kng_id" Type="int" Nullable="false" />
+          <Property Name="kng_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="anr_id" Type="int" Nullable="false" />
+          <Property Name="anr_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="tit_id" Type="int" Nullable="false" />
+          <Property Name="tit_bez" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="knd_vorname" Type="nvarchar" MaxLength="100" />
+          <Property Name="anschrift" Type="nvarchar" MaxLength="303" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
 Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.personalliste' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="personalliste">
           <Key>
@@ -419,6 +439,20 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
     [flugzeugliste].[ftyp_bez] AS [ftyp_bez], 
     [flugzeugliste].[flz_kennzeichen] AS [flz_kennzeichen]
     FROM [dbo].[flugzeugliste] AS [flugzeugliste]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Kundenliste" EntityType="Self.Kundenliste" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Kundenliste].[knd_id] AS [knd_id], 
+    [Kundenliste].[kng_id] AS [kng_id], 
+    [Kundenliste].[kng_bez] AS [kng_bez], 
+    [Kundenliste].[anr_id] AS [anr_id], 
+    [Kundenliste].[anr_bez] AS [anr_bez], 
+    [Kundenliste].[tit_id] AS [tit_id], 
+    [Kundenliste].[tit_bez] AS [tit_bez], 
+    [Kundenliste].[knd_name] AS [knd_name], 
+    [Kundenliste].[knd_vorname] AS [knd_vorname], 
+    [Kundenliste].[anschrift] AS [anschrift]
+    FROM [dbo].[Kundenliste] AS [Kundenliste]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="personalliste" EntityType="Self.personalliste" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -744,6 +778,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           <EntitySet Name="flugzeugliste" EntityType="EntityDataModel.flugzeugliste" />
           <EntitySet Name="personalliste" EntityType="EntityDataModel.personalliste" />
           <EntitySet Name="termin_auftrag" EntityType="EntityDataModel.termin_auftrag" />
+          <EntitySet Name="Kundenliste" EntityType="EntityDataModel.Kundenliste" />
         </EntityContainer>
         <EntityType Name="flugzeugliste">
           <Key>
@@ -782,6 +817,23 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           </Key>
           <Property Name="ter_id" Type="Int32" Nullable="false" />
           <Property Name="auf_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kundenliste">
+          <Key>
+            <PropertyRef Name="knd_id" />
+            <PropertyRef Name="anr_id" />
+            <PropertyRef Name="tit_id" />
+          </Key>
+          <Property Name="knd_id" Type="Int32" Nullable="false" />
+          <Property Name="kng_id" Type="Int32" Nullable="false" />
+          <Property Name="kng_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="anr_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="tit_bez" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="knd_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="anschrift" Type="String" MaxLength="303" FixedLength="false" Unicode="true" />
+          <Property Name="anr_id" Type="Int32" Nullable="false" />
+          <Property Name="tit_id" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1117,6 +1169,22 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
               <MappingFragment StoreEntitySet="termin_auftrag">
                 <ScalarProperty Name="auf_id" ColumnName="auf_id" />
                 <ScalarProperty Name="ter_id" ColumnName="ter_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kundenliste">
+            <EntityTypeMapping TypeName="EntityDataModel.Kundenliste">
+              <MappingFragment StoreEntitySet="Kundenliste">
+                <ScalarProperty Name="tit_id" ColumnName="tit_id" />
+                <ScalarProperty Name="anr_id" ColumnName="anr_id" />
+                <ScalarProperty Name="anschrift" ColumnName="anschrift" />
+                <ScalarProperty Name="knd_vorname" ColumnName="knd_vorname" />
+                <ScalarProperty Name="knd_name" ColumnName="knd_name" />
+                <ScalarProperty Name="tit_bez" ColumnName="tit_bez" />
+                <ScalarProperty Name="anr_bez" ColumnName="anr_bez" />
+                <ScalarProperty Name="kng_bez" ColumnName="kng_bez" />
+                <ScalarProperty Name="kng_id" ColumnName="kng_id" />
+                <ScalarProperty Name="knd_id" ColumnName="knd_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

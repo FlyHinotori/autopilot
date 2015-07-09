@@ -1,0 +1,65 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:Autopilot="clr-namespace:Autopilot" x:Class="Autopilot.GUI.KundenUebersicht" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="550"
+	  Title="KundenUebersicht" Loaded="Page_Loaded">
+    <Grid>
+        <DataGrid x:Name="DataGridKunden" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,43,10,200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGridKunden_SelectionChanged" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="knd_idColumn" Binding="{Binding knd_id}" Header="KndNr" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kng_idColumn" Binding="{Binding kng_id}" Header="kng_id" Width="Auto" Visibility="Hidden"/>
+                <DataGridTextColumn x:Name="kng_bezColumn" Binding="{Binding kng_bez}" Header="Kundengruppe" Width="Auto"/>
+                <DataGridTextColumn x:Name="anr_bezColumn" Binding="{Binding anr_bez}" Header="Anrede" Width="Auto"/>
+                <DataGridTextColumn x:Name="tit_bezColumn" Binding="{Binding tit_bez}" Header="Titel" Width="Auto"/>
+                <DataGridTextColumn x:Name="knd_nameColumn" Binding="{Binding knd_name}" Header="Name" Width="Auto"/>
+                <DataGridTextColumn x:Name="knd_vornameColumn" Binding="{Binding knd_vorname}" Header="Vorname" Width="Auto"/>
+                <DataGridTextColumn x:Name="anschriftColumn" Binding="{Binding anschrift}" Header="Anschrift" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="bt_Speichern" Content="Speichern" HorizontalAlignment="Left" Margin="422,0,0,23" VerticalAlignment="Bottom" Width="97" Click="bt_Speichern_Click"/>
+        <Label Content="Anrede" HorizontalAlignment="Left" Margin="53,0,0,146" VerticalAlignment="Bottom" RenderTransformOrigin="1.36,0.56"/>
+        <ComboBox x:Name="cb_Anrede" ItemsSource="{Binding}" SelectedValuePath="anr_id" DisplayMemberPath="anr_bez" HorizontalAlignment="Left" Margin="106,0,0,146" VerticalAlignment="Bottom" Width="120"/>
+        <Label Content="Kundengruppe" HorizontalAlignment="Left" Margin="12,0,0,169" VerticalAlignment="Bottom" RenderTransformOrigin="1.089,0.981"/>
+        <ComboBox x:Name="cb_Kundengruppe" ItemsSource="{Binding}" SelectedValuePath="kng_id" DisplayMemberPath="kng_bez" HorizontalAlignment="Left" Margin="106,0,0,173" VerticalAlignment="Bottom" Width="120"/>
+        <ComboBox x:Name="cb_Titel" ItemsSource="{Binding}" SelectedValuePath="tit_id" DisplayMemberPath="tit_bez" HorizontalAlignment="Left" Margin="106,0,0,119" VerticalAlignment="Bottom" Width="120"/>
+        <Label Content="Titel" HorizontalAlignment="Left" Margin="69,0,0,115" VerticalAlignment="Bottom"/>
+        <Label Content="Name" HorizontalAlignment="Left" Margin="286,0,0,169" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <TextBox x:Name="tb_Name" HorizontalAlignment="Left" Height="23" Margin="333,0,0,172" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="186"/>
+        <TextBox x:Name="tb_Vorname" HorizontalAlignment="Left" Height="23" Margin="333,0,0,144" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="186"/>
+        <TextBox x:Name="tb_Strasse" HorizontalAlignment="Left" Height="23" Margin="334,0,0,116" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="186"/>
+        <TextBox x:Name="tb_PLZ" HorizontalAlignment="Left" Height="23" Margin="333,0,0,88" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="65" RenderTransformOrigin="0.513,0.812"/>
+        <TextBox x:Name="tb_Ort" HorizontalAlignment="Left" Height="23" Margin="409,0,0,88" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="110"/>
+        <TextBox x:Name="tb_Land" HorizontalAlignment="Left" Height="23" Margin="334,0,0,60" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="186"/>
+        <TextBox x:Name="tb_Mail" HorizontalAlignment="Left" Height="23" Margin="106,0,0,91" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <TextBox x:Name="tb_Telefon" HorizontalAlignment="Left" Height="23" Margin="106,0,0,63" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="120"/>
+        <Label Content="Vorname" HorizontalAlignment="Left" Margin="270,0,0,141" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="Straße / HausNr." HorizontalAlignment="Left" Margin="231,0,0,113" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="PLZ / Ort" HorizontalAlignment="Left" Margin="270,0,0,85" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="Land" HorizontalAlignment="Left" Margin="292,0,0,58" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="Mailadresse" HorizontalAlignment="Left" Margin="29,0,0,88" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="Telefon" HorizontalAlignment="Left" Margin="52,0,0,60" VerticalAlignment="Bottom" RenderTransformOrigin="-0.158,0.513"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,174" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,115" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="393,0,0,90" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
+        <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,88" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
+        <TextBox x:Name="tb_Filter" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="tb_Filter_TextChanged" GotFocus="tb_Filter_GotFocus"/>
+        <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" Margin="525,0,10,58" VerticalAlignment="Bottom" Height="137">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="auf_faellig_amColumn" Binding="{Binding auf_faellig_am,StringFormat={}\{0:dd.MM.yyyy\}}" Header="fällig am" Width="Auto"/>
+                <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
+                <DataGridTextColumn x:Name="mahnstufeColumn" Binding="{Binding mahnstufe}" Header="Mahnstufe" Width="Auto"/>
+                <DataGridTextColumn x:Name="saldoColumn" Binding="{Binding saldo, StringFormat={}{0:c},ConverterCulture=de-DE}" Header="Saldo" Width="Auto"/>
+                <DataGridTextColumn x:Name="aart_bezColumn" Binding="{Binding aart_bez}" Header="Auftragsart" Width="Auto"/>
+                <DataGridTextColumn x:Name="ter_beginnColumn" Binding="{Binding ter_beginn,StringFormat={}\{0:dd.MM.yyyy\}}" Header="vom" Width="Auto"/>
+                <DataGridTextColumn x:Name="ter_endeColumn" Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Header="bis" Width="Auto"/>
+                <DataGridTextColumn x:Name="abflughafenColumn" Binding="{Binding abflughafen}" Header="Flughafen Abflug" Width="Auto"/>
+                <DataGridTextColumn x:Name="zielflughafenColumn" Binding="{Binding zielflughafen}" Header="Flughafen Ziel" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+
+</Page>
