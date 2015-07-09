@@ -11,6 +11,7 @@
             <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
                 <Button x:Name="bt_UEbersicht" Content="Übersicht" Margin="2" Click="bt_UEbersicht_Click"/>
                 <Button x:Name="bt_Mahnlauf" Content="Mahnlauf" Margin="2" Click="bt_Mahnlauf_Click"/>
+                <Button x:Name="bt_Regulierung" Content="Regulierung" Margin="2" Click="bt_Regulierung_Click"/>
             </StackPanel>
         </ScrollViewer>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />

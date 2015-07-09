@@ -12,9 +12,10 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="auf_idColumn" Binding="{Binding auf_id}" Header="Auftrag" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id}" Header="sta_id" Width="Auto" Visibility="Hidden"/>
+                <DataGridTextColumn x:Name="auf_faellig_amColumn" Binding="{Binding auf_faellig_am,StringFormat={}\{0:dd.MM.yyyy\}}" Header="fällig am" Width="Auto"/>
                 <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
-                <DataGridTextColumn x:Name="saldoColumn" Binding="{Binding saldo, StringFormat={}{0:c},ConverterCulture=de-DE}" Header="Saldo" Width="Auto"/>
                 <DataGridTextColumn x:Name="mahnstufeColumn" Binding="{Binding mahnstufe}" Header="Mahnstufe" Width="Auto"/>
+                <DataGridTextColumn x:Name="saldoColumn" Binding="{Binding saldo, StringFormat={}{0:c},ConverterCulture=de-DE}" Header="Saldo" Width="Auto"/>
                 <DataGridTextColumn x:Name="aart_bezColumn" Binding="{Binding aart_bez}" Header="Auftragsart" Width="Auto"/>
                 <DataGridTextColumn x:Name="ter_beginnColumn" Binding="{Binding ter_beginn,StringFormat={}\{0:dd.MM.yyyy\}}" Header="vom" Width="Auto"/>
                 <DataGridTextColumn x:Name="ter_endeColumn" Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Header="bis" Width="Auto"/>
