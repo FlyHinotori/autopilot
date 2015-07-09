@@ -221,6 +221,16 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           <Property Name="ter_ende" Type="datetime" />
         </EntityType>
         <!--Während der Generierung sind Fehler aufgetreten:
+Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_auftrag' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
+        <EntityType Name="termin_auftrag">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="auf_id" />
+          </Key>
+          <Property Name="ter_id" Type="int" Nullable="false" />
+          <Property Name="auf_id" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Während der Generierung sind Fehler aufgetreten:
 Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPILOT\AUTOPILOT.MDF.dbo.termin_flugzeug' ist kein Primärschlüssel definiert. Der Schlüssel wurde abgeleitet, und die Definition wurde als schreibgeschützte Tabelle/Sicht erstellt.-->
         <EntityType Name="termin_flugzeug">
           <Key>
@@ -361,6 +371,12 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
     [status].[stg_id] AS [stg_id], 
     [status].[sta_bez] AS [sta_bez]
     FROM [dbo].[status] AS [status]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="termin_auftrag" EntityType="Self.termin_auftrag" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [termin_auftrag].[ter_id] AS [ter_id], 
+    [termin_auftrag].[auf_id] AS [auf_id]
+    FROM [dbo].[termin_auftrag] AS [termin_auftrag]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="termin_flugzeug" EntityType="Self.termin_flugzeug" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -727,6 +743,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" />
           <EntitySet Name="flugzeugliste" EntityType="EntityDataModel.flugzeugliste" />
           <EntitySet Name="personalliste" EntityType="EntityDataModel.personalliste" />
+          <EntitySet Name="termin_auftrag" EntityType="EntityDataModel.termin_auftrag" />
         </EntityContainer>
         <EntityType Name="flugzeugliste">
           <Key>
@@ -757,6 +774,14 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
           <Property Name="per_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="per_vorname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="pos_gehalt_pa" Type="Decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="termin_auftrag">
+          <Key>
+            <PropertyRef Name="ter_id" />
+            <PropertyRef Name="auf_id" />
+          </Key>
+          <Property Name="ter_id" Type="Int32" Nullable="false" />
+          <Property Name="auf_id" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1084,6 +1109,14 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
                 <ScalarProperty Name="pos_id" ColumnName="pos_id" />
                 <ScalarProperty Name="sta_id" ColumnName="sta_id" />
                 <ScalarProperty Name="per_id" ColumnName="per_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="termin_auftrag">
+            <EntityTypeMapping TypeName="EntityDataModel.termin_auftrag">
+              <MappingFragment StoreEntitySet="termin_auftrag">
+                <ScalarProperty Name="auf_id" ColumnName="auf_id" />
+                <ScalarProperty Name="ter_id" ColumnName="ter_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
