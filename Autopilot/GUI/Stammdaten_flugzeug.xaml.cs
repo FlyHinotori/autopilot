@@ -157,5 +157,33 @@ namespace Autopilot.GUI
             PfadFlugzeugBild = "";
         }
 
+        private void bt_NeuesFlz_Click(object sender, RoutedEventArgs e)
+        {
+            var res = MessageBox.Show("Soll ein neues Flugzeug angelegt werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                SqlConnection conn = new SqlConnection(DBconnStrg);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "INSERT INTO flugzeug (sta_id, ftyp_id,flz_kennzeichen) VALUES (40, 1, \'<<Dummy>>\')";
+                cmd.CommandType = CommandType.Text;
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Ein Flugzeug mit dem Kennzeichen <<Dummy>> wurde angelegt und kann nun bearbeitet werden.", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    DataGrid.ItemsSource = GetList();
+                }
+                catch (System.Exception err)
+                {
+                    MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                conn.Close();
+            }
+        }
     }
 }
