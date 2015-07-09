@@ -78,7 +78,8 @@ namespace Autopilot.GUI
                 ID.pos_id = Convert.ToInt32(cb_Position.SelectedValue.ToString());
 
                 content.SaveChanges();
-                MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
+
+                DataGrid.ItemsSource = GetList();
             }
         }
 
@@ -157,5 +158,33 @@ namespace Autopilot.GUI
             PfadPersonalBild = "";
         }
 
+        private void bt_NeuesPersonal_Click(object sender, RoutedEventArgs e)
+        {
+            var res = MessageBox.Show("Soll ein neuer Mitarbeiter angelegt werden?", "Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (res == MessageBoxResult.Yes)
+            {
+                SqlConnection conn = new SqlConnection(DBconnStrg);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "INSERT INTO personal (sta_id, pos_id, per_name) VALUES (0, 1, \'<<Dummy>>\')";
+                cmd.CommandType = CommandType.Text;
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+
+                    MessageBox.Show("Ein Mitarbeiter mit dem Namen <<Dummy>> wurde angelegt und kann nun bearbeitet werden.", "Erfolg", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                    DataGrid.ItemsSource = GetList();
+                }
+                catch (System.Exception err)
+                {
+                    MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+                conn.Close();
+            }
+        }
     }
 }
