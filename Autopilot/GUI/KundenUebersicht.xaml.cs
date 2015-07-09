@@ -49,8 +49,21 @@ namespace Autopilot.GUI
 
         private ObservableCollection<Kundenliste> GetList()
         {
-            var list = from e in content.Kundenliste select e;
-            return new ObservableCollection<Kundenliste>(list);
+            if (tb_Filter.Text == "")
+            {
+                var list = from e in content.Kundenliste
+                           select e;
+                return new ObservableCollection<Kundenliste>(list);
+            }
+            else
+            {
+                var list = from e in content.Kundenliste
+                           where e.knd_name.Contains(tb_Filter.Text) || e.knd_vorname.Contains(tb_Filter.Text) || e.anschrift.Contains(tb_Filter.Text)
+                           select e;
+                return new ObservableCollection<Kundenliste>(list);
+            }
+                       
+            
         }
 
         private ObservableCollection<kundengruppe> FillKGruppe()
@@ -90,13 +103,16 @@ namespace Autopilot.GUI
                 ID.knd_vorname = Convert.ToString(tb_Vorname.Text);
 
                 content.SaveChanges();
+                
+                DataGridKunden.ItemsSource = GetList();
+
                 MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
             }
         }
 
         private void DataGridKunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGridKunden.SelectedCells.Count != 0 && DataGridKunden.ItemsSource != null)
+            if (DataGridKunden.SelectedCells.Count != 0 && DataGridKunden.ItemsSource != null && Convert.ToString(DataGridKunden.Items.Count.ToString()) != "0" && DataGridKunden.IsFocused != true)
             {
                 DataRowView row = DataGridKunden.SelectedItems as DataRowView;
                 knd_id = ((Kundenliste)DataGridKunden.SelectedItem).knd_id;
@@ -119,6 +135,16 @@ namespace Autopilot.GUI
                 cb_Titel.SelectedValue = Convert.ToString(tit_id);
                 bt_Speichern.IsEnabled = true;
             }
+        }
+
+        private void tb_Filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataGridKunden.ItemsSource = GetList();            
+        }
+
+        private void tb_Filter_GotFocus(object sender, RoutedEventArgs e)
+        {
+            tb_Filter.Clear();
         }
     }
 }

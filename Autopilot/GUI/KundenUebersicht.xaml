@@ -8,7 +8,7 @@
       d:DesignHeight="400" d:DesignWidth="550"
 	  Title="KundenUebersicht" Loaded="Page_Loaded">
     <Grid>
-        <DataGrid x:Name="DataGridKunden" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGridKunden_SelectionChanged" IsReadOnly="True">
+        <DataGrid x:Name="DataGridKunden" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,43,10,200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGridKunden_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="knd_idColumn" Binding="{Binding knd_id}" Header="knd_id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="kng_idColumn" Binding="{Binding kng_id}" Header="kng_id" Width="Auto"/>
@@ -46,6 +46,7 @@
         <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,115" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="393,0,0,90" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,88" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
+        <TextBox x:Name="tb_Filter" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="tb_Filter_TextChanged" GotFocus="tb_Filter_GotFocus"/>
     </Grid>
 
 </Page>
