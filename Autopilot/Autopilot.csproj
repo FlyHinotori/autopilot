@@ -245,9 +245,6 @@
     <Compile Include="kundengruppe.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Kundenliste.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="lizenzen.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
