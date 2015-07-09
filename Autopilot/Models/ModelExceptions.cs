@@ -36,4 +36,29 @@ namespace Autopilot.Models
         }
     }
     #endregion
+
+    #region Auftrag
+    public class AuftragDatenUnvollstaendigException : GeneralModelsException
+    {
+        public AuftragDatenUnvollstaendigException(string message)
+            : base(message)
+        {
+        }
+        public AuftragDatenUnvollstaendigException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    public class AuftragDatenFehlerhaftException : GeneralModelsException
+    {
+        public AuftragDatenFehlerhaftException(string message)
+            : base(message)
+        {
+        }
+        public AuftragDatenFehlerhaftException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    #endregion
 }
