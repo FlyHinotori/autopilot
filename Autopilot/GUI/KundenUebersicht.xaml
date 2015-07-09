@@ -47,6 +47,19 @@
         <Label Content="*" HorizontalAlignment="Left" Margin="393,0,0,90" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
         <Label Content="*" HorizontalAlignment="Left" Margin="519,0,0,88" VerticalAlignment="Bottom" RenderTransformOrigin="0.446,0.231"/>
         <TextBox x:Name="tb_Filter" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="tb_Filter_TextChanged" GotFocus="tb_Filter_GotFocus"/>
+        <DataGrid x:Name="DataGridInfo" AutoGenerateColumns="False" IsReadOnly="True" Margin="525,0,10,58" VerticalAlignment="Bottom" Height="137">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="auf_faellig_amColumn" Binding="{Binding auf_faellig_am,StringFormat={}\{0:dd.MM.yyyy\}}" Header="fällig am" Width="Auto"/>
+                <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
+                <DataGridTextColumn x:Name="mahnstufeColumn" Binding="{Binding mahnstufe}" Header="Mahnstufe" Width="Auto"/>
+                <DataGridTextColumn x:Name="saldoColumn" Binding="{Binding saldo, StringFormat={}{0:c},ConverterCulture=de-DE}" Header="Saldo" Width="Auto"/>
+                <DataGridTextColumn x:Name="aart_bezColumn" Binding="{Binding aart_bez}" Header="Auftragsart" Width="Auto"/>
+                <DataGridTextColumn x:Name="ter_beginnColumn" Binding="{Binding ter_beginn,StringFormat={}\{0:dd.MM.yyyy\}}" Header="vom" Width="Auto"/>
+                <DataGridTextColumn x:Name="ter_endeColumn" Binding="{Binding ter_ende, StringFormat={}\{0:dd.MM.yyyy\}}" Header="bis" Width="Auto"/>
+                <DataGridTextColumn x:Name="abflughafenColumn" Binding="{Binding abflughafen}" Header="Flughafen Abflug" Width="Auto"/>
+                <DataGridTextColumn x:Name="zielflughafenColumn" Binding="{Binding zielflughafen}" Header="Flughafen Ziel" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 
 </Page>

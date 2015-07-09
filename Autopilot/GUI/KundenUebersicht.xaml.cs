@@ -32,6 +32,7 @@ namespace Autopilot.GUI
         int kng_id;
         int anr_id;
         int tit_id;
+        DataTable datatableInfo = new DataTable("Info");
 
         public KundenUebersicht()
         {
@@ -62,8 +63,6 @@ namespace Autopilot.GUI
                            select e;
                 return new ObservableCollection<Kundenliste>(list);
             }
-                       
-            
         }
 
         private ObservableCollection<kundengruppe> FillKGruppe()
@@ -119,6 +118,7 @@ namespace Autopilot.GUI
                 
                 content = new AutopilotEntities();
                 DataGridKunden.ItemsSource = GetList();
+                DataGridInfo.ItemsSource = null;
             }
         }
 
@@ -158,6 +158,8 @@ namespace Autopilot.GUI
                 cb_Anrede.IsEnabled = true;
                 cb_Titel.IsEnabled = true;
                 bt_Speichern.IsEnabled = true;
+
+                fuelleDataGridInfo();
             }
         }
 
@@ -169,6 +171,20 @@ namespace Autopilot.GUI
         private void tb_Filter_GotFocus(object sender, RoutedEventArgs e)
         {
             tb_Filter.Clear();
+            DataGridInfo.ItemsSource = null;
+        }
+
+        private void fuelleDataGridInfo()
+        {
+            datatableInfo.Clear();
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+            string SQLcmd = "SELECT auftragsart.aart_id, sta_bez, auf_faellig_am, (select (case when sum(buc_haben) is null then 0 else sum(buc_haben) end) - (case when sum(buc_soll) is null then 0 else sum(buc_soll) end) from buchung where buchung.auf_id = auftrag.auf_id) as saldo, (select mst_reihenfolge from mahnstufe where mahnstufe.mst_id = auftrag.mst_id) as mahnstufe, aart_bez, ter_beginn, ter_ende, (select flh_name + \'(\' + flh_stadt + \')\' as abflug from flughafen where flughafen.flh_id = auftrag.flh_id_beginn) as abflughafen, (select flh_name + '(' + flh_stadt + ')' as zielflug from flughafen where flughafen.flh_id = auftrag.flh_id_ende) as zielflughafen FROM auftrag, status, auftragsart, kunde, termin_auftrag, termin WHERE auftrag.sta_id = status.sta_id AND auftrag.aart_id = auftragsart.aart_id AND auftrag.knd_id = kunde.knd_id AND auftrag.auf_id = termin_auftrag.auf_id AND termin_auftrag.ter_id = termin.ter_id AND kunde.knd_id = " + knd_id;
+
+            SqlCommand cmd = new SqlCommand(SQLcmd, conn);
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            adapter.Fill(datatableInfo);
+
+            DataGridInfo.ItemsSource = datatableInfo.DefaultView;
         }
     }
 }
