@@ -76,11 +76,18 @@ namespace Autopilot.GUI
             var res = MessageBox.Show("Sollen die Änderungen gespeichert werden?","Speichern", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (res == MessageBoxResult.Yes)
             {
-                var ID = content.kunde.SingleOrDefault(c => c.knd_id == knd_id);
-                //ID.flz_kennzeichen = tb_Kennzeichen.Text.ToString();
+                var ID = content.kunde.SingleOrDefault(c => c.knd_id == knd_id);                
                 ID.kng_id = Convert.ToInt32(cb_Kundengruppe.SelectedValue.ToString());
                 ID.anr_id = Convert.ToInt32(cb_Anrede.SelectedValue.ToString());
                 ID.tit_id = Convert.ToInt32(cb_Titel.SelectedValue.ToString());
+                ID.knd_land = Convert.ToString(tb_Land.Text);
+                ID.knd_mail = Convert.ToString(tb_Mail.Text);
+                ID.knd_name = Convert.ToString(tb_Name.Text);
+                ID.knd_ort = Convert.ToString(tb_Ort.Text);
+                ID.knd_plz = Convert.ToString(tb_PLZ.Text);
+                ID.knd_strasse = Convert.ToString(tb_Strasse.Text);
+                ID.knd_telefon = Convert.ToString(tb_Telefon.Text);
+                ID.knd_vorname = Convert.ToString(tb_Vorname.Text);
 
                 content.SaveChanges();
                 MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
@@ -97,7 +104,15 @@ namespace Autopilot.GUI
                 anr_id = ((Kundenliste)DataGridKunden.SelectedItem).anr_id;
                 tit_id = ((Kundenliste)DataGridKunden.SelectedItem).tit_id;
 
-                //tb_Kennzeichen.Text = Convert.ToString(ID.flz_kennzeichen);
+                var ID = content.kunde.SingleOrDefault(c => c.knd_id == knd_id);
+                tb_Land.Text = Convert.ToString(ID.knd_land);
+                tb_Mail.Text = Convert.ToString(ID.knd_mail);
+                tb_Name.Text = Convert.ToString(ID.knd_name);
+                tb_Ort.Text = Convert.ToString(ID.knd_ort);
+                tb_PLZ.Text = Convert.ToString(ID.knd_plz);
+                tb_Strasse.Text = Convert.ToString(ID.knd_strasse);
+                tb_Telefon.Text = Convert.ToString(ID.knd_telefon);
+                tb_Vorname.Text = Convert.ToString(ID.knd_vorname);                
 
                 cb_Kundengruppe.SelectedValue = Convert.ToString(kng_id);
                 cb_Anrede.SelectedValue = Convert.ToString(anr_id);
