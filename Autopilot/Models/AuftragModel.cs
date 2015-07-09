@@ -14,6 +14,7 @@ namespace Autopilot.Models
     {
         public AuftragModel()
         {
+            FContent = new AutopilotEntities();
             FKunde = new KundeModel();
             FZwischenHalte = new ObservableCollection<flughafen>();
             FCabinCrew = new ObservableCollection<personal>();
@@ -24,6 +25,7 @@ namespace Autopilot.Models
         }
 
         //members
+        AutopilotEntities FContent;
         KundeModel FKunde;
         AuftragStatus FStatus;
         int FArtID;
@@ -179,10 +181,51 @@ namespace Autopilot.Models
         }
         #endregion
 
+        private int GetIDFromStatus()
+        {
+            //Turn StatusID to StatusString
+            string StatusString;
+            switch (FStatus)
+            {
+                case AuftragStatus.Aufnahme:
+                    StatusString = "Aufnahme";
+                    break;
+                default:
+                    throw new AuftragDatenFehlerhaftException("Status nicht implementiert!");
+            }
+
+            //Fetch StatusgruppenID
+            statusgruppe Statusgruppe = FContent.statusgruppe.Where(sg => sg.stg_bez == "Auftrag").FirstOrDefault();
+            if (Statusgruppe == null)
+                throw new AuftragDatenFehlerhaftException("Statusgruppe nicht gefunden!");
+
+            //Fetch StatusID
+            status Status = FContent.status.Where(s => s.sta_bez == StatusString && s.stg_id == Statusgruppe.stg_id).FirstOrDefault();
+            if (Status != null)
+                return Status.sta_id;
+            else
+                throw new AuftragDatenFehlerhaftException("Status nicht gefunden!");
+        }
+
         //save methods
+        private void SaveAuftrag()
+        {
+            Autopilot.auftrag DerAuftrag = new Autopilot.auftrag();
+            DerAuftrag.knd_id = FKunde.ID;
+            DerAuftrag.sta_id = GetIDFromStatus();
+            DerAuftrag.aart_id = FArtID;
+            DerAuftrag.flh_id_beginn = FStartFlughafenID;
+            DerAuftrag.flh_id_ende = FZielFlughafenID;
+            DerAuftrag.auf_panzahl = FPassengerCount;
+            DerAuftrag.auf_dauer_h = FCharterDauer;
+            DerAuftrag.auf_wuensche = FWuensche;
+            FContent.auftrag.Add(DerAuftrag);
+            FContent.SaveChanges();            
+        }
         public void Save()
         {
             FKunde.Save();
+            SaveAuftrag();
         }
 
     }
