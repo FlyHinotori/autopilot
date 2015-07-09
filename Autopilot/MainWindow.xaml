@@ -25,16 +25,16 @@
     </Window.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf059;" Click="Hilfe_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" Style="{StaticResource IconButton}" ToolTip="Einstellungen" />
+            <!--<Button Content="&#xf059;" Click="Hilfe_anzeigen" Style="{StaticResource IconButton}" />-->
         </StackPanel>
         <StackPanel DockPanel.Dock="Left">
-            <Button Content="&#xf055;" Click="Neu_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf01c;" Click="Aufträge_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf153;" Click="Rechnungen_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf073;" Click="Kalender_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf0c0;" Click="Kunden_anzeigen" Style="{StaticResource IconButton}" />
-            <Button Content="&#xf1c0;" Click="Stammdaten_anzeigen" Style="{StaticResource IconButton}" />
+            <Button Content="&#xf055;" Click="Neu_anzeigen" Style="{StaticResource IconButton}" ToolTip="Neuer Fall" />
+            <Button Content="&#xf01c;" Click="Aufträge_anzeigen" Style="{StaticResource IconButton}" ToolTip="Aufträge" />
+            <Button Content="&#xf153;" Click="Rechnungen_anzeigen" Style="{StaticResource IconButton}" ToolTip="Rechnungen" />
+            <Button Content="&#xf073;" Click="Kalender_anzeigen" Style="{StaticResource IconButton}" ToolTip="Kalender" />
+            <Button Content="&#xf0c0;" Click="Kunden_anzeigen" Style="{StaticResource IconButton}" ToolTip="Kunden" />
+            <Button Content="&#xf1c0;" Click="Stammdaten_anzeigen" Style="{StaticResource IconButton}" ToolTip="Stammdaten" />
         </StackPanel>
         <Frame Name="Inhaltsanzeige" DockPanel.Dock="Right" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
     </DockPanel>
