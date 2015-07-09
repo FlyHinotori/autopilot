@@ -10,8 +10,8 @@
     <Grid>
         <DataGrid x:Name="DataGridKunden" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,43,10,200" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGridKunden_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="knd_idColumn" Binding="{Binding knd_id}" Header="knd_id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="kng_idColumn" Binding="{Binding kng_id}" Header="kng_id" Width="Auto"/>
+                <DataGridTextColumn x:Name="knd_idColumn" Binding="{Binding knd_id}" Header="KndNr" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="kng_idColumn" Binding="{Binding kng_id}" Header="kng_id" Width="Auto" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="kng_bezColumn" Binding="{Binding kng_bez}" Header="Kundengruppe" Width="Auto"/>
                 <DataGridTextColumn x:Name="anr_bezColumn" Binding="{Binding anr_bez}" Header="Anrede" Width="Auto"/>
                 <DataGridTextColumn x:Name="tit_bezColumn" Binding="{Binding tit_bez}" Header="Titel" Width="Auto"/>
