@@ -23,6 +23,22 @@ namespace Autopilot.GUI
         public Rechnungen()
         {
             InitializeComponent();
+            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen_Uebersicht.xaml", UriKind.Relative));
+        }
+
+        private void bt_UEbersicht_Click(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen_Uebersicht.xaml", UriKind.Relative));
+        }
+
+        private void bt_Mahnlauf_Click(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen_Mahnlauf.xaml", UriKind.Relative));
+        }
+
+        private void bt_Regulierung_Click(object sender, RoutedEventArgs e)
+        {
+            Inhaltsanzeige.Navigate(new Uri("GUI/Rechnungen_Regulierung.xaml", UriKind.Relative));
         }
     }
 }

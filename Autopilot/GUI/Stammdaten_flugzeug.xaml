@@ -8,10 +8,10 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Stammdaten_flugzeug" Loaded="Page_Loaded">
     <Grid>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,161" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,161" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="flz_idColumn" Binding="{Binding flz_id}" Header="flz_id" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id}" Header="sta_id" Width="Auto"/>
+                <DataGridTextColumn x:Name="flz_idColumn" Binding="{Binding flz_id}" Header="ID" Width="SizeToHeader" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id}" Header="sta_id" Width="Auto" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
                 <DataGridTextColumn x:Name="her_bezColumn" Binding="{Binding her_bez}" Header="Hersteller" Width="Auto"/>
                 <DataGridTextColumn x:Name="ftyp_bezColumn" Binding="{Binding ftyp_bez}" Header="Flugzeugtyp" Width="Auto"/>

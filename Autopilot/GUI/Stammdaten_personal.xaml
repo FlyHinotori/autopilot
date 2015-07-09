@@ -8,9 +8,9 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	  Title="Stammdaten_personal" Loaded="Page_Loaded">
     <Grid>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,183" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGrid_SelectionChanged">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}"  Margin="10,10,10,183" RowDetailsVisibilityMode="VisibleWhenSelected" SelectionChanged="DataGrid_SelectionChanged" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="per_idColumn" Binding="{Binding per_id}" Header="per_id" Width="SizeToHeader" Visibility="Hidden"/>
+                <DataGridTextColumn x:Name="per_idColumn" Binding="{Binding per_id}" Header="ID" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="sta_idColumn" Binding="{Binding sta_id}" Header="sta_id" Width="SizeToHeader" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="pos_idColumn" Binding="{Binding pos_id}" Header="pos_id" Width="SizeToHeader" Visibility="Hidden"/>
                 <DataGridTextColumn x:Name="sta_bezColumn" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>

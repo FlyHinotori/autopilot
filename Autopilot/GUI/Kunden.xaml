@@ -1,0 +1,18 @@
+﻿<Page x:Class="Autopilot.GUI.Kunden"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="Kunden">
+    <DockPanel>
+        <ScrollViewer DockPanel.Dock="Right" HorizontalAlignment="Right">
+            <StackPanel DockPanel.Dock="Top" Orientation="Vertical" HorizontalAlignment="Right" Margin="2">
+                <Button x:Name="bt_Kundenuebersicht" Content="Kundenübersicht" Margin="2" Click="bt_Kundenuebersicht_Click"/>
+                <Button x:Name="bt_NeuerKunde" Content="Neuer Kunde" Margin="2" Click="bt_NeuerKunde_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Frame Name="Inhaltsanzeige" DockPanel.Dock="Left" HorizontalContentAlignment="Stretch" NavigationUIVisibility="Hidden" />
+    </DockPanel>
+</Page>

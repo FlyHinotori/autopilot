@@ -17,12 +17,12 @@ namespace Autopilot
         public int knd_id { get; set; }
         public int kng_id { get; set; }
         public string kng_bez { get; set; }
-        public int anr_id { get; set; }
         public string anr_bez { get; set; }
-        public Nullable<int> tit_id { get; set; }
         public string tit_bez { get; set; }
         public string knd_name { get; set; }
         public string knd_vorname { get; set; }
         public string anschrift { get; set; }
+        public int anr_id { get; set; }
+        public int tit_id { get; set; }
     }
 }
