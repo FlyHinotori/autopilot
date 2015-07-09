@@ -158,6 +158,9 @@
     <Compile Include="GUI\Rechnungen_Uebersicht.xaml.cs">
       <DependentUpon>Rechnungen_Uebersicht.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Kunden.xaml.cs">
+      <DependentUpon>Kunden.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUI\TerminNeu.xaml.cs">
       <DependentUpon>TerminNeu.xaml</DependentUpon>
     </Compile>
@@ -228,6 +231,9 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="kundengruppe.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kundenliste.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="lizenzen.cs">
@@ -304,6 +310,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="GUI\Rechnungen_Uebersicht.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GUI\Kunden.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
