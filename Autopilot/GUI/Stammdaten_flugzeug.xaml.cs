@@ -77,13 +77,15 @@ namespace Autopilot.GUI
                 ID.ftyp_id = Convert.ToInt32(cb_Flugzeugtyp.SelectedValue.ToString());
 
                 content.SaveChanges();
-                MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
+
+                content = new AutopilotEntities();
+                DataGrid.ItemsSource = GetList();
             }
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGrid.SelectedCells.Count != 0 && DataGrid.ItemsSource != null)
+            if (DataGrid.SelectedCells.Count != 0 && DataGrid.ItemsSource != null && DataGrid.CurrentItem != null)
             {
                 DataRowView row = DataGrid.SelectedItems as DataRowView;
                 flz_id = ((flugzeugliste)DataGrid.SelectedItem).flz_id;
