@@ -103,16 +103,28 @@ namespace Autopilot.GUI
                 ID.knd_vorname = Convert.ToString(tb_Vorname.Text);
 
                 content.SaveChanges();
-                
-                DataGridKunden.ItemsSource = GetList();
 
-                MessageBox.Show("Update des DataGrid-Updates noch nicht gebaut.");
+                tb_Land.IsEnabled = false;
+                tb_Mail.IsEnabled = false;
+                tb_Name.IsEnabled = false;
+                tb_Ort.IsEnabled = false;
+                tb_PLZ.IsEnabled = false;
+                tb_Strasse.IsEnabled = false;
+                tb_Telefon.IsEnabled = false;
+                tb_Vorname.IsEnabled = false;
+                cb_Kundengruppe.IsEnabled = false;
+                cb_Anrede.IsEnabled = false;
+                cb_Titel.IsEnabled = false;
+                bt_Speichern.IsEnabled = false;
+                
+                content = new AutopilotEntities();
+                DataGridKunden.ItemsSource = GetList();
             }
         }
 
         private void DataGridKunden_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGridKunden.SelectedCells.Count != 0 && DataGridKunden.ItemsSource != null && Convert.ToString(DataGridKunden.Items.Count.ToString()) != "0" && DataGridKunden.IsFocused != true)
+            if (DataGridKunden.SelectedCells.Count != 0 && DataGridKunden.ItemsSource != null && Convert.ToString(DataGridKunden.Items.Count.ToString()) != "0" && DataGridKunden.CurrentItem != null)
             {
                 DataRowView row = DataGridKunden.SelectedItems as DataRowView;
                 knd_id = ((Kundenliste)DataGridKunden.SelectedItem).knd_id;
@@ -133,6 +145,18 @@ namespace Autopilot.GUI
                 cb_Kundengruppe.SelectedValue = Convert.ToString(kng_id);
                 cb_Anrede.SelectedValue = Convert.ToString(anr_id);
                 cb_Titel.SelectedValue = Convert.ToString(tit_id);
+
+                tb_Land.IsEnabled = true;
+                tb_Mail.IsEnabled = true;
+                tb_Name.IsEnabled = true;
+                tb_Ort.IsEnabled = true;
+                tb_PLZ.IsEnabled = true;
+                tb_Strasse.IsEnabled = true;
+                tb_Telefon.IsEnabled = true;
+                tb_Vorname.IsEnabled = true;
+                cb_Kundengruppe.IsEnabled = true;
+                cb_Anrede.IsEnabled = true;
+                cb_Titel.IsEnabled = true;
                 bt_Speichern.IsEnabled = true;
             }
         }
