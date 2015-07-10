@@ -446,7 +446,7 @@
       <DependentUpon>Autopilot.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <SplashScreen Include="SplashScreen1.png" />
+    <SplashScreen Include="Resources\logo.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
