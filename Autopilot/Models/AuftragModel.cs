@@ -216,6 +216,13 @@ namespace Autopilot.Models
             else
                 throw new AuftragDatenFehlerhaftException("Status nicht gefunden!");
         }
+        private int GetAvailableFlugzeugID()
+        {
+            Autopilot.flugzeug EinFlugzeug = FContent.flugzeug.Where(f => f.ftyp_id == FFlugzeugTypID).FirstOrDefault();
+            if (EinFlugzeug == null)
+                throw new AuftragDatenFehlerhaftException("Kein Flugzeug dieses Typs");
+            return EinFlugzeug.flz_id;
+        }
 
         #region private save methods
         private void SaveAuftrag()
@@ -254,6 +261,8 @@ namespace Autopilot.Models
             AuftragTermin.ter_id = Termin.ter_id;
             FContent.termin_auftrag.Add(AuftragTermin);
             FContent.SaveChanges();
+            SavePersonalTermin(Termin.ter_id);
+            SaveFlugzeugTermin(Termin.ter_id);
         }
         private void SavePersonTermin(int PersonID, int TerminID)
         {
@@ -296,6 +305,14 @@ namespace Autopilot.Models
                     ReihenfolgeCount++;
                 }
             }
+        }
+        private void SaveFlugzeugTermin(int TerminID)
+        {
+            Autopilot.termin_flugzeug FlugzeugTermin = new Autopilot.termin_flugzeug();
+            FlugzeugTermin.ter_id = TerminID;
+            FlugzeugTermin.flz_id = GetAvailableFlugzeugID();
+            FContent.termin_flugzeug.Add(FlugzeugTermin);
+            FContent.SaveChanges();       
         }
         #endregion
 
