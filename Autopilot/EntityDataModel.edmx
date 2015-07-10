@@ -392,24 +392,9 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
     [status].[sta_bez] AS [sta_bez]
     FROM [dbo].[status] AS [status]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="termin_auftrag" EntityType="Self.termin_auftrag" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [termin_auftrag].[ter_id] AS [ter_id], 
-    [termin_auftrag].[auf_id] AS [auf_id]
-    FROM [dbo].[termin_auftrag] AS [termin_auftrag]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="termin_flugzeug" EntityType="Self.termin_flugzeug" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [termin_flugzeug].[ter_id] AS [ter_id], 
-    [termin_flugzeug].[flz_id] AS [flz_id]
-    FROM [dbo].[termin_flugzeug] AS [termin_flugzeug]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [termin_personal].[ter_id] AS [ter_id], 
-    [termin_personal].[per_id] AS [per_id]
-    FROM [dbo].[termin_personal] AS [termin_personal]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="termin_auftrag" EntityType="Self.termin_auftrag" store:Type="Tables" Schema="dbo"/>
+          <EntitySet Name="termin_flugzeug" EntityType="Self.termin_flugzeug" store:Type="Tables" Schema="dbo"/>
+          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" store:Type="Tables" Schema="dbo"/>
           <EntitySet Name="wunschcrew" EntityType="Self.wunschcrew" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [wunschcrew].[auf_id] AS [auf_id], 
@@ -422,13 +407,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
     [wunschflugzeug].[flz_id] AS [flz_id]
     FROM [dbo].[wunschflugzeug] AS [wunschflugzeug]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [zwischenlandung].[auf_id] AS [auf_id], 
-    [zwischenlandung].[flh_id] AS [flh_id], 
-    [zwischenlandung].[zwl_reihenfolge] AS [zwl_reihenfolge]
-    FROM [dbo].[zwischenlandung] AS [zwischenlandung]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="zwischenlandung" EntityType="Self.zwischenlandung" store:Type="Tables" Schema="dbo"/>
           <EntitySet Name="flugzeugliste" EntityType="Self.flugzeugliste" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [flugzeugliste].[flz_id] AS [flz_id], 
