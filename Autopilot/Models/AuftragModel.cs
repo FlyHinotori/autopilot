@@ -310,7 +310,10 @@ namespace Autopilot.Models
         {
             Autopilot.termin_flugzeug FlugzeugTermin = new Autopilot.termin_flugzeug();
             FlugzeugTermin.ter_id = TerminID;
-            FlugzeugTermin.flz_id = GetAvailableFlugzeugID();
+            if (FFlugzeugTypID > 0)
+                FlugzeugTermin.flz_id = GetAvailableFlugzeugID();
+            else
+                throw new AuftragDatenUnvollstaendigException("Kein Flugzeugtyp ausgewählt!");
             FContent.termin_flugzeug.Add(FlugzeugTermin);
             FContent.SaveChanges();       
         }
