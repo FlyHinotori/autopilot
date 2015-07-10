@@ -276,11 +276,33 @@ namespace Autopilot.Models
                     SavePersonTermin(Person.per_id, TerminID);
             }
         }
+        private void SaveZwischenhalt(int FlughafenID, int Reihenfolge)
+        {        
+            Autopilot.zwischenlandung DieZwischenlandung = new Autopilot.zwischenlandung();
+            DieZwischenlandung.auf_id = FID;
+            DieZwischenlandung.flh_id = FlughafenID;
+            DieZwischenlandung.zwl_reihenfolge = Reihenfolge;
+            FContent.zwischenlandung.Add(DieZwischenlandung);
+            FContent.SaveChanges();
+        }
+        private void SaveFlughaefen()
+        {
+            if (FZwischenHalte.Count > 0)
+            {
+                int ReihenfolgeCount = 0;
+                foreach (Autopilot.flughafen Flughafen in FZwischenHalte)
+                {
+                    SaveZwischenhalt(Flughafen.flh_id, ReihenfolgeCount);
+                    ReihenfolgeCount++;
+                }
+            }
+        }
         public void Save()
         {
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
+            SaveFlughaefen();
         }
     }
 }
