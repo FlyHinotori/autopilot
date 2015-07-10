@@ -28,6 +28,7 @@
         <Button x:Name="bt_FileDialog" Content="Bild auswählen" HorizontalAlignment="Left" Margin="13,0,0,10" VerticalAlignment="Bottom" Width="97" Click="bt_FileDialog_Click"/>
         <Image x:Name="img_Flugzeug" HorizontalAlignment="Left" Margin="217,0,0,10" VerticalAlignment="Bottom" Height="146"/>
         <Button x:Name="bt_BildUpload" Content="Bild hochladen" HorizontalAlignment="Left" Margin="115,0,0,10" VerticalAlignment="Bottom" Width="97" Click="bt_BildUpload_Click"/>
+        <Button x:Name="bt_NeuesFlz" Content="Neues Flugzeug" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Click="bt_NeuesFlz_Click"/>
     </Grid>
 
 </Page>
