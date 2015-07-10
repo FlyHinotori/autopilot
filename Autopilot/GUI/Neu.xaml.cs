@@ -116,11 +116,17 @@ namespace Autopilot.GUI
                     FAuftrag.Save();
                     MessageBox.Show("Auftrag wurde angelegt");
                 }
-                catch (KundeDatenUnvollstaendigException e)
+                catch (GeneralModelsException e)
                 {
-                    MessageBox.Show("Problem mit den Kundendaten: " + e.Message);
-                }
-                
+                    if (e is KundeDatenUnvollstaendigException)
+                        MessageBox.Show("Problem mit den Kundendaten: " + e.Message);
+                    else if (e is AuftragDatenFehlerhaftException)
+                        MessageBox.Show("Fehler in den Stammdaten: " + e.Message);
+                    else if (e is AuftragDatenUnvollstaendigException)
+                        MessageBox.Show("Unvollständiger Auftrag: " + e.Message);
+                    else
+                        throw;
+                }                
             }
         }
 
