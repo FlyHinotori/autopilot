@@ -250,10 +250,7 @@ namespace Autopilot.Models
             DerKunde.knd_land = FLand;
             DerKunde.knd_mail = FEMail;
             DerKunde.knd_telefon = FTelefon;
-            if (FTitel.Length > 0)
-            {
-                DerKunde.tit_id = GetTitleID();
-            }
+            DerKunde.tit_id = GetTitleID();
             if (FAnrede.Length > 0)
             {
                 DerKunde.anr_id = GetAnredeID();
