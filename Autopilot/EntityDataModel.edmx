@@ -399,12 +399,7 @@ Warnung 6002: Für Tabelle/Sicht 'C:\USERS\NOACK\DESKTOP\GITHUB\AUTOPILOT\AUTOPI
     [termin_flugzeug].[flz_id] AS [flz_id]
     FROM [dbo].[termin_flugzeug] AS [termin_flugzeug]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [termin_personal].[ter_id] AS [ter_id], 
-    [termin_personal].[per_id] AS [per_id]
-    FROM [dbo].[termin_personal] AS [termin_personal]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="termin_personal" EntityType="Self.termin_personal" store:Type="Tables" Schema="dbo"/>
           <EntitySet Name="wunschcrew" EntityType="Self.wunschcrew" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [wunschcrew].[auf_id] AS [auf_id], 
