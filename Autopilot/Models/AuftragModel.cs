@@ -255,12 +255,32 @@ namespace Autopilot.Models
             FContent.termin_auftrag.Add(AuftragTermin);
             FContent.SaveChanges();
         }
+        private void SavePersonTermin(int PersonID, int TerminID)
+        {
+            Autopilot.termin_personal PersonTermin = new Autopilot.termin_personal();
+            PersonTermin.ter_id = TerminID;
+            PersonTermin.per_id = PersonID;
+            FContent.termin_personal.Add(PersonTermin);
+            FContent.SaveChanges();
+        }
+        private void SavePersonalTermin(int TerminID)
+        {
+            if (FCabinCrew.Count > 0)
+            {
+                foreach (Autopilot.personal Person in FCabinCrew)
+                    SavePersonTermin(Person.per_id, TerminID);
+            }
+            if (FPilotenCrew.Count > 0)
+            {
+                foreach (Autopilot.personal Person in FPilotenCrew)
+                    SavePersonTermin(Person.per_id, TerminID);
+            }
+        }
         public void Save()
         {
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
         }
-
     }
 }
