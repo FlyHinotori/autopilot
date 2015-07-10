@@ -114,6 +114,7 @@ namespace Autopilot.GUI
                 try
                 {
                     FAuftrag.Save();
+                    MessageBox.Show("Auftrag wurde angelegt");
                 }
                 catch (KundeDatenUnvollstaendigException e)
                 {
