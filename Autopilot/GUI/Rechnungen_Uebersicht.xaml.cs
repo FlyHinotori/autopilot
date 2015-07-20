@@ -65,8 +65,18 @@ namespace Autopilot.GUI
 
                 if (suchbegriff != null && suchbegriff != "")
                 {
+                    Int32 suchbegriffINT = 0;
+                    try
+                    {
+                        suchbegriffINT = Convert.ToInt32(suchbegriff);
+                    }
+                    catch
+                    { 
+                        // 
+                    }
+                    
                     var dv = datatableUebersicht.DefaultView;
-                    dv.RowFilter = "auf_id = \'" + suchbegriff + "\' OR kunde_bez like \'%" + suchbegriff + "%\' OR abflughafen like \'%" + suchbegriff + "%\' OR zielflughafen like \'%" + suchbegriff + "%\'";
+                    dv.RowFilter = "auf_id = \'" + suchbegriffINT + "\' OR kunde_bez like \'%" + suchbegriff + "%\' OR abflughafen like \'%" + suchbegriff + "%\' OR zielflughafen like \'%" + suchbegriff + "%\'";
                 }
                 else
                 {
