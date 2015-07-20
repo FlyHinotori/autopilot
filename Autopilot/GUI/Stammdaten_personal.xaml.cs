@@ -85,7 +85,7 @@ namespace Autopilot.GUI
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (DataGrid.SelectedCells.Count != 0 && DataGrid.ItemsSource != null)
+            if (DataGrid.SelectedCells.Count != 0 && DataGrid.ItemsSource != null && DataGrid.CurrentItem != null)
             {
                 DataRowView row = DataGrid.SelectedItems as DataRowView;
                 per_id = ((personalliste)DataGrid.SelectedItem).per_id;
@@ -133,8 +133,11 @@ namespace Autopilot.GUI
             //openFileDialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files(*.png)|*.png|JPG";
             //openFileDialog.DefaultExt = ".jpeg";
             PfadPersonalBild = openFileDialog.FileName;
-            ImageSource imageSource = new BitmapImage(new Uri(PfadPersonalBild));
-            img_Personal.Source = imageSource;
+            if (PfadPersonalBild != "")
+            {
+                ImageSource imageSource = new BitmapImage(new Uri(PfadPersonalBild));
+                img_Personal.Source = imageSource;
+            }
         }    
    
         private void bt_BildUpload_Click(object sender, RoutedEventArgs e)

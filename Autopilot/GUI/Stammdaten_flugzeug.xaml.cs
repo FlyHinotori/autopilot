@@ -132,8 +132,11 @@ namespace Autopilot.GUI
             //openFileDialog.Filter = "JPEG Files (*.jpeg)|*.jpeg|PNG Files(*.png)|*.png|JPG";
             //openFileDialog.DefaultExt = ".jpeg";
             PfadFlugzeugBild = openFileDialog.FileName;
-            ImageSource imageSource = new BitmapImage(new Uri(PfadFlugzeugBild));
-            img_Flugzeug.Source = imageSource;
+            if (PfadFlugzeugBild != "")
+            {
+                ImageSource imageSource = new BitmapImage(new Uri(PfadFlugzeugBild));
+                img_Flugzeug.Source = imageSource;
+            }
         }    
    
         private void bt_BildUpload_Click(object sender, RoutedEventArgs e)
