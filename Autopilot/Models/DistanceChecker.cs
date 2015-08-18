@@ -12,17 +12,15 @@ namespace Autopilot.Models
         public DistanceChecker()
         {
             FContent = new AutopilotEntities();
+            FFlughaefen = new List<Autopilot.flughafen>();
         }
 
         //members
         AutopilotEntities FContent;
         List<Autopilot.flughafen> FFlughaefen;
 
-        private double GetDistanceBetween(int StartID, int DestinationID)
+        private double GetDistanceBetween(Autopilot.flughafen StartFH, Autopilot.flughafen ZielFH)
         {
-            //Identify Flughaefen
-            Autopilot.flughafen StartFH = FContent.flughafen.Where(fh => fh.flh_id == StartID).FirstOrDefault();
-            Autopilot.flughafen ZielFH = FContent.flughafen.Where(fh => fh.flh_id == DestinationID).FirstOrDefault();
             if (StartFH == null || ZielFH == null)
                 throw new AuftragDatenUnvollstaendigException("Start- oder Zielflughafen auswählen!");
 
@@ -49,6 +47,25 @@ namespace Autopilot.Models
             if (Flughafen == null)
                 throw new GeneralModelsException("Flughafen ist ungültig!");
             FFlughaefen.Add(Flughafen);
+        }
+
+        public bool CanFlugzeugDoTheFlight(Autopilot.flugzeugtyp FZTyp)
+        {
+            if (FZTyp == null)
+                throw new GeneralModelsException("Flugzeugtyp ungültig!");
+            if (FFlughaefen.Count < 2)
+                return true;
+            decimal MaxDistance = (decimal)FZTyp.ftyp_reichweite_km;
+            bool ItCan = true;
+
+            for (int i = 0; i < FFlughaefen.Count - 1; i++)
+            {
+                Autopilot.flughafen Start = FFlughaefen[i];
+                Autopilot.flughafen Ziel = FFlughaefen[i+1];
+
+                ItCan = ((double)MaxDistance >= GetDistanceBetween(Start, Ziel)) & ItCan;
+            }
+            return ItCan;
         }
     }
 }
