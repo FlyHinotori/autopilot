@@ -124,6 +124,8 @@ namespace Autopilot.GUI
                         MessageBox.Show("Fehler in den Stammdaten: " + e.Message);
                     else if (e is AuftragDatenUnvollstaendigException)
                         MessageBox.Show("Unvollständiger Auftrag: " + e.Message);
+                    else if (e is AuftragRessourcenNichtFreiException)
+                        MessageBox.Show("Ressourcen nicht verfügbar: " + e.Message);
                     else
                         throw;
                 }                

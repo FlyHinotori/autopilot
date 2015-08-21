@@ -354,7 +354,7 @@ namespace Autopilot.Models
                         foreach (Autopilot.personal Person in FCabinCrew)
                         {
                             if (Person.per_id == PersonID)
-                                throw new AuftragDatenFehlerhaftException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                                throw new AuftragRessourcenNichtFreiException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
                         }
                     }
                     if (FPilotenCrew.Count > 0)
@@ -362,7 +362,7 @@ namespace Autopilot.Models
                         foreach (Autopilot.personal Person in FPilotenCrew)
                         {
                             if (Person.per_id == PersonID)
-                                throw new AuftragDatenFehlerhaftException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                                throw new AuftragRessourcenNichtFreiException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
                         }
                     }
                 }

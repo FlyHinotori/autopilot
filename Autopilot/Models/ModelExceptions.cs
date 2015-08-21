@@ -60,5 +60,16 @@ namespace Autopilot.Models
         {
         }
     }
+    public class AuftragRessourcenNichtFreiException : GeneralModelsException
+    {
+        public AuftragRessourcenNichtFreiException(string message)
+            : base(message)
+        {
+        }
+        public AuftragRessourcenNichtFreiException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
     #endregion
 }
