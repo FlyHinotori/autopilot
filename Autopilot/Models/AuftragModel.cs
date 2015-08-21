@@ -39,6 +39,7 @@ namespace Autopilot.Models
         ObservableCollection<personal> FCabinCrew;
         ObservableCollection<personal> FPilotenCrew;
         int FFlugzeugTypID;
+        int FFlugzeugID;
         string FWuensche;
         DateTime FStartDate;
         DateTime FEndDate;
@@ -217,13 +218,6 @@ namespace Autopilot.Models
             else
                 throw new AuftragDatenFehlerhaftException("Status nicht gefunden!");
         }
-        private int GetAvailableFlugzeugID()
-        {
-            Autopilot.flugzeug EinFlugzeug = FContent.flugzeug.Where(f => f.ftyp_id == FFlugzeugTypID).FirstOrDefault();
-            if (EinFlugzeug == null)
-                throw new AuftragDatenFehlerhaftException("Kein Flugzeug dieses Typs");
-            return EinFlugzeug.flz_id;
-        }
 
         #region private save methods
         private void SaveAuftrag()
@@ -312,7 +306,7 @@ namespace Autopilot.Models
             Autopilot.termin_flugzeug FlugzeugTermin = new Autopilot.termin_flugzeug();
             FlugzeugTermin.ter_id = TerminID;
             if (FFlugzeugTypID > 0)
-                FlugzeugTermin.flz_id = GetAvailableFlugzeugID();
+                FlugzeugTermin.flz_id = FFlugzeugID;
             else
                 throw new AuftragDatenUnvollstaendigException("Kein Flugzeugtyp ausgewählt!");
             FContent.termin_flugzeug.Add(FlugzeugTermin);
@@ -320,6 +314,7 @@ namespace Autopilot.Models
         }
         #endregion
 
+        #region AvailabilityChecks
         private void CheckPersonAvailability()
         {
             string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
@@ -373,9 +368,45 @@ namespace Autopilot.Models
             }
         }
 
+        private void CheckPlaneAvailability()
+        {
+            string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get all planes that are not blocked 
+            cmd.CommandText = "SELECT f.flz_id FROM termin_flugzeug tf LEFT JOIN flugzeug f ON (tf.flz_id = f.flz_id) LEFT JOIN termin t ON (t.ter_id = tf.ter_id)"
+                + " WHERE f.ftyp_id = " + FFlugzeugTypID.ToString()
+                + " AND NOT ((t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_ende >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date)))";
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            //take the first plane
+            try
+            {
+                if (ResultSet.Read())
+                    FFlugzeugID = (int)ResultSet["flz_id"];
+                else
+                    throw new AuftragRessourcenNichtFreiException("Kein Flugzeug dieses Typs verfügbar");
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+        #endregion
+
         public void Save()
         {
             CheckPersonAvailability();
+            CheckPlaneAvailability();
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
