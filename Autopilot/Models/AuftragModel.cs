@@ -329,11 +329,14 @@ namespace Autopilot.Models
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            //Get all persons having an appointment between FStartDate and FEndDate (blocked persons)
-            cmd.CommandText = "SELECT tp.per_id FROM termin_personal tp LEFT JOIN termin t ON (t.ter_id = tp.ter_id)"
-                + " WHERE (t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") +"' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+            //Get all persons having an appointment between FStartDate and FEndDate (blocked persons). Charter appointments without contract are not included.
+            cmd.CommandText = "SELECT tp.per_id FROM termin_personal tp LEFT JOIN termin t ON (t.ter_id = tp.ter_id) LEFT JOIN terminart ta ON (t.tart_id = ta.tart_id)"
+                + " LEFT JOIN termin_auftrag tauf ON (tauf.ter_id = t.ter_id) LEFT JOIN auftrag auf ON (auf.auf_id = tauf.auf_id) LEFT JOIN status s ON (s.sta_id = auf.sta_id)"
+                + " WHERE s.sta_bez IS NULL"
+                + " OR NOT (s.sta_bez = 'Aufnahme' OR s.sta_bez = 'Angebot')"
+                + " AND ((t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") +"' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
                 + " OR (t.ter_ende >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
-                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))";
+                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date)))";
             cmd.CommandType = System.Data.CommandType.Text;
 
             conn.Open();
