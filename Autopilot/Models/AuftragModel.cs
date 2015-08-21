@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 
 namespace Autopilot.Models
 {
@@ -319,8 +320,59 @@ namespace Autopilot.Models
         }
         #endregion
 
+        private void CheckPersonAvailability()
+        {
+            string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get all persons having an appointment between FStartDate and FEndDate (blocked persons)
+            cmd.CommandText = "SELECT tp.per_id FROM termin_personal tp LEFT JOIN termin t ON (t.ter_id = tp.ter_id)"
+                + " WHERE (t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") +"' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_ende >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))";
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            //loop through each row and check for conflicts
+            try
+            {
+                while (ResultSet.Read())
+                {
+                    int PersonID = (int)ResultSet["per_id"];
+
+                    if (FCabinCrew.Count > 0)
+                    {
+                        foreach (Autopilot.personal Person in FCabinCrew)
+                        {
+                            if (Person.per_id == PersonID)
+                                throw new AuftragDatenFehlerhaftException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                        }
+                    }
+                    if (FPilotenCrew.Count > 0)
+                    {
+                        foreach (Autopilot.personal Person in FPilotenCrew)
+                        {
+                            if (Person.per_id == PersonID)
+                                throw new AuftragDatenFehlerhaftException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public void Save()
         {
+            CheckPersonAvailability();
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
