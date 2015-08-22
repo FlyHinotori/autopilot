@@ -329,11 +329,41 @@ namespace Autopilot.Models
             int FlugbegleiterAnzahl = (int)FContent.flugzeugtyp.Where(ft => ft.ftyp_id == FFlugzeugTypID).FirstOrDefault().ftyp_anz_ccrew;
             if (FlugbegleiterAnzahl > FCabinCrew.Count)
                 throw new AuftragDatenUnvollstaendigException("Nicht genügend Flugbegleiter ausgewählt!");
+		}
+		
+		private void CheckDoability()
+        {
+            //Check the distance
+            DistanceChecker DC = new DistanceChecker();
+            switch (FArtID)
+            {
+                //Einzelflug
+                case 1:
+                    DC.AddFlughafen(FContent.flughafen.Where(fh => fh.flh_id == FStartFlughafenID).FirstOrDefault());
+                    DC.AddFlughafen(FContent.flughafen.Where(fh => fh.flh_id == FZielFlughafenID).FirstOrDefault());
+                    break;                      
+                //Einzelflug + Zwischenhalt
+                case 2:
+                    DC.AddFlughafen(FContent.flughafen.Where(fh => fh.flh_id == FStartFlughafenID).FirstOrDefault());
+                    foreach (Autopilot.flughafen Flughafen in FZwischenHalte)
+                        DC.AddFlughafen(Flughafen);
+                    DC.AddFlughafen(FContent.flughafen.Where(fh => fh.flh_id == FZielFlughafenID).FirstOrDefault());
+                    break;
+                //Zeitcharter - Distanz egal
+                case 3:
+                default:
+                    return;
+            }
+            if (DC.CanFlugzeugDoTheFlight(FContent.flugzeugtyp.Where(ft => ft.ftyp_id == FFlugzeugTypID).FirstOrDefault()))
+                return;
+            else
+                throw new AuftragDatenFehlerhaftException("Dieser Flugzeugtyp ist nicht für diese Distanz geeignet.");
         }
 
         public void Save()
         {
             CheckMandatorySelections();
+            CheckDoability();
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
