@@ -319,7 +319,19 @@ namespace Autopilot.Models
         }
         #endregion
 
-        private void CheckDoability()
+        private void CheckMandatorySelections()
+        {
+            //Wurde ein Flugzeugtyp ausgewählt?
+            if (!(FFlugzeugTypID > 0))
+                throw new AuftragDatenUnvollstaendigException("Kein Flugzeugtyp ausgewählt!");
+
+            //Wurden genug Flugbegleiter ausgewählt?
+            int FlugbegleiterAnzahl = (int)FContent.flugzeugtyp.Where(ft => ft.ftyp_id == FFlugzeugTypID).FirstOrDefault().ftyp_anz_ccrew;
+            if (FlugbegleiterAnzahl > FCabinCrew.Count)
+                throw new AuftragDatenUnvollstaendigException("Nicht genügend Flugbegleiter ausgewählt!");
+		}
+		
+		private void CheckDoability()
         {
             //Check the distance
             DistanceChecker DC = new DistanceChecker();
@@ -350,6 +362,7 @@ namespace Autopilot.Models
 
         public void Save()
         {
+            CheckMandatorySelections();
             CheckDoability();
             FKunde.Save();
             SaveAuftrag();
