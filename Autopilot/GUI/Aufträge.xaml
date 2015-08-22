@@ -8,7 +8,7 @@
 	Title="Aufträge" Loaded="Page_Loaded">
 
     <Grid >
-        <DataGrid x:Name="GridAuftraege" Margin="50,0,100,0" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True">
+        <DataGrid x:Name="GridAuftraege" Margin="50,0,100,0" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" SelectionChanged="GridAuftraege_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ColKundenGruppe" Binding="{Binding kng_bez}" Header="Kundengruppe" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColAnrede" Binding="{Binding anr_bez}" Header="Anrede" Width="Auto"/>
@@ -22,13 +22,13 @@
         <Grid Margin="0,425,0,0" VerticalAlignment="Top">
             <GroupBox Margin="50,0,0,-100" Header="Aktionen" HorizontalAlignment="Left" Height="250" Width="180">
                 <Grid>
-                    <Button x:Name="BtnAngebotErstellen" Content="Angebot erstellen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnAuftragStornieren" Content="Auftrag storniert" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnFlugdatenErfassen" Content="Flugdaten erfassen" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150"/>
-                    <Button x:Name="BtnFeedbackErfassen" Content="Feedback erfassen" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="150"/>
+                    <Button x:Name="BtnAngebotErstellen" Content="Angebot erstellen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnAuftragStornieren" Content="Auftrag storniert" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnFlugdatenErfassen" Content="Flugdaten erfassen" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnFeedbackErfassen" Content="Feedback erfassen" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
         </Grid>

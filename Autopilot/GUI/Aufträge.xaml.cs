@@ -45,5 +45,29 @@ namespace Autopilot.GUI
 
             GridAuftraege.ItemsSource = TableAuftraege.DefaultView;
         }
+
+        private void SetButtons(string Kundengruppe, string Auftragsstatus)
+        { 
+            BtnAngebotErstellen.IsEnabled = Auftragsstatus == "Aufnahme";
+            BtnAuftragStornieren.IsEnabled = (Auftragsstatus == "Angebot") || Auftragsstatus == "Vertrag";
+            BtnVertragErstellen.IsEnabled = Auftragsstatus == "Angebot";
+            BtnVertragUnterschrieben.IsEnabled = Auftragsstatus == "Vertrag";
+            BtnRechnungErstellen.IsEnabled = ((Auftragsstatus == "Durchführung") && (Kundengruppe == "PRE")) || 
+                ((Auftragsstatus == "Beendet") && (Kundengruppe != "PRE"));
+            BtnFlugdatenErfassen.IsEnabled = Auftragsstatus == "Durchführung";
+            BtnFeedbackErfassen.IsEnabled = (Auftragsstatus != "Aufnahme") && (Auftragsstatus != "Angebot") &&
+                (Auftragsstatus != "Vertrag");
+        }
+
+        private void GridAuftraege_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (GridAuftraege.SelectedCells.Count != 0 && GridAuftraege.ItemsSource != null && GridAuftraege.SelectedItem != null)
+            {
+                DataRowView row = GridAuftraege.SelectedItems as DataRowView;
+                string Kundengruppe = ((DataRowView)GridAuftraege.SelectedItem).Row["kng_bez"].ToString();
+                string Auftragsstatus = ((DataRowView)GridAuftraege.SelectedItem).Row["sta_bez"].ToString();
+                SetButtons(Kundengruppe, Auftragsstatus);
+            }  
+        }
     }
 }
