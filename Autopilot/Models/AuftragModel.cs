@@ -176,7 +176,10 @@ namespace Autopilot.Models
             get { return FEndDate; }
             set
             {
-                FEndDate = value;
+                if (FStartDate <= value)
+                    FEndDate = value;
+                else
+                    FEndDate = FStartDate;
                 NotifyPropertyChanged("EndDate");
             }
         }
