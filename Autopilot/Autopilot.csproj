@@ -133,6 +133,7 @@
     <Compile Include="Kundenliste.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DistanceChecker.cs" />
     <Compile Include="Models\KundeModel.cs" />
     <Compile Include="Models\AuftragModel.cs" />
     <Compile Include="EntityDataModel.cs">
