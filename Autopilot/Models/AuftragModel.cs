@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 
 namespace Autopilot.Models
 {
@@ -38,6 +39,7 @@ namespace Autopilot.Models
         ObservableCollection<personal> FCabinCrew;
         ObservableCollection<personal> FPilotenCrew;
         int FFlugzeugTypID;
+        int FFlugzeugID;
         string FWuensche;
         DateTime FStartDate;
         DateTime FEndDate;
@@ -216,13 +218,6 @@ namespace Autopilot.Models
             else
                 throw new AuftragDatenFehlerhaftException("Status nicht gefunden!");
         }
-        private int GetAvailableFlugzeugID()
-        {
-            Autopilot.flugzeug EinFlugzeug = FContent.flugzeug.Where(f => f.ftyp_id == FFlugzeugTypID).FirstOrDefault();
-            if (EinFlugzeug == null)
-                throw new AuftragDatenFehlerhaftException("Kein Flugzeug dieses Typs");
-            return EinFlugzeug.flz_id;
-        }
 
         #region private save methods
         private void SaveAuftrag()
@@ -311,11 +306,100 @@ namespace Autopilot.Models
             Autopilot.termin_flugzeug FlugzeugTermin = new Autopilot.termin_flugzeug();
             FlugzeugTermin.ter_id = TerminID;
             if (FFlugzeugTypID > 0)
-                FlugzeugTermin.flz_id = GetAvailableFlugzeugID();
+                FlugzeugTermin.flz_id = FFlugzeugID;
             else
                 throw new AuftragDatenUnvollstaendigException("Kein Flugzeugtyp ausgewählt!");
             FContent.termin_flugzeug.Add(FlugzeugTermin);
             FContent.SaveChanges();       
+        }
+        #endregion
+
+        #region AvailabilityChecks
+        private void CheckPersonAvailability()
+        {
+            string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get all persons having an appointment between FStartDate and FEndDate (blocked persons). Charter appointments without contract are not included.
+            cmd.CommandText = "SELECT tp.per_id FROM termin_personal tp LEFT JOIN termin t ON (t.ter_id = tp.ter_id) LEFT JOIN terminart ta ON (t.tart_id = ta.tart_id)"
+                + " LEFT JOIN termin_auftrag tauf ON (tauf.ter_id = t.ter_id) LEFT JOIN auftrag auf ON (auf.auf_id = tauf.auf_id) LEFT JOIN status s ON (s.sta_id = auf.sta_id)"
+                + " WHERE s.sta_bez IS NULL"
+                + " OR NOT (s.sta_bez = 'Aufnahme' OR s.sta_bez = 'Angebot')"
+                + " AND ((t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") +"' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_ende >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date)))";
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            //loop through each row and check for conflicts
+            try
+            {
+                while (ResultSet.Read())
+                {
+                    int PersonID = (int)ResultSet["per_id"];
+
+                    if (FCabinCrew.Count > 0)
+                    {
+                        foreach (Autopilot.personal Person in FCabinCrew)
+                        {
+                            if (Person.per_id == PersonID)
+                                throw new AuftragRessourcenNichtFreiException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                        }
+                    }
+                    if (FPilotenCrew.Count > 0)
+                    {
+                        foreach (Autopilot.personal Person in FPilotenCrew)
+                        {
+                            if (Person.per_id == PersonID)
+                                throw new AuftragRessourcenNichtFreiException(Person.per_vorname + " " + Person.per_name + " ist bereits verplant!");
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        private void CheckPlaneAvailability()
+        {
+            string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
+
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get all planes that are not blocked 
+            cmd.CommandText = "SELECT f.flz_id FROM termin_flugzeug tf LEFT JOIN flugzeug f ON (tf.flz_id = f.flz_id) LEFT JOIN termin t ON (t.ter_id = tf.ter_id)"
+                + " WHERE f.ftyp_id = " + FFlugzeugTypID.ToString()
+                + " AND NOT ((t.ter_beginn >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_beginn <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_ende >= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende <= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date))"
+                + " OR (t.ter_beginn <= CAST('" + FStartDate.ToString("yyyy-MM-dd") + "' AS date) AND t.ter_ende >= CAST('" + FEndDate.ToString("yyyy-MM-dd") + "' AS date)))";
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            //take the first plane
+            try
+            {
+                if (ResultSet.Read())
+                    FFlugzeugID = (int)ResultSet["flz_id"];
+                else
+                    throw new AuftragRessourcenNichtFreiException("Kein Flugzeug dieses Typs verfügbar");
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
         #endregion
 
@@ -364,6 +448,8 @@ namespace Autopilot.Models
         {
             CheckMandatorySelections();
             CheckDoability();
+            CheckPersonAvailability();
+            CheckPlaneAvailability();
             FKunde.Save();
             SaveAuftrag();
             SaveTermin();
