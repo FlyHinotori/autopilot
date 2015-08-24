@@ -26,6 +26,7 @@ namespace Autopilot.GUI
         string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
         DataTable TableAuftraege = new DataTable("Auftraege");
         int FAuftragsID = 0;
+        int FFlugzeit = 0;
 
         public Aufträge()
         {
@@ -38,7 +39,7 @@ namespace Autopilot.GUI
             SqlConnection conn = new SqlConnection(DBconnStrg);
 
             //Aufträge laden
-            string SQLcmd = "SELECT a.auf_id, a.knd_id, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, kg.kng_bez"
+            string SQLcmd = "SELECT a.auf_id, a.knd_id, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit"
                 + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id) " 
                 + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) ORDER BY a.sta_id ASC";
             SqlCommand cmd = new SqlCommand(SQLcmd, conn);
@@ -70,6 +71,7 @@ namespace Autopilot.GUI
                 string Auftragsstatus = ((DataRowView)GridAuftraege.SelectedItem).Row["sta_bez"].ToString();
                 SetButtons(Kundengruppe, Auftragsstatus);
                 FAuftragsID = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["auf_id"].ToString());
+                FFlugzeit = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["flugzeit"].ToString());
             }  
         }
 
@@ -81,6 +83,33 @@ namespace Autopilot.GUI
         private void CalculateCosts()
         {
             double Fixkosten = GetFixkosten();
+            double Personalkosten = GetPersonalkosten();
+        }
+
+        private double GetPersonalkosten()
+        {
+            double Personalkosten = 0;
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get annual salary
+            cmd.CommandText = "SELECT CAST(pos.pos_gehalt_pa AS int) AS gehalt FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id) LEFT JOIN termin_personal tp ON (tp.ter_id = t.ter_id)"
+                + " LEFT JOIN personal p ON (p.per_id = tp.per_id) LEFT JOIN position pos ON (pos.pos_id = p.pos_id)"
+                + " WHERE ta.auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            while (ResultSet.Read())
+            {
+                int Jahresgehalt = (int)ResultSet["gehalt"];
+                Personalkosten = Personalkosten + ((Jahresgehalt / 365) * FFlugzeit * 1.2);
+            }
+            conn.Close();
+            return Personalkosten;
         }
 
         private double GetFixkosten()
@@ -91,8 +120,8 @@ namespace Autopilot.GUI
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
 
-            //Get annual fix costs and flight duration (in days)
-            cmd.CommandText = "SELECT CAST(ft.ftyp_fkosten_pa AS int) AS costperanno, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id)"
+            //Get annual fix costs
+            cmd.CommandText = "SELECT CAST(ft.ftyp_fkosten_pa AS int) AS costperanno FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id)"
                 + " LEFT JOIN termin_flugzeug tf ON (tf.ter_id = t.ter_id) LEFT JOIN flugzeug f ON (f.flz_id = tf.flz_id) LEFT JOIN flugzeugtyp ft ON (ft.ftyp_id = f.ftyp_id)"
                 + " WHERE ta.auf_id = " + FAuftragsID.ToString();
             cmd.CommandType = System.Data.CommandType.Text;
@@ -103,8 +132,7 @@ namespace Autopilot.GUI
             if (ResultSet.Read())
             {
                 int CostPerAnno = (int)ResultSet["costperanno"];
-                int DurationInDays = (int)ResultSet["flugzeit"];
-                Fixkosten = (CostPerAnno / 365) * DurationInDays;
+                Fixkosten = (CostPerAnno / 365) * FFlugzeit;
             }
             conn.Close();
             return Fixkosten;
