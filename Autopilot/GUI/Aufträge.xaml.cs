@@ -84,6 +84,34 @@ namespace Autopilot.GUI
         {
             double Fixkosten = GetFixkosten();
             double Personalkosten = GetPersonalkosten();
+            double Flugkosten = GetFlugkosten();
+            double Gesamtkosten = Fixkosten + Personalkosten + Flugkosten;
+        }
+
+        private double GetFlugkosten()
+        {
+            double Flugkosten = 0;
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get hourly costs
+            cmd.CommandText = "SELECT CAST(ft.ftyp_vkosten_ph AS int) AS costperhour FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id)"
+                + " LEFT JOIN termin_flugzeug tf ON (tf.ter_id = t.ter_id) LEFT JOIN flugzeug f ON (f.flz_id = tf.flz_id) LEFT JOIN flugzeugtyp ft ON (ft.ftyp_id = f.ftyp_id)"
+                + " WHERE ta.auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            if (ResultSet.Read())
+            {
+                int CostPerHour = (int)ResultSet["costperhour"];
+                Flugkosten = CostPerHour * FFlugzeit * 24;
+            }
+            conn.Close();
+            return Flugkosten;
         }
 
         private double GetPersonalkosten()
