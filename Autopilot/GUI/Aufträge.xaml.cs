@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Globalization;
 
 namespace Autopilot.GUI
 {
@@ -24,6 +25,7 @@ namespace Autopilot.GUI
     {
         string DBconnStrg = Properties.Settings.Default.AutopilotConnectionString;
         DataTable TableAuftraege = new DataTable("Auftraege");
+        int FAuftragsID = 0;
 
         public Aufträge()
         {
@@ -67,7 +69,45 @@ namespace Autopilot.GUI
                 string Kundengruppe = ((DataRowView)GridAuftraege.SelectedItem).Row["kng_bez"].ToString();
                 string Auftragsstatus = ((DataRowView)GridAuftraege.SelectedItem).Row["sta_bez"].ToString();
                 SetButtons(Kundengruppe, Auftragsstatus);
+                FAuftragsID = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["auf_id"].ToString());
             }  
+        }
+
+        private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
+        {
+            CalculateCosts();
+        }
+
+        private void CalculateCosts()
+        {
+            double Fixkosten = GetFixkosten();
+        }
+
+        private double GetFixkosten()
+        {
+            double Fixkosten = 0;
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get annual fix costs and flight duration (in days)
+            cmd.CommandText = "SELECT CAST(ft.ftyp_fkosten_pa AS int) AS costperanno, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id)"
+                + " LEFT JOIN termin_flugzeug tf ON (tf.ter_id = t.ter_id) LEFT JOIN flugzeug f ON (f.flz_id = tf.flz_id) LEFT JOIN flugzeugtyp ft ON (ft.ftyp_id = f.ftyp_id)"
+                + " WHERE ta.auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            if (ResultSet.Read())
+            {
+                int CostPerAnno = (int)ResultSet["costperanno"];
+                int DurationInDays = (int)ResultSet["flugzeit"];
+                Fixkosten = (CostPerAnno / 365) * DurationInDays;
+            }
+            conn.Close();
+            return Fixkosten;
         }
     }
 }
