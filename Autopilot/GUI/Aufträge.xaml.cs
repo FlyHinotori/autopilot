@@ -78,7 +78,39 @@ namespace Autopilot.GUI
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
         {
             CalculateCosts();
+            CreateAngebot();
         }
+
+        private void CreateAngebot()
+        {
+            CreateWord();
+        }
+
+        #region Word
+        private void ReplaceBookmarkText(string Bookmarkname, string Text, Microsoft.Office.Interop.Word.Document Doc)
+        {
+            object TheBookmark = Bookmarkname;
+            Microsoft.Office.Interop.Word.Range range = Doc.Bookmarks[ref TheBookmark].Range;
+            range.Text = Text;
+            //object newRange = range;
+            //Doc.Bookmarks.Add(Bookmarkname, ref newRange);        
+        }
+
+        private void CreateWord()
+        {
+            string ExeDir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string WordDir = System.IO.Path.Combine(ExeDir, "word");
+            Microsoft.Office.Interop.Word.Application WordApp = new Microsoft.Office.Interop.Word.Application();
+            Microsoft.Office.Interop.Word.Document DocAngebot = WordApp.Documents.Open(WordDir + "\\Angebot.dotx");
+
+            ReplaceBookmarkText("Titel", "Frau", DocAngebot);
+            ReplaceBookmarkText("Name", "Clair Grube", DocAngebot);
+            ReplaceBookmarkText("Angebot", "Berlin-Bonn, 1 Tag, 1000 € \n Bonn-Rostock, 1 Tag, 2500 €", DocAngebot);
+
+            DocAngebot.SaveAs(WordDir + "\\Angebot2.docx"); 
+            WordApp.Visible = true;
+        }
+        #endregion
 
         private void CalculateCosts()
         {
