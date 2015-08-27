@@ -30,6 +30,7 @@ namespace Autopilot.GUI
         DataTable TableAuftraege = new DataTable("Auftraege");
         int FAuftragsID = 0;
         int FFlugzeit = 0;
+        string FAnrede;
         Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
         Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
 
@@ -77,6 +78,9 @@ namespace Autopilot.GUI
                 SetButtons(Kundengruppe, Auftragsstatus);
                 FAuftragsID = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["auf_id"].ToString());
                 FFlugzeit = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["flugzeit"].ToString());
+                FAnrede = ((DataRowView)GridAuftraege.SelectedItem).Row["anr_bez"].ToString()
+                    + " " + ((DataRowView)GridAuftraege.SelectedItem).Row["knd_vorname"].ToString()
+                    + " " + ((DataRowView)GridAuftraege.SelectedItem).Row["knd_name"].ToString();
             }  
         }
 
@@ -116,7 +120,7 @@ namespace Autopilot.GUI
         private Phrase GetAngebotText()
         {
             var BriefText = new Phrase();
-            BriefText.Add(new Chunk("\n\nSehr geehrte/r Herr Wurstwasser,", NormalFont));
+            BriefText.Add(new Chunk("\n\nSehr geehrte/r " + FAnrede + ",", NormalFont));
             BriefText.Add(new Chunk("\n\nfür Ihre Anfrage bedanken wir uns ganz herzlich. Gern machen wir Ihnen ein Angebot über den Charterauftrag.", NormalFont));
             BriefText.Add(new Chunk("\n\nFlug von A nach B für 1000€", NormalFont));
             BriefText.Add(new Chunk("\n\nWir würden uns freuen Ihren Auftrag zu erhalten. Bei Fragen zögern Sie nicht uns zu kontaktieren.", NormalFont));
