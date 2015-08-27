@@ -18,6 +18,7 @@ using System.Globalization;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Drawing;
 
 namespace Autopilot.GUI
 {
@@ -89,6 +90,9 @@ namespace Autopilot.GUI
             Document Angebot = CreatePDF("Angebot");
             Angebot.Open();
             Angebot.Add(GetAngebotHeader());
+            iTextSharp.text.Image FlugzeugPic = GetFlugzeugImage();
+            if (FlugzeugPic != null)
+                Angebot.Add(FlugzeugPic);
             Angebot.Add(GetAngebotText());
             Angebot.Close();
         }
@@ -111,7 +115,7 @@ namespace Autopilot.GUI
             var Header = new Phrase();
             Header.Add(new Chunk("Charterangebot", BoldFont));
             Header.Add(new Chunk("\n\nder", NormalFont));
-            Header.Add(new Chunk("\n\nHINOTORI Executive AG ", BoldFont));
+            Header.Add(new Chunk("\n\nHINOTORI Executive AG \n\n", BoldFont));
             HeaderTable.AddCell(Header);
             return HeaderTable;
         }
@@ -127,6 +131,53 @@ namespace Autopilot.GUI
             BriefText.Add(new Chunk("\n\nMit freundlichen Grüße", NormalFont));
             BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
             return BriefText;
+        }
+
+        private iTextSharp.text.Image GetFlugzeugImage()
+        {
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get flugzeug pic
+            cmd.CommandText = "SELECT f.flz_bild FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id) LEFT JOIN termin_flugzeug tf ON (tf.ter_id = t.ter_id)"
+                + " LEFT JOIN flugzeug f ON (f.flz_id = tf.flz_id)"
+                + " WHERE ta.auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = System.Data.CommandType.Text;
+            conn.Open();
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            BitmapImage BitObj = new BitmapImage();
+            byte[] a = null;
+            if (ResultSet.Read())
+            {
+                a = (byte[])ResultSet["flz_bild"];
+            }
+            conn.Close();
+
+            if (a == null)
+                return null;
+            iTextSharp.text.Image pic = iTextSharp.text.Image.GetInstance(a);
+
+            if (pic.Height > pic.Width)
+            {
+                //Maximum height is 50 pixels.
+                float percentage = 0.0f;
+                percentage = 50 / pic.Height;
+                pic.ScalePercent(percentage * 100);
+            }
+            else
+            {
+                //Maximum width is 50 pixels.
+                float percentage = 0.0f;
+                percentage = 50 / pic.Width;
+                pic.ScalePercent(percentage * 100);
+            }
+
+            pic.Border = iTextSharp.text.Rectangle.BOX;
+            pic.BorderColor = iTextSharp.text.BaseColor.BLACK;
+            pic.BorderWidth = 1f;
+            return pic;
         }
         #endregion
 
