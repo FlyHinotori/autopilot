@@ -30,6 +30,8 @@ namespace Autopilot.GUI
         DataTable TableAuftraege = new DataTable("Auftraege");
         int FAuftragsID = 0;
         int FFlugzeit = 0;
+        Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
+        Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
 
         public Aufträge()
         {
@@ -81,36 +83,48 @@ namespace Autopilot.GUI
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
         {
             CalculateCosts();
-            CreatePDF();
+            Document Angebot = CreatePDF("Angebot");
+            Angebot.Open();
+            Angebot.Add(GetAngebotHeader());
+            Angebot.Add(GetAngebotText());
+            Angebot.Close();
         }
 
-        private void CreatePDF()
+        #region PDFErstellung
+        private Document CreatePDF(string Name)
         {
-            FileStream fs = new FileStream("test.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            Directory.CreateDirectory("pdf");
+            FileStream fs = new FileStream("pdf\\" + Name + Guid.NewGuid().ToString() + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
             Document doc = new Document(new iTextSharp.text.Rectangle(PageSize.A4));
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
-            doc.Open();
-            var normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-            var boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
-            PdfPTable table = new PdfPTable(1);
-            table.DefaultCell.Border = PdfPCell.NO_BORDER;
-            table.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
-            var phrase = new Phrase();
-            phrase.Add(new Chunk("Charterangebot", boldFont));
-            phrase.Add(new Chunk("\n\nder", normalFont));
-            phrase.Add(new Chunk("\n\nHINOTORI Executive AG ", boldFont));
-            table.AddCell(phrase);
-            var phrase2 = new Phrase();
-            phrase2.Add(new Chunk("\n\nSehr geehrte/r Herr Wurstwasser,", normalFont));
-            phrase2.Add(new Chunk("\n\nfür Ihre Anfrage bedanken wir uns ganz herzlich. Gern machen wir Ihnen ein Angebot über den Charterauftrag.", normalFont));
-            phrase2.Add(new Chunk("\n\nFlug von A nach B für 1000€", normalFont));
-            phrase2.Add(new Chunk("\n\nWir würden uns freuen Ihren Auftrag zu erhalten. Bei Fragen zögern Sie nicht uns zu kontaktieren.", normalFont));
-            phrase2.Add(new Chunk("\n\nMit freundlichen Grüße", normalFont));
-            phrase2.Add(new Chunk("\n\nHINOTORI Executive AG", normalFont));
-            doc.Add(table);
-            doc.Add(phrase2);
-            doc.Close();
+            return doc;
         }
+
+        private PdfPTable GetAngebotHeader()
+        {
+            PdfPTable HeaderTable = new PdfPTable(1);
+            HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+            HeaderTable.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            var Header = new Phrase();
+            Header.Add(new Chunk("Charterangebot", BoldFont));
+            Header.Add(new Chunk("\n\nder", NormalFont));
+            Header.Add(new Chunk("\n\nHINOTORI Executive AG ", BoldFont));
+            HeaderTable.AddCell(Header);
+            return HeaderTable;
+        }
+
+        private Phrase GetAngebotText()
+        {
+            var BriefText = new Phrase();
+            BriefText.Add(new Chunk("\n\nSehr geehrte/r Herr Wurstwasser,", NormalFont));
+            BriefText.Add(new Chunk("\n\nfür Ihre Anfrage bedanken wir uns ganz herzlich. Gern machen wir Ihnen ein Angebot über den Charterauftrag.", NormalFont));
+            BriefText.Add(new Chunk("\n\nFlug von A nach B für 1000€", NormalFont));
+            BriefText.Add(new Chunk("\n\nWir würden uns freuen Ihren Auftrag zu erhalten. Bei Fragen zögern Sie nicht uns zu kontaktieren.", NormalFont));
+            BriefText.Add(new Chunk("\n\nMit freundlichen Grüße", NormalFont));
+            BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
+            return BriefText;
+        }
+        #endregion
 
         private void CalculateCosts()
         {
