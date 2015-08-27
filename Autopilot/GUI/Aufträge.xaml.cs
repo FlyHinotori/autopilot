@@ -86,7 +86,6 @@ namespace Autopilot.GUI
 
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
         {
-            CalculateCosts();
             Document Angebot = CreatePDF("Angebot");
             Angebot.Open();
             Angebot.Add(GetAngebotHeader());
@@ -119,10 +118,11 @@ namespace Autopilot.GUI
 
         private Phrase GetAngebotText()
         {
+            double Preis = CalculateCosts();
             var BriefText = new Phrase();
             BriefText.Add(new Chunk("\n\nSehr geehrte/r " + FAnrede + ",", NormalFont));
             BriefText.Add(new Chunk("\n\nfür Ihre Anfrage bedanken wir uns ganz herzlich. Gern machen wir Ihnen ein Angebot über den Charterauftrag.", NormalFont));
-            BriefText.Add(new Chunk("\n\nFlug von A nach B für 1000€", NormalFont));
+            BriefText.Add(new Chunk("\n\n" + GetCharterDescription() + " für " + Preis.ToString("F2") + " €", NormalFont));
             BriefText.Add(new Chunk("\n\nWir würden uns freuen Ihren Auftrag zu erhalten. Bei Fragen zögern Sie nicht uns zu kontaktieren.", NormalFont));
             BriefText.Add(new Chunk("\n\nMit freundlichen Grüße", NormalFont));
             BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
@@ -130,12 +130,12 @@ namespace Autopilot.GUI
         }
         #endregion
 
-        private void CalculateCosts()
+        private double CalculateCosts()
         {
             double Fixkosten = GetFixkosten();
             double Personalkosten = GetPersonalkosten();
             double Flugkosten = GetFlugkosten();
-            double Gesamtkosten = Fixkosten + Personalkosten + Flugkosten;
+            return Fixkosten + Personalkosten + Flugkosten;
         }
 
         private double GetFlugkosten()
@@ -214,6 +214,11 @@ namespace Autopilot.GUI
             }
             conn.Close();
             return Fixkosten;
+        }
+
+        private string GetCharterDescription()
+        {
+            return "Flug von Berlin nach Prag";
         }
     }
 }
