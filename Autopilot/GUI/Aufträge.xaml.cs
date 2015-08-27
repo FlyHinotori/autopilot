@@ -234,8 +234,11 @@ namespace Autopilot.GUI
             SqlDataReader ResultSet = cmd.ExecuteReader();
             while (ResultSet.Read())
             {
-                int Jahresgehalt = (int)ResultSet["gehalt"];
-                Personalkosten = Personalkosten + ((Jahresgehalt / 365) * FFlugzeit * 1.2);
+                if (ResultSet["gehalt"] != DBNull.Value)
+                { 
+                    int Jahresgehalt = (int)ResultSet["gehalt"];
+                    Personalkosten = Personalkosten + ((Jahresgehalt / 365) * FFlugzeit * 1.2);
+                }
             }
             conn.Close();
             return Personalkosten;
