@@ -14,6 +14,7 @@
                 <DataGridTextColumn x:Name="ColAnrede" Binding="{Binding anr_bez}" Header="Anrede" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColVorname" Binding="{Binding knd_vorname}" Header="Vorname" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColName" Binding="{Binding knd_name}" Header="Nachname" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColAuftragsArt" Binding="{Binding aart_bez}" Header="Auftragsart" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColBeginn" Binding="{Binding ter_beginn,StringFormat={}\{0:dd.MM.yyyy\}}" Header="Von" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColEnde" Binding="{Binding ter_ende,StringFormat={}\{0:dd.MM.yyyy\}}" Header="Bis" Width="Auto"/>
                 <DataGridTextColumn x:Name="ColStatus" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>

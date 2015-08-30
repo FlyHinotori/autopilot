@@ -32,6 +32,7 @@ namespace Autopilot.GUI
         int FAuftragsID = 0;
         int FFlugzeit = 0;
         string FAnrede;
+        string FAuftragsStatus;
         Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
         Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
 
@@ -46,9 +47,10 @@ namespace Autopilot.GUI
             SqlConnection conn = new SqlConnection(DBconnStrg);
 
             //Aufträge laden
-            string SQLcmd = "SELECT a.auf_id, a.knd_id, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit"
-                + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id) " 
-                + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) ORDER BY a.sta_id ASC";
+            string SQLcmd = "SELECT a.auf_id, a.knd_id, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, aa.aart_bez, kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit"
+                + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id)"
+                + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) LEFT JOIN auftragsart aa ON (a.aart_id = aa.aart_id)"
+                + " ORDER BY a.sta_id ASC";
             SqlCommand cmd = new SqlCommand(SQLcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(TableAuftraege);
