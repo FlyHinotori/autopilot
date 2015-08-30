@@ -251,7 +251,7 @@ namespace Autopilot.GUI
             BriefText.Add(new Chunk("\n\nvielen Dank für Ihren Auftrag und das damit verbundene Vertrauen!", NormalFont));
             BriefText.Add(new Chunk("\n\nFür den Charterflug vom " + FStartDate + " bis zum " + FEndDate + " stellen wir Ihnen "
                 + Preis.ToString("F2") + " € in Rechnung. Der Rechnungsbetrag enthält " + MwSt.ToString("F2") + " € Mehrwertsteuer.", NormalFont));
-            BriefText.Add(new Chunk("\n\nBitte begleichen Sie den Gesamtbetrag von " + Preis.ToString("F2") + "bis zum " 
+            BriefText.Add(new Chunk("\n\nBitte begleichen Sie den Gesamtbetrag von " + Preis.ToString("F2") + " € bis zum " 
                 + DateTime.Now.Date.AddDays(30).ToShortDateString() + " auf das unten genannte Bankkonto.", BoldFont));
             BriefText.Add(new Chunk("\n\nVolksbank Wismar", NormalFont));
             BriefText.Add(new Chunk("\nBLZ: 123456789", NormalFont));
