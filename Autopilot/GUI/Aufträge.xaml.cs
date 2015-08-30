@@ -217,6 +217,21 @@ namespace Autopilot.GUI
         private void BtnFlugdatenErfassen_Click(object sender, RoutedEventArgs e)
         {
             ChangeStatusTo("Beendet");
+            LoadAuftraege();
+        }
+
+        private void BtnFeedbackErfassen_Click(object sender, RoutedEventArgs e)
+        {
+            string FileName = "Feedback" + Guid.NewGuid().ToString();
+            Document Rechnung = CreatePDF(FileName);
+            Rechnung.Open();
+            Rechnung.Add(GetFeedbackHeader());
+            iTextSharp.text.Image FlugzeugPic = GetFlugzeugImage();
+            if (FlugzeugPic != null)
+                Rechnung.Add(FlugzeugPic);
+            Rechnung.Add(GetFeedbackTest());
+            Rechnung.Close();
+            System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
         }
 
         #region PDFErstellung
@@ -227,6 +242,42 @@ namespace Autopilot.GUI
             Document doc = new Document(new iTextSharp.text.Rectangle(PageSize.A4));
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             return doc;
+        }
+
+        private IElement GetFeedbackHeader()
+        {
+            PdfPTable HeaderTable = new PdfPTable(1);
+            HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+            HeaderTable.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            var Header = new Phrase();
+            Header.Add(new Chunk("HINOTORI Executive AG", BoldFont));
+            Header.Add(new Chunk("\n\nUmfrage zur", NormalFont));
+            Header.Add(new Chunk("\n\nKundenzufriedenheit\n\n", BoldFont));
+            HeaderTable.AddCell(Header);
+            return HeaderTable;
+        }
+
+        private IElement GetFeedbackTest()
+        {
+            var BriefText = new Phrase();
+            BriefText.Add(new Chunk("\n\nSehr geehrte/r " + FAnrede + ",", NormalFont));
+            BriefText.Add(new Chunk("\n\nvielen Dank, dass Sie mit uns geflogen sind. Zur Verbesserung unserer Dienstleitung, bitten wir Sie an dieser Stelle um eine"
+                + "Bewertung. Wir hoffen Sie finden die wenigen Minuten und bewerten die folgenden Punkte nach dem Schulnotenprinzip (1 = sehr gut, 6 = mangelhaft).", NormalFont));
+            BriefText.Add(new Chunk("\n\n\n Personal\n", BoldFont));
+            BriefText.Add(new Chunk("\nWie bewerten Sie Ihre(n) Piloten?", NormalFont));
+            BriefText.Add(new Chunk("\n_____", NormalFont));
+            BriefText.Add(new Chunk("\nWie bewerten Sie das Kabinenpersonal?", NormalFont));
+            BriefText.Add(new Chunk("\n_____", NormalFont));
+            BriefText.Add(new Chunk("\nPünktlichkeit des Fluges:", NormalFont));
+            BriefText.Add(new Chunk("\n_____", NormalFont));
+            BriefText.Add(new Chunk("\nWie bewerten Sie Ihren Sachbearbeiter?", NormalFont));
+            BriefText.Add(new Chunk("\n_____", NormalFont));
+            BriefText.Add(new Chunk("\nWürden Sie uns weiterempfehlen?", NormalFont));
+            BriefText.Add(new Chunk("\nja / nein", NormalFont));
+            BriefText.Add(new Chunk("\n\nHaben Sie weitere Anmerkungen in Bezug auf unsere Dienstleistung? Falls ja, finden sie jetzt Platz um diese zu Papier zu bringen.", NormalFont));
+            BriefText.Add(new Chunk("\n\n\n\n\n\n\n\nMit freundlichen Grüße", NormalFont));
+            BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
+            return BriefText;
         }
 
         private IElement GetRechnungHeader()
