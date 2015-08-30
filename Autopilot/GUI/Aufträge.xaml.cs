@@ -191,11 +191,22 @@ namespace Autopilot.GUI
         private void BtnVertragUnterschrieben_Click(object sender, RoutedEventArgs e)
         {
             ChangeStatusTo("Durchführung");
+            LoadAuftraege();
         }
 
         private void BtnRechnungErstellen_Click(object sender, RoutedEventArgs e)
         {
+            Document Rechnung = CreatePDF("Rechnung");
+            Rechnung.Open();
+            Rechnung.Add(GetRechnungHeader());
+            iTextSharp.text.Image FlugzeugPic = GetFlugzeugImage();
+            if (FlugzeugPic != null)
+                Rechnung.Add(FlugzeugPic);
+            Rechnung.Add(GetRechnungText());
+            Rechnung.Close();
+
             ChangeStatusTo("erstellt");
+            LoadAuftraege();
         }
 
         private void BtnFlugdatenErfassen_Click(object sender, RoutedEventArgs e)
@@ -212,7 +223,41 @@ namespace Autopilot.GUI
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             return doc;
         }
-        
+
+        private IElement GetRechnungHeader()
+        {
+            PdfPTable HeaderTable = new PdfPTable(1);
+            HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+            HeaderTable.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            var Header = new Phrase();
+            Header.Add(new Chunk("Rechnung", BoldFont));
+            Header.Add(new Chunk("\n\nder", NormalFont));
+            Header.Add(new Chunk("\n\nHINOTORI Executive AG \n\n", BoldFont));
+            HeaderTable.AddCell(Header);
+            return HeaderTable;
+        }
+
+        private IElement GetRechnungText()
+        {
+            double Preis = CalculateCosts();
+            double MwSt = Preis / 119 * 19;
+            var BriefText = new Phrase();
+            BriefText.Add(new Chunk("\n\nSehr geehrte/r " + FAnrede + ",", NormalFont));
+            BriefText.Add(new Chunk("\n\nvielen Dank für Ihren Auftrag und das damit verbundene Vertrauen!", NormalFont));
+            BriefText.Add(new Chunk("\n\nFür den Charterflug vom " + FStartDate + " bis zum " + FEndDate + " stellen wir Ihnen "
+                + Preis.ToString("F2") + " € in Rechnung. Der Rechnungsbetrag enthält " + MwSt.ToString("F2") + " € Mehrwertsteuer.", NormalFont));
+            BriefText.Add(new Chunk("\n\nBitte begleichen Sie den Gesamtbetrag von " + Preis.ToString("F2") + "bis zum " 
+                + DateTime.Now.Date.AddDays(30).ToShortDateString() + " auf das unten genannte Bankkonto.", BoldFont));
+            BriefText.Add(new Chunk("\n\nVolksbank Wismar", NormalFont));
+            BriefText.Add(new Chunk("\nBLZ: 123456789", NormalFont));
+            BriefText.Add(new Chunk("\nKTO: 12344321", NormalFont));
+            BriefText.Add(new Chunk("\nKTO Inh.: HINOTORI AG", NormalFont));
+            BriefText.Add(new Chunk("\n\n\nBei Rückfragen stehen wir Ihnen wie gewohnt jederzeit gerne zur Verfügung.", NormalFont));
+            BriefText.Add(new Chunk("\n\nMit freundlichen Grüße", NormalFont));
+            BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
+            return BriefText;
+        }
+
         private IElement GetVertragHeader()
         {
             PdfPTable HeaderTable = new PdfPTable(1);
