@@ -39,6 +39,7 @@ namespace Autopilot.GUI
         string FVonOrt;
         string FBisOrt;
         string FKundengruppe;
+        AutopilotEntities FContent;
         
         Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
         Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
@@ -46,6 +47,7 @@ namespace Autopilot.GUI
         public Aufträge()
         {
             InitializeComponent();
+            FContent = new AutopilotEntities();
         }
 
         private void LoadAuftraege()
@@ -69,6 +71,9 @@ namespace Autopilot.GUI
             GridAuftraege.ItemsSource = TableAuftraege.DefaultView;
         }
 
+        /*!
+         If Auftragsstatus is empty, all buttons will be disabled
+         */
         private void SetButtons(string Auftragsstatus)
         { 
             BtnAngebotErstellen.IsEnabled = Auftragsstatus == "Aufnahme";
@@ -79,7 +84,7 @@ namespace Autopilot.GUI
                 ((Auftragsstatus == "Beendet") && (FKundengruppe != "PRE"));
             BtnFlugdatenErfassen.IsEnabled = Auftragsstatus == "Durchführung";
             BtnFeedbackErfassen.IsEnabled = (Auftragsstatus != "Aufnahme") && (Auftragsstatus != "Angebot") &&
-                (Auftragsstatus != "Vertrag");
+                (Auftragsstatus != "Vertrag") && (Auftragsstatus != "");
         }
 
         private void GridAuftraege_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -101,7 +106,10 @@ namespace Autopilot.GUI
                 FPaxAnzahl = ((DataRowView)GridAuftraege.SelectedItem).Row["auf_panzahl"].ToString();
                 FVonOrt = ((DataRowView)GridAuftraege.SelectedItem).Row["VonOrt"].ToString();
                 FBisOrt = ((DataRowView)GridAuftraege.SelectedItem).Row["BisOrt"].ToString();
-            }  
+            }
+            else
+                //disable all buttons
+                SetButtons("");
         }
 
         private void ChangeStatusTo(string NeuerStatus)
@@ -110,7 +118,7 @@ namespace Autopilot.GUI
             conn.Open();
             SqlCommand cmd = new SqlCommand();
             cmd.Connection = conn;
-            cmd.CommandText = "UPDATE auftrag SET sta_id = (SELECT sta_id FROM status WHERE sta_bez = '" + NeuerStatus + "')";
+            cmd.CommandText = "UPDATE auftrag SET sta_id = (SELECT sta_id FROM status WHERE sta_bez = '" + NeuerStatus + "') WHERE auf_id = " + FAuftragsID.ToString();
             cmd.CommandType = CommandType.Text;
 
             try
@@ -122,6 +130,25 @@ namespace Autopilot.GUI
                 MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             conn.Close();            
+        }
+
+        private void SetAblehnungsgrund(int AblehnungsgrundID)
+        {
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE auftrag SET ablg_id = " + AblehnungsgrundID.ToString() + " WHERE auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Exception err)
+            {
+                MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            conn.Close(); 
         }
 
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
@@ -140,7 +167,13 @@ namespace Autopilot.GUI
 
         private void BtnAuftragStornieren_Click(object sender, RoutedEventArgs e)
         {
+            Autopilot.ablehnungsgrund grund = new Autopilot.ablehnungsgrund();
+            grund.ablg_bez = Microsoft.VisualBasic.Interaction.InputBox("Aus welchem Grund wurde der Auftrag abgelehnt?", "Ablehnungsgrund", "kein Grund bekannt", 500, 500);
+            FContent.ablehnungsgrund.Add(grund);
+            FContent.SaveChanges();
+            SetAblehnungsgrund(grund.ablg_id);
             ChangeStatusTo("Storno");
+            LoadAuftraege();
         }
 
         private void BtnVertragErstellen_Click(object sender, RoutedEventArgs e)
