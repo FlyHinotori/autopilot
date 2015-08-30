@@ -477,6 +477,7 @@
     <Compile Include="GUI\Rechnungen.xaml.cs">
       <DependentUpon>Rechnungen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Suche\JaroWinklerDistance.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
