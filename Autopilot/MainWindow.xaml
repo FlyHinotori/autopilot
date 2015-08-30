@@ -24,10 +24,6 @@
         </Style>
     </Window.Resources>
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="&#xf0ad;" Click="Einstellungen_anzeigen" Style="{StaticResource IconButton}" ToolTip="Einstellungen" />
-            <!--<Button Content="&#xf059;" Click="Hilfe_anzeigen" Style="{StaticResource IconButton}" />-->
-        </StackPanel>
         <StackPanel DockPanel.Dock="Left">
             <Button Content="&#xf055;" Click="Neu_anzeigen" Style="{StaticResource IconButton}" ToolTip="Neuer Fall" />
             <Button Content="&#xf01c;" Click="Aufträge_anzeigen" Style="{StaticResource IconButton}" ToolTip="Aufträge" />

@@ -4,10 +4,34 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
-	Title="Aufträge">
+      d:DesignHeight="450" d:DesignWidth="400"
+	Title="Aufträge" Loaded="Page_Loaded">
 
-    <ListView> <!-- Hier sollte, nach Kunden gruppiert, alle Konversation rein die mit dem Kunden geführt wurde-->
-        <!-- Inspiration: http://www.wpf-tutorial.com/listview-control/listview-grouping/ -->
-    </ListView>
+    <Grid >
+        <DataGrid x:Name="GridAuftraege" Margin="50,0,100,0" AutoGenerateColumns="False" Height="400" VerticalAlignment="Top" ItemsSource="{Binding}" RowDetailsVisibilityMode="VisibleWhenSelected" IsReadOnly="True" SelectionChanged="GridAuftraege_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ColKundenGruppe" Binding="{Binding kng_bez}" Header="Kundengruppe" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColAnrede" Binding="{Binding anr_bez}" Header="Anrede" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColVorname" Binding="{Binding knd_vorname}" Header="Vorname" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColName" Binding="{Binding knd_name}" Header="Nachname" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColAuftragsArt" Binding="{Binding aart_bez}" Header="Auftragsart" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColBeginn" Binding="{Binding ter_beginn,StringFormat={}\{0:dd.MM.yyyy\}}" Header="Von" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColEnde" Binding="{Binding ter_ende,StringFormat={}\{0:dd.MM.yyyy\}}" Header="Bis" Width="Auto"/>
+                <DataGridTextColumn x:Name="ColStatus" Binding="{Binding sta_bez}" Header="Status" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Margin="0,425,0,0" VerticalAlignment="Top">
+            <GroupBox Margin="50,0,0,-100" Header="Aktionen" HorizontalAlignment="Left" Height="250" Width="180">
+                <Grid>
+                    <Button x:Name="BtnAngebotErstellen" Content="Angebot erstellen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnAngebotErstellen_Click"/>
+                    <Button x:Name="BtnAuftragStornieren" Content="Auftrag stornieren" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnAuftragStornieren_Click"/>
+                    <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragErstellen_Click"/>
+                    <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragUnterschrieben_Click"/>
+                    <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnRechnungErstellen_Click"/>
+                    <Button x:Name="BtnFlugBeendet" Content="Flug beendet" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFlugBeendet_Click"/>
+                    <Button x:Name="BtnFeedbackErfassen" Content="Feedback erfassen" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFeedbackErfassen_Click"/>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </Grid>
 </Page>
