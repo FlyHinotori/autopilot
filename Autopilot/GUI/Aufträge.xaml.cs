@@ -56,7 +56,7 @@ namespace Autopilot.GUI
             SqlConnection conn = new SqlConnection(DBconnStrg);
             string SQLcmd = "SELECT a.auf_id, a.knd_id, a.auf_panzahl, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, aa.aart_bez,"
                 + " kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit, fh1.flh_name AS VonOrt, fh2.flh_name AS BisOrt"
-                + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id)"
+                + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.kng_id)"
                 + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) "
                 + " LEFT JOIN auftragsart aa ON (a.aart_id = aa.aart_id) LEFT JOIN flughafen fh1 ON (fh1.flh_id = a.flh_id_beginn) LEFT JOIN flughafen fh2 ON (fh2.flh_id = a.flh_id_ende)"
                 + " ORDER BY a.sta_id ASC";
