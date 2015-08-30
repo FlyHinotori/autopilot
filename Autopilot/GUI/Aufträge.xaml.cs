@@ -36,6 +36,8 @@ namespace Autopilot.GUI
         string FStartDate;
         string FEndDate;
         string FPaxAnzahl;
+        string FVonOrt;
+        string FBisOrt;
         
         Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
         Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
@@ -51,9 +53,11 @@ namespace Autopilot.GUI
             SqlConnection conn = new SqlConnection(DBconnStrg);
 
             //Aufträge laden
-            string SQLcmd = "SELECT a.auf_id, a.knd_id, a.auf_panzahl, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, aa.aart_bez, kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit"
+            string SQLcmd = "SELECT a.auf_id, a.knd_id, a.auf_panzahl, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, aa.aart_bez,"
+                + " kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit, fh1.flh_name AS VonOrt, fh2.flh_name AS BisOrt"
                 + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id)"
-                + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) LEFT JOIN auftragsart aa ON (a.aart_id = aa.aart_id)"
+                + " LEFT JOIN status s ON (s.sta_id = a.sta_id) LEFT JOIN termin_auftrag ta ON (ta.auf_id = a.auf_id) LEFT JOIN termin t ON (t.ter_id = ta.ter_id) "
+                + " LEFT JOIN auftragsart aa ON (a.aart_id = aa.aart_id) LEFT JOIN flughafen fh1 ON (fh1.flh_id = a.flh_id_beginn) LEFT JOIN flughafen fh2 ON (fh2.flh_id = a.flh_id_ende)"
                 + " ORDER BY a.sta_id ASC";
             SqlCommand cmd = new SqlCommand(SQLcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
@@ -92,6 +96,8 @@ namespace Autopilot.GUI
                 FStartDate = Convert.ToDateTime(((DataRowView)GridAuftraege.SelectedItem).Row["ter_beginn"]).ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
                 FEndDate = Convert.ToDateTime(((DataRowView)GridAuftraege.SelectedItem).Row["ter_ende"]).ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
                 FPaxAnzahl = ((DataRowView)GridAuftraege.SelectedItem).Row["auf_panzahl"].ToString();
+                FVonOrt = ((DataRowView)GridAuftraege.SelectedItem).Row["VonOrt"].ToString();
+                FBisOrt = ((DataRowView)GridAuftraege.SelectedItem).Row["BisOrt"].ToString();
             }  
         }
 
@@ -299,12 +305,13 @@ namespace Autopilot.GUI
 
         private string GetFlugMitZwischenstoppDescription()
         {
-            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" + "Von A nach B über C, D, E";
+            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" 
+                + "Von " + FVonOrt + " nach " + FBisOrt + " über C, D, E";
         }
 
         private string GetEinzelflugDescription()
         {
-            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" + "Von A nach B";
+            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" + "Von " + FVonOrt + " nach " + FBisOrt;
         }
     }
 }
