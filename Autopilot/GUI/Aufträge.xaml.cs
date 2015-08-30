@@ -47,12 +47,10 @@ namespace Autopilot.GUI
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void LoadAuftraege()
         {
             TableAuftraege.Clear();
             SqlConnection conn = new SqlConnection(DBconnStrg);
-
-            //Aufträge laden
             string SQLcmd = "SELECT a.auf_id, a.knd_id, a.auf_panzahl, anr.anr_bez, k.knd_vorname, k.knd_name, t.ter_beginn, t.ter_ende, s.sta_bez, aa.aart_bez,"
                 + " kg.kng_bez, CAST( (t.ter_ende - t.ter_beginn + 1) AS Int) AS flugzeit, fh1.flh_name AS VonOrt, fh2.flh_name AS BisOrt"
                 + " FROM auftrag a LEFT JOIN kunde k ON (k.knd_id = a.knd_id) LEFT JOIN anrede anr ON (anr.anr_id = k.anr_id) LEFT JOIN kundengruppe kg ON (kg.kng_id = k.knd_id)"
@@ -62,7 +60,11 @@ namespace Autopilot.GUI
             SqlCommand cmd = new SqlCommand(SQLcmd, conn);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(TableAuftraege);
+        }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LoadAuftraege();
             GridAuftraege.ItemsSource = TableAuftraege.DefaultView;
         }
 
@@ -101,6 +103,26 @@ namespace Autopilot.GUI
             }  
         }
 
+        private void ChangeStatusTo(string NeuerStatus)
+        {
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+            cmd.CommandText = "UPDATE auftrag SET sta_id = (SELECT sta_id FROM status WHERE sta_bez = '" + NeuerStatus + "')";
+            cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (System.Exception err)
+            {
+                MessageBox.Show("Fehlermeldung: " + err.Message, "Fehler", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            conn.Close();            
+        }
+
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
         {
             Document Angebot = CreatePDF("Angebot");
@@ -111,6 +133,8 @@ namespace Autopilot.GUI
                 Angebot.Add(FlugzeugPic);
             Angebot.Add(GetAngebotText());
             Angebot.Close();
+            ChangeStatusTo("Angebot");
+            LoadAuftraege();
         }
 
         #region PDFErstellung
