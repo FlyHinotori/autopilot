@@ -210,6 +210,7 @@ namespace Autopilot.GUI
             Rechnung.Add(GetRechnungText());
             Rechnung.Close();
             System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
+            SaveForderung();
             ChangeStatusTo("erstellt");
             LoadAuftraege();
         }
@@ -615,6 +616,17 @@ namespace Autopilot.GUI
             }
             conn.Close();
             return Fixkosten;
+        }
+
+        private void SaveForderung()
+        {
+            Autopilot.buchung Buchung = new Autopilot.buchung();
+            Buchung.auf_id = FAuftragsID;
+            Buchung.buc_datum = DateTime.Now;
+            Buchung.buc_soll = Convert.ToDecimal(CalculateCosts());
+            Buchung.buc_text = "Rechnungslegung";
+            FContent.buchung.Add(Buchung);
+            FContent.SaveChanges();
         }
     }
 }
