@@ -38,6 +38,7 @@ namespace Autopilot.GUI
         string FPaxAnzahl;
         string FVonOrt;
         string FBisOrt;
+        string FKundengruppe;
         
         Font NormalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
         Font BoldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
@@ -68,14 +69,14 @@ namespace Autopilot.GUI
             GridAuftraege.ItemsSource = TableAuftraege.DefaultView;
         }
 
-        private void SetButtons(string Kundengruppe, string Auftragsstatus)
+        private void SetButtons(string Auftragsstatus)
         { 
             BtnAngebotErstellen.IsEnabled = Auftragsstatus == "Aufnahme";
             BtnAuftragStornieren.IsEnabled = (Auftragsstatus == "Angebot") || Auftragsstatus == "Vertrag";
             BtnVertragErstellen.IsEnabled = Auftragsstatus == "Angebot";
             BtnVertragUnterschrieben.IsEnabled = Auftragsstatus == "Vertrag";
-            BtnRechnungErstellen.IsEnabled = ((Auftragsstatus == "Durchführung") && (Kundengruppe == "PRE")) || 
-                ((Auftragsstatus == "Beendet") && (Kundengruppe != "PRE"));
+            BtnRechnungErstellen.IsEnabled = ((Auftragsstatus == "Durchführung") && (FKundengruppe == "PRE")) || 
+                ((Auftragsstatus == "Beendet") && (FKundengruppe != "PRE"));
             BtnFlugdatenErfassen.IsEnabled = Auftragsstatus == "Durchführung";
             BtnFeedbackErfassen.IsEnabled = (Auftragsstatus != "Aufnahme") && (Auftragsstatus != "Angebot") &&
                 (Auftragsstatus != "Vertrag");
@@ -86,9 +87,9 @@ namespace Autopilot.GUI
             if (GridAuftraege.SelectedCells.Count != 0 && GridAuftraege.ItemsSource != null && GridAuftraege.SelectedItem != null)
             {
                 DataRowView row = GridAuftraege.SelectedItems as DataRowView;
-                string Kundengruppe = ((DataRowView)GridAuftraege.SelectedItem).Row["kng_bez"].ToString();
+                FKundengruppe = ((DataRowView)GridAuftraege.SelectedItem).Row["kng_bez"].ToString();
                 string Auftragsstatus = ((DataRowView)GridAuftraege.SelectedItem).Row["sta_bez"].ToString();
-                SetButtons(Kundengruppe, Auftragsstatus);
+                SetButtons(Auftragsstatus);
                 FAuftragsID = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["auf_id"].ToString());
                 FFlugzeit = Convert.ToInt32(((DataRowView)GridAuftraege.SelectedItem).Row["flugzeit"].ToString());
                 FAnrede = ((DataRowView)GridAuftraege.SelectedItem).Row["anr_bez"].ToString()
@@ -135,6 +136,31 @@ namespace Autopilot.GUI
             Angebot.Close();
             ChangeStatusTo("Angebot");
             LoadAuftraege();
+        }
+
+        private void BtnAuftragStornieren_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("Storno");
+        }
+
+        private void BtnVertragErstellen_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("Vertrag");
+        }
+
+        private void BtnVertragUnterschrieben_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("Durchführung");
+        }
+
+        private void BtnRechnungErstellen_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("erstellt");
+        }
+
+        private void BtnFlugdatenErfassen_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("Beendet");
         }
 
         #region PDFErstellung

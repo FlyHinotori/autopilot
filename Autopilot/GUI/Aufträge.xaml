@@ -24,11 +24,11 @@
             <GroupBox Margin="50,0,0,-100" Header="Aktionen" HorizontalAlignment="Left" Height="250" Width="180">
                 <Grid>
                     <Button x:Name="BtnAngebotErstellen" Content="Angebot erstellen" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnAngebotErstellen_Click"/>
-                    <Button x:Name="BtnAuftragStornieren" Content="Auftrag storniert" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
-                    <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
-                    <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
-                    <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
-                    <Button x:Name="BtnFlugdatenErfassen" Content="Flugdaten erfassen" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
+                    <Button x:Name="BtnAuftragStornieren" Content="Auftrag storniert" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnAuftragStornieren_Click"/>
+                    <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragErstellen_Click"/>
+                    <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragUnterschrieben_Click"/>
+                    <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnRechnungErstellen_Click"/>
+                    <Button x:Name="BtnFlugdatenErfassen" Content="Flugdaten erfassen" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFlugdatenErfassen_Click"/>
                     <Button x:Name="BtnFeedbackErfassen" Content="Feedback erfassen" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False"/>
                 </Grid>
             </GroupBox>
