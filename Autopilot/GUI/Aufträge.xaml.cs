@@ -153,7 +153,8 @@ namespace Autopilot.GUI
 
         private void BtnAngebotErstellen_Click(object sender, RoutedEventArgs e)
         {
-            Document Angebot = CreatePDF("Angebot");
+            string FileName = "Angebot" + Guid.NewGuid().ToString();
+            Document Angebot = CreatePDF(FileName);
             Angebot.Open();
             Angebot.Add(GetAngebotHeader());
             iTextSharp.text.Image FlugzeugPic = GetFlugzeugImage();
@@ -161,6 +162,7 @@ namespace Autopilot.GUI
                 Angebot.Add(FlugzeugPic);
             Angebot.Add(GetAngebotText());
             Angebot.Close();
+            System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
             ChangeStatusTo("Angebot");
             LoadAuftraege();
         }
@@ -178,12 +180,14 @@ namespace Autopilot.GUI
 
         private void BtnVertragErstellen_Click(object sender, RoutedEventArgs e)
         {
-            Document Vertrag = CreatePDF("Vertrag");
+            string FileName = "Vertrag" + Guid.NewGuid().ToString();
+            Document Vertrag = CreatePDF(FileName);
             Vertrag.Open();
             Vertrag.Add(GetVertragHeader());
             Vertrag.Add(GetVertragText());
             Vertrag.Add(GetUnterschriftsbereich());
             Vertrag.Close();
+            System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
             ChangeStatusTo("Vertrag");
             LoadAuftraege();
         }
@@ -196,7 +200,8 @@ namespace Autopilot.GUI
 
         private void BtnRechnungErstellen_Click(object sender, RoutedEventArgs e)
         {
-            Document Rechnung = CreatePDF("Rechnung");
+            string FileName = "Rechnung" + Guid.NewGuid().ToString();
+            Document Rechnung = CreatePDF(FileName);
             Rechnung.Open();
             Rechnung.Add(GetRechnungHeader());
             iTextSharp.text.Image FlugzeugPic = GetFlugzeugImage();
@@ -204,7 +209,7 @@ namespace Autopilot.GUI
                 Rechnung.Add(FlugzeugPic);
             Rechnung.Add(GetRechnungText());
             Rechnung.Close();
-
+            System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
             ChangeStatusTo("erstellt");
             LoadAuftraege();
         }
@@ -218,7 +223,7 @@ namespace Autopilot.GUI
         private Document CreatePDF(string Name)
         {
             Directory.CreateDirectory("pdf");
-            FileStream fs = new FileStream("pdf\\" + Name + Guid.NewGuid().ToString() + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            FileStream fs = new FileStream("pdf\\" + Name + ".pdf", FileMode.Create, FileAccess.Write, FileShare.None);
             Document doc = new Document(new iTextSharp.text.Rectangle(PageSize.A4));
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             return doc;
