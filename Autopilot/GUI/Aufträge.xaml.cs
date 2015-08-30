@@ -195,6 +195,64 @@ namespace Autopilot.GUI
             pic.BorderWidth = 1f;
             return pic;
         }
+
+        private string GetCharterDescription()
+        {
+            if (FAuftragsArt == "Zeitcharter")
+                return GetZeitcharterDescription();
+            else if (FAuftragsArt == "Einzelflug")
+                return GetEinzelflugDescription();
+            else if (FAuftragsArt == "Flug mit Zwischenaufenthalt")
+                return GetFlugMitZwischenstoppDescription();
+            else
+                return "";
+        }
+
+        private string GetZeitcharterDescription()
+        {
+            return "Im Zeitraum von " + FStartDate + " bis " + FEndDate;
+        }
+
+        private string GetFlugMitZwischenstoppDescription()
+        {
+            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n"
+                + "Von " + FVonOrt + " nach " + FBisOrt + " über " + GetZwischenstationen();
+        }
+
+        private string GetEinzelflugDescription()
+        {
+            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" + "Von " + FVonOrt + " nach " + FBisOrt;
+        }
+
+        private string GetZwischenstationen()
+        {
+            string Zwischenstationen = "";
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get all Zwischenstationen
+            cmd.CommandText = "SELECT fh.flh_name FROM zwischenlandung z LEFT JOIN flughafen fh ON (fh.flh_id = z.flh_id) "
+                + " WHERE z.auf_id = " + FAuftragsID.ToString()
+                + " ORDER BY z.zwl_reihenfolge ASC";
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            while (ResultSet.Read())
+            {
+                string Station = ResultSet["flh_name"].ToString();
+                Zwischenstationen += Station;
+                Zwischenstationen += ", ";
+            }
+            conn.Close();
+            //remove last comma
+            if (Zwischenstationen.Length > 2)
+                Zwischenstationen = Zwischenstationen.Remove(Zwischenstationen.Length - 2, 2);
+            return Zwischenstationen;
+        }
         #endregion
 
         private double CalculateCosts()
@@ -284,34 +342,6 @@ namespace Autopilot.GUI
             }
             conn.Close();
             return Fixkosten;
-        }
-
-        private string GetCharterDescription()
-        {
-            if (FAuftragsArt == "Zeitcharter")
-                return GetZeitcharterDescription();
-            else if (FAuftragsArt == "Einzelflug")
-                return GetEinzelflugDescription();
-            else if (FAuftragsArt == "Flug mit Zwischenaufenthalt")
-                return GetFlugMitZwischenstoppDescription();
-            else
-                return "";
-        }
-
-        private string GetZeitcharterDescription()
-        {
-            return "Im Zeitraum von " + FStartDate + " bis " + FEndDate;
-        }
-
-        private string GetFlugMitZwischenstoppDescription()
-        {
-            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" 
-                + "Von " + FVonOrt + " nach " + FBisOrt + " über C, D, E";
-        }
-
-        private string GetEinzelflugDescription()
-        {
-            return "Passagierzahl: " + FPaxAnzahl + " \n" + "Im Zeitraum von " + FStartDate + " bis " + FEndDate + "\n" + "Von " + FVonOrt + " nach " + FBisOrt;
         }
     }
 }
