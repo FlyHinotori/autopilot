@@ -28,7 +28,7 @@
                     <Button x:Name="BtnVertragErstellen" Content="Vertrag erstellen" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragErstellen_Click"/>
                     <Button x:Name="BtnVertragUnterschrieben" Content="Vertrag unterschrieben" HorizontalAlignment="Left" Margin="10,100,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnVertragUnterschrieben_Click"/>
                     <Button x:Name="BtnRechnungErstellen" Content="Rechnung erstellen" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnRechnungErstellen_Click"/>
-                    <Button x:Name="BtnFlugdatenErfassen" Content="Flugdaten erfassen" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFlugdatenErfassen_Click"/>
+                    <Button x:Name="BtnFlugBeendet" Content="Flug beendet" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFlugBeendet_Click"/>
                     <Button x:Name="BtnFeedbackErfassen" Content="Feedback erfassen" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Width="150" IsEnabled="False" Click="BtnFeedbackErfassen_Click"/>
                 </Grid>
             </GroupBox>
