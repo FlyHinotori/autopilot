@@ -82,6 +82,7 @@ namespace Autopilot.GUI
             BtnVertragUnterschrieben.IsEnabled = Auftragsstatus == "Vertrag";
             BtnRechnungErstellen.IsEnabled = ((Auftragsstatus == "Durchführung") && (FKundengruppe == "PRE")) || 
                 ((Auftragsstatus == "Beendet") && (FKundengruppe != "PRE"));
+            BtnFlugdatenErfassen.IsEnabled = Auftragsstatus == "Durchführung";
             BtnFeedbackErfassen.IsEnabled = (Auftragsstatus != "Aufnahme") && (Auftragsstatus != "Angebot") &&
                 (Auftragsstatus != "Vertrag") && (Auftragsstatus != "");
         }
@@ -210,6 +211,12 @@ namespace Autopilot.GUI
             Rechnung.Close();
             System.Diagnostics.Process.Start("pdf\\" + FileName + ".pdf");
             ChangeStatusTo("erstellt");
+            LoadAuftraege();
+        }
+
+        private void BtnFlugdatenErfassen_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeStatusTo("Beendet");
             LoadAuftraege();
         }
 
