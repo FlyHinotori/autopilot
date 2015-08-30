@@ -178,7 +178,14 @@ namespace Autopilot.GUI
 
         private void BtnVertragErstellen_Click(object sender, RoutedEventArgs e)
         {
+            Document Vertrag = CreatePDF("Vertrag");
+            Vertrag.Open();
+            Vertrag.Add(GetVertragHeader());
+            Vertrag.Add(GetVertragText());
+            Vertrag.Add(GetUnterschriftsbereich());
+            Vertrag.Close();
             ChangeStatusTo("Vertrag");
+            LoadAuftraege();
         }
 
         private void BtnVertragUnterschrieben_Click(object sender, RoutedEventArgs e)
@@ -205,6 +212,59 @@ namespace Autopilot.GUI
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             return doc;
         }
+        
+        private IElement GetVertragHeader()
+        {
+            PdfPTable HeaderTable = new PdfPTable(1);
+            HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+            HeaderTable.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
+            var Header = new Phrase();
+            if (FAuftragsArt == "Zeitcharter")
+                Header.Add(new Chunk("Chartervertrag (Zeitcharter)", BoldFont));
+            else
+                Header.Add(new Chunk("Chartervertrag (Fixpreis)", BoldFont));
+            Header.Add(new Chunk("\n\nzwischen", NormalFont));
+            Header.Add(new Chunk("\n\nHINOTORI Executive AG (Auftragnehmer) \n", BoldFont));
+            Header.Add(new Chunk("\nund\n", NormalFont));
+            Header.Add(new Chunk("\n " + FAnrede + " (Auftraggeber)\n\n", BoldFont));
+            HeaderTable.AddCell(Header);
+            return HeaderTable;
+        }
+
+        private IElement GetVertragText()
+        {
+            double Preis = CalculateCosts();
+            double MwSt = Preis / 119 * 19;
+            double NettoPreis = Preis - MwSt;
+            var BriefText = new Phrase();
+            BriefText.Add(new Chunk("\n\n" + GetVertragEinleitung(), NormalFont));
+            BriefText.Add(new Chunk("\n\n" + GetCharterDescription(), NormalFont));
+            BriefText.Add(new Chunk("\n\nPreis (netto): " + NettoPreis.ToString("F2") + " €", NormalFont));
+            BriefText.Add(new Chunk("\n19% MwSt: " + MwSt.ToString("F2") + " €", NormalFont));
+            BriefText.Add(new Chunk("\nPreis (brutto): " + Preis.ToString("F2") + " €" + "\n\n\n\n", NormalFont));
+            return BriefText;
+        }
+
+        private IElement GetUnterschriftsbereich()
+        {
+            PdfPTable HeaderTable = new PdfPTable(2);
+            HeaderTable.DefaultCell.Border = PdfPCell.NO_BORDER;
+            HeaderTable.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
+            HeaderTable.WidthPercentage = 90;
+            var Header = new Phrase();
+            Header.Add(new Chunk("\n\n" + DateTime.Now.Date.ToShortDateString() + ", Wismar", NormalFont));
+            Header.Add(new Chunk("\n\n\n\n", NormalFont));
+            Header.Add(new Chunk("________________________", NormalFont));
+            Header.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
+            HeaderTable.AddCell(Header);
+            var Header2 = new Phrase();
+            Header2.Add(new Chunk("\n\n" + DateTime.Now.Date.ToShortDateString() + ", Wismar", NormalFont));
+            Header2.Add(new Chunk("\n\n\n\n", NormalFont));
+            Header2.Add(new Chunk("________________________", NormalFont));
+            Header2.Add(new Chunk("\n\nAuftraggeber", NormalFont));
+            HeaderTable.AddCell(Header2);
+            return HeaderTable;
+        }
 
         private PdfPTable GetAngebotHeader()
         {
@@ -230,6 +290,32 @@ namespace Autopilot.GUI
             BriefText.Add(new Chunk("\n\nMit freundlichen Grüße", NormalFont));
             BriefText.Add(new Chunk("\n\nHINOTORI Executive AG", NormalFont));
             return BriefText;
+        }
+
+        private string GetVertragEinleitung()
+        {
+            string Einleitung = "";
+            SqlConnection conn = new SqlConnection(DBconnStrg);
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = conn;
+
+            //Get Flugzeug Kennzeichen and Typ
+            cmd.CommandText = "SELECT f.flz_kennzeichen, ft.ftyp_bez FROM termin_auftrag ta LEFT JOIN termin t ON (ta.ter_id = t.ter_id)"
+                + " LEFT JOIN termin_flugzeug tf ON (tf.ter_id = t.ter_id) LEFT JOIN flugzeug f ON (f.flz_id = tf.flz_id)"
+                + " LEFT JOIN flugzeugtyp ft ON (f.ftyp_id = ft.ftyp_id)"
+                + " WHERE ta.auf_id = " + FAuftragsID.ToString();
+            cmd.CommandType = System.Data.CommandType.Text;
+
+            conn.Open();
+
+            SqlDataReader ResultSet = cmd.ExecuteReader();
+            while (ResultSet.Read())
+            {
+                Einleitung = "Der Auftraggeber chartert das Luftfahrzeug " + ResultSet["ftyp_bez"].ToString() + " mit dem Kennzeichen " + ResultSet["flz_kennzeichen"].ToString() + ".";
+            }
+            conn.Close();
+            return Einleitung;
         }
 
         private iTextSharp.text.Image GetFlugzeugImage()
