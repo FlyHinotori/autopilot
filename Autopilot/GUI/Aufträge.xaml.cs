@@ -474,7 +474,10 @@ namespace Autopilot.GUI
             double Fixkosten = GetFixkosten();
             double Personalkosten = GetPersonalkosten();
             double Flugkosten = GetFlugkosten();
-            return Fixkosten + Personalkosten + Flugkosten;
+            double Kosten = Fixkosten + Personalkosten + Flugkosten;
+            if (FKundengruppe == "PRE")
+                Kosten *= 1.05;
+            return Kosten;
         }
 
         private double GetFlugkosten()
